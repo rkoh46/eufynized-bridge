@@ -1,83 +1,156 @@
 # Eufynized bridge
 
 Eufy cameras in Home Assistant straight from the HomeBase 3 over your own network: live video, recordings,
-settings, detection sensors, alarm panel. No Eufy cloud in the video path, no RTSP, no go2rtc.
+settings, detection sensors, alarm panel. No Eufy cloud in the video path, no RTSP, no go2rtc to configure.
 
-This is the free, open part of Eufynized: a bridge that runs on a Raspberry Pi (or any Linux box with
-Docker), a Home Assistant integration, the Swift library that speaks the HomeBase's local P2P protocol, and the
-research behind it. The Mac app is separate: see [rkoh46/eufynized-app](https://github.com/rkoh46/eufynized-app)
-for what it does and to report bugs or request features for it. Issues with the bridge or the integration go
-in this repo's [Issues](../../issues).
+This is the free, open part of Eufynized: a bridge that runs next to Home Assistant, a Home Assistant
+integration, the Swift library that speaks the HomeBase's local P2P protocol, and the research behind it.
+The Mac app is separate: see [rkoh46/eufynized-app](https://github.com/rkoh46/eufynized-app) for what it
+does and to report bugs or request features for it. Issues with the bridge or the integration go in this
+repo's [Issues](../../issues).
+
+![Cameras tab of the Security Camera panel](docs/images/cameras.png)
 
 ## What you get
 
-- **Home Assistant:** a "Security Camera" panel (live, Multi-View, events timeline with Photos-style scrubbing,
-  pan-tilt, presets, panorama, quick replies, activity zones), `camera.*` entities, person / motion / pet /
-  vehicle sensors, event images, an alarm panel for guard mode, switches and selects for every camera setting
-  the eufy app offers (including Direct power and continuous recording on the S3 Pro), battery / signal /
-  storage sensors, and an `eufynized_event` for automations.
-- **Alerts:** health (offline, low battery, weak link, full drive) with hysteresis, loitering, a morning
-  digest, quiet hours and per-camera windows, snooze. Push actions (View live / Snooze / False alarm).
+- **A "Security Camera" panel in the sidebar:** live view, Multi-View (how many at once is up to you),
+  events timeline with Photos-style scrubbing, pan-tilt with saved positions and panorama, quick replies
+  through the camera speaker, activity zones drawn on the picture, every camera setting the eufy app offers.
+- **Entities:** `camera.*` (snapshot and stream), person / motion / pet / vehicle / sound binary sensors,
+  the latest event picture, an alarm panel for guard mode, switches and selects for camera settings
+  (including Direct power and continuous recording on the S3 Pro), battery / signal / storage sensors.
+- **`eufynized_event`** on the event bus for your automations, with the event's picture.
+- **Alerts:** health (offline, low battery, weak link, full drive), loitering, a morning digest, quiet hours,
+  snooze, and phone pushes with View live / Snooze / False alarm buttons.
 - **One HomeBase session per camera**, shared by every screen in the house. The HomeBase only allows a few.
+
+![Events tab](docs/images/events.png)
 
 Tested with HomeBase 3, eufyCam S3 Pro, eufyCam 2C, SoloCam S340, Indoor Cam E30.
 
 ## How it works
 
 ```
-Cameras ──► HomeBase 3 ──(local P2P)──► eufynized-bridge (Pi, port 18099) ──► Home Assistant
+Cameras ──► HomeBase 3 ──(local P2P, your LAN)──► eufynized-bridge :18099 ──► Home Assistant
 ```
 
-The HomeBase encrypts video with a key only Eufy's cloud hands out. `eufynized-login` fetches it once; after
-that nothing talks to the cloud.
+The HomeBase encrypts video with a key that only Eufy's cloud hands out. You fetch it once with the tools in
+this repo; after that nothing talks to the cloud. The key is stored in `bridge.json` next to the bridge.
 
 ## Install
 
-Needs: Docker Compose on the Pi, Home Assistant Core as a Compose service with its config in `/opt/ha/config`,
-SSH with passwordless sudo, ffmpeg. A Mac with Swift (Xcode Command Line Tools) to run the one-time key step.
+### What you need
+
+- A **HomeBase 3** with a fixed IP address on your network (set it in your router).
+- **Home Assistant Core running in Docker Compose** on a Linux box (a Raspberry Pi 4 or 5 is fine), with the
+  config in `/opt/ha/config` and `docker-compose.yml` in `/opt/ha`. SSH into it with passwordless `sudo`.
+  Running Home Assistant OS instead? See [Home Assistant OS](#home-assistant-os) below.
+- A **Mac** with Xcode's Command Line Tools (`xcode-select --install`), only for the one-time key step and to
+  run the installer. The bridge itself is compiled on the Linux box.
+- Your **eufy account** email and password, and the 2FA code eufy sends.
+
+### 1. Get the camera key (once, on the Mac)
 
 ```bash
 git clone https://github.com/rkoh46/eufynized-bridge.git && cd eufynized-bridge
-swift run eufynized-login you@example.com        # signs in once (password + 2FA), stores the key locally
-scripts/export-ha-config.sh --install pi@<pi>    # copies the key and camera list to the Pi
-scripts/install-ha.sh pi@<pi>                    # builds on the Pi, installs the bridge + integration
+swift run eufynized-login you@example.com
 ```
 
-Run `install-ha.sh` again for every update. It installs the `eufynized` Compose service and the integration,
-and restarts Home Assistant only when needed.
+It asks for your eufy password (not stored) and the verification code, then lists your devices. Note the
+HomeBase serial (starts with `T8030`). Then:
 
-Optional, in `configuration.yaml`:
+```bash
+swift run eufynized-cipher you@example.com T8030XXXXXXXXXXX 192.168.1.50
+```
+
+That fetches the HomeBase's key and stores it in `~/Library/Application Support/Eufynized/secrets.json`.
+**Back up that file.** It is the one thing you can't get back without signing in again.
+
+### 2. Put the key and camera list on the Home Assistant box
+
+```bash
+HOMEBASE_IP=192.168.1.50 STATION_SERIAL=T8030XXXXXXXXXXX EUFY_EMAIL=you@example.com \
+  scripts/export-ha-config.sh --install pi@192.168.1.60
+```
+
+This writes `/opt/ha/eufynized/data/eufynized/bridge.json` on the box (mode 600). Nothing else leaves the Mac.
+
+### 3. Install the bridge and the integration
+
+```bash
+scripts/install-ha.sh pi@192.168.1.60
+```
+
+It compiles the bridge on the box inside Docker (10–20 minutes the first time on a Pi, a minute after that),
+adds an `eufynized` service to `/opt/ha/docker-compose.yml` (host network, data in `/opt/ha/eufynized/data`),
+copies the integration into `/opt/ha/config/custom_components/eufynized`, adds `eufynized:` to
+`configuration.yaml`, and restarts Home Assistant Core if the integration changed. It backs up both files
+first (`*.bak-<date>-eufynized`).
+
+### 4. Look
+
+Open Home Assistant. **Security Camera** is in the sidebar; the cameras and sensors are under Settings →
+Devices & services → Entities (search `eufynized`). The bridge's own page is also at `http://<box>:18099`.
+
+### Configuration (optional)
+
+In `configuration.yaml`:
 
 ```yaml
 eufynized:
-  entity_names:                            # keep entity ids from an old integration
+  url: http://127.0.0.1:18099          # where the bridge is (default)
+  notify_service: mobile_app_your_phone # pushes with View live / Snooze / False alarm buttons
+  entity_names:                         # keep entity ids from a previous integration
     T8162T0000000001: backyard
-  alarm_entity_name: eufy_home_base
-  notify_service: mobile_app_your_phone    # phone pushes with buttons
+  alarm_entity_name: eufy_home_base     # default: eufynized_home_base
+  sidebar_title: Security Camera
 ```
 
-On the Pi:
+Alerts (quiet hours, per-camera windows, loitering, morning digest, which cameras and kinds) are set in the
+panel's **Alerts** tab and stored by the bridge.
+
+![Alerts tab](docs/images/alerts.png)
+
+### Updating
+
+```bash
+git pull
+scripts/install-ha.sh pi@192.168.1.60
+```
+
+### Home Assistant OS
+
+`ha-addon/` is a Supervisor add-on (ingress panel, host network, options `homebase_ip` and
+`notify_service`). It needs the bridge binary, which `scripts/build-ha-addon.sh` builds in Docker; copy the
+`ha-addon/eufynized` folder to `/addons` on the HA OS host, install it from the add-on store's local section,
+put `bridge.json` (from step 2's `scripts/export-ha-config.sh bridge.json`) in the add-on's data folder, and
+copy `ha-integration/custom_components/eufynized` into `/config`. This path is not what the author runs, so
+expect to adjust; issues welcome.
+
+## Files on the box
 
 | Path | What |
 |---|---|
 | `/opt/ha/eufynized/app/` | bridge binary, web page, Dockerfile |
-| `/opt/ha/eufynized/data/eufynized/bridge.json` | keys |
-| `/opt/ha/eufynized/data/eufynized/prefs.json` | preferences (quality, snooze, presets, quiet hours) |
-| `/opt/ha/config/custom_components/eufynized/` | integration |
+| `/opt/ha/eufynized/data/eufynized/bridge.json` | the key, HomeBase address, camera list |
+| `/opt/ha/eufynized/data/eufynized/prefs.json` | quality, snooze, presets, quiet hours, digest time |
+| `/opt/ha/eufynized/data/eufynized/replies/` | quick-reply audio |
+| `/opt/ha/config/custom_components/eufynized/` | the integration |
 
-Back up `bridge.json`. It holds the camera key, the one thing you can't get back without signing in again.
+Back up `bridge.json` and `prefs.json`. Everything else comes from this repo.
 
-Running Home Assistant OS instead? `ha-addon/` is the add-on; the bridge binary is built by
-`scripts/build-ha-addon.sh`.
+## Troubleshooting
 
-## Good to know
-
-- The HomeBase serves only a few sessions at once. Multi-View on several screens can exceed it.
-- A Pi on Wi-Fi delivers video in clumps. Ethernet fixes it.
-- Cameras start every stream at 720p and ramp up on their own.
-- Direct power on the S3 Pro can't be read back; the bridge remembers what it last set.
-- `EUFYNIZED_ALLOW_FROM=192.168.1.` (address prefixes) limits who may talk to the bridge. It has no login of
-  its own, so keep it on the LAN or behind a private tunnel.
+- **"No video from this camera" on every tile:** the HomeBase has run out of sessions (it serves only a
+  few at once). Close other viewers, or pick a smaller Multi-View layout.
+- **Video arrives in bursts:** the box is on Wi-Fi. Ethernet fixes it.
+- **Cameras start at 720p:** they all do, then ramp up on their own after a few seconds.
+- **A camera shows the HomeBase's "active" camera instead of itself:** the key or account id in
+  `bridge.json` is wrong. Redo steps 1 and 2.
+- **Bridge refuses the Mac app or another device:** `EUFYNIZED_ALLOW_FROM=192.168.1.` in the compose
+  service lists the address prefixes allowed in. The bridge has no login of its own, so keep it on the LAN or
+  behind a private tunnel.
+- **Logs:** `docker logs -f eufynized` on the box.
 
 ## Development
 
@@ -85,13 +158,13 @@ Running Home Assistant OS instead? `ha-addon/` is the add-on; the bridge binary 
 swift build
 scripts/test.sh
 swift run eufynized-fps <serial> <channel> <homebase-ip> <email>   # measure a direct stream
-swift run eufynized-fps --bridge http://<pi>:18099 <channel>       # measure the bridge feed
+swift run eufynized-fps --bridge http://<box>:18099 <channel>      # measure the bridge feed
 swift run eufynized-probe …                                        # send a command (allow-listed, read-only)
 ```
 
 Targets: `EufyKit` (the protocol: P2P transport, level-2 per-camera selection, settings catalog, recordings),
 `EufynizedKit` (bridge client, live stream plumbing), `eufynized-bridge` (the HTTP/WebSocket server), and
-small command-line tools for login, discovery, snapshots, PTZ, settings and health.
+command-line tools for login, discovery, snapshots, PTZ, settings and health.
 
 Protocol research (command tables, what the HomeBase sends, what was verified) is in
 [`docs/homebase-research/`](docs/homebase-research/README.md).

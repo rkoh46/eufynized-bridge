@@ -5,6 +5,9 @@
 #
 #   scripts/export-ha-config.sh [out-file]            (default: ./bridge.json, mode 600)
 #   scripts/export-ha-config.sh --install user@pi     (copies it into the add-on's data folder on the Pi)
+# Without the Mac app, say what it would have known:
+#   HOMEBASE_IP=192.168.1.50 STATION_SERIAL=T8030… EUFY_EMAIL=you@example.com scripts/export-ha-config.sh --install pi@<pi>
+# (after `swift run eufynized-login <email>` and `swift run eufynized-cipher <email> <serial> <homebase-ip>`).
 set -euo pipefail
 
 domain=io.github.rkoh46.Eufynized
@@ -12,9 +15,10 @@ out=bridge.json
 target=""
 if [[ "${1:-}" == "--install" ]]; then target="$2"; out=$(mktemp -t bridge); else out="${1:-bridge.json}"; fi
 
-ip=$(defaults read $domain homeBaseIP)
-serial=$(defaults read $domain stationSerial)
-email=$(defaults read $domain accountEmail)
+ip=${HOMEBASE_IP:-$(defaults read $domain homeBaseIP 2>/dev/null || true)}
+serial=${STATION_SERIAL:-$(defaults read $domain stationSerial 2>/dev/null || true)}
+email=${EUFY_EMAIL:-$(defaults read $domain accountEmail 2>/dev/null || true)}
+[[ -n "$ip" && -n "$serial" && -n "$email" ]] || { echo "need HOMEBASE_IP, STATION_SERIAL and EUFY_EMAIL (or the Mac app's settings)" >&2; exit 1; }
 
 umask 077
 python3 - "$ip" "$serial" "$email" "$out" <<'EOF'

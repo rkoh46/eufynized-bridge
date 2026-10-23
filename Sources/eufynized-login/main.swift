@@ -3,7 +3,8 @@ import EufyKit
 
 // Signs in to Eufy (once) and lists the account's devices. Run it in your own terminal:
 //   swift run eufynized-login you@example.com [COUNTRY]
-// The password is read without echo and never stored; the resulting session is kept in the Keychain.
+// The password is read without echo and never stored; the resulting session is kept in
+// ~/Library/Application Support/Eufynized/secrets.json, and the camera list in ~/Library/Caches/Eufynized.
 
 func prompt(_ text: String) -> String {
     print(text, terminator: "")
@@ -39,10 +40,16 @@ do {
                 break
             }
         }
-        print("Signed in. Session saved in your Keychain.")
+        print("Signed in. Session saved.")
     }
 
     let devices = try await client.devices()
+    // The camera list, as the bridge and export-ha-config.sh want it.
+    let email = args.count > 1 ? args[1] : ""
+    if let cameras = try? await client.cameras(), !cameras.isEmpty, !email.isEmpty {
+        CameraCatalogCache().save(cameras, email: email)
+        print("\(cameras.count) cameras saved for the bridge.")
+    }
     print("\(devices.count) devices:")
     for device in devices {
         let product = device.productName.map { " (\($0))" } ?? ""
