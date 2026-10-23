@@ -11,7 +11,7 @@ import EufyKit
 // EUFYNIZED_ALLOW_FROM=192.168.1. (comma-separated address prefixes) for the Mac app on the home network.
 
 extension Bridge {
-    static let version = "1.6.2"
+    static let version = "1.7.0"
 }
 
 setvbuf(stdout, nil, _IOLBF, 0)
@@ -22,10 +22,17 @@ let port = UInt16(env["EUFYNIZED_PORT"] ?? "") ?? 8099
 try? FileManager.default.createDirectory(at: dataDir, withIntermediateDirectories: true)
 
 let configFile = dataDir.appendingPathComponent("bridge.json")
+let prefixes = (env["EUFYNIZED_ALLOW_FROM"] ?? "").split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+// Home Assistant's ingress proxy is 172.30.32.2; go2rtc reads streams from this container (127.0.0.1).
+let allowed: Set<String>? = env["EUFYNIZED_ALLOW_ALL"] == "1" ? nil : ["172.30.32.2", "127.0.0.1"]
 guard let configData = try? Data(contentsOf: configFile),
       let config = try? JSONDecoder().decode(BridgeConfig.self, from: configData) else {
-    log("No usable \(configFile.path). Export it from the Mac with scripts/export-ha-config.sh.")
-    exit(1)
+    // First run: serve the page's sign-in screen until the key is fetched, then start over.
+    log("No \(configFile.path) yet: open the Security Camera page (port \(port)) and sign in with your eufy account.")
+    let setup = SetupFlow(dataDir: dataDir, configured: false)
+    let routes = SetupRoutes(wwwDir: wwwDir, setup: setup)
+    let server = HTTPServer(port: port, allowedPeers: allowed, allowedPrefixes: prefixes) { request, connection in routes.handle(request, connection) }
+    do { try server.run() } catch { log("Server failed: \(error)"); exit(1) }
 }
 let optionsFile = URL(fileURLWithPath: env["EUFYNIZED_OPTIONS"] ?? "/data/options.json")
 let options = (try? Data(contentsOf: optionsFile)).flatMap { try? JSONDecoder().decode(AddonOptions.self, from: $0) }
@@ -52,10 +59,7 @@ Thread.detachNewThread {
     }
 }
 
-let routes = Routes(bridge: bridge, alerts: alerts)
-// Home Assistant's ingress proxy is 172.30.32.2; go2rtc reads streams from this container (127.0.0.1).
-let allowed: Set<String>? = env["EUFYNIZED_ALLOW_ALL"] == "1" ? nil : ["172.30.32.2", "127.0.0.1"]
-let prefixes = (env["EUFYNIZED_ALLOW_FROM"] ?? "").split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+let routes = Routes(bridge: bridge, alerts: alerts, setup: SetupFlow(dataDir: dataDir, configured: true))
 if !prefixes.isEmpty { log("Also accepting connections from \(prefixes.joined(separator: ", "))*") }
 let server = HTTPServer(port: port, allowedPeers: allowed, allowedPrefixes: prefixes) { request, connection in routes.handle(request, connection) }
 do { try server.run() } catch { log("Server failed: \(error)"); exit(1) }

@@ -5,9 +5,11 @@ import EufyKit
 final class Routes {
     let bridge: Bridge
     let alerts: AlertCenter
+    let setup: SetupFlow
     private let talkback = TalkbackSessions()
 
-    init(bridge: Bridge, alerts: AlertCenter) {
+    init(bridge: Bridge, alerts: AlertCenter, setup: SetupFlow) {
+        self.setup = setup
         self.bridge = bridge
         self.alerts = alerts
     }
@@ -32,6 +34,8 @@ final class Routes {
         case ("GET", "status", _):
             c.respondJSON(["homeBaseIP": bridge.homeBaseIP, "cameras": bridge.config.cameras.count, "alerts": alerts.status,
                            "version": Bridge.version])
+        case (_, "setup", _):
+            setup.handle(request, Array(parts.dropFirst()), c)
         case ("GET", "cameras", 1):
             c.respondJSON(bridge.config.cameras.sorted { $0.channel < $1.channel }.map(cameraJSON))
         case ("GET", "stream", 2):

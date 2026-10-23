@@ -405,3 +405,16 @@ input[type="time"] { background: var(--card, #222); color: inherit; border: 1px 
 .tl-loupe.precise { border-color: #ff8c42; }
 .tl-loupe.precise .tl-loupe-hint { color: #ff8c42; }
 
+
+/* First-run sign-in */
+.setup { max-width: 440px; margin: 48px auto; padding: 0 16px; }
+.setup h1 { font-size: 24px; margin: 0 0 6px; }
+.setup .lead { color: var(--muted); margin: 0 0 20px; }
+.setup-form { display: grid; gap: 12px; background: var(--panel-2); border-radius: 12px; padding: 18px; }
+.setup-form .field { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.setup-form input { font: inherit; color: inherit; background: var(--panel, #171b21); border: 1px solid rgba(128,128,128,.35); border-radius: 8px; padding: 9px 10px; }
+.setup-form input:focus { outline: none; border-color: var(--accent); }
+.setup-form .btn.primary { justify-self: start; padding: 8px 18px; }
+.setup-form .error { color: #ff6b6b; margin: 0; }
+.setup-form .captcha { justify-self: start; height: 56px; border-radius: 6px; background: #fff; }
+.setup-form .small { color: var(--muted); font-size: 12px; margin: 0; }

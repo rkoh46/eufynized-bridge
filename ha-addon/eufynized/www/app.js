@@ -1722,7 +1722,79 @@ async function loadCameras() {
   Object.assign(state.prefs, prefs);
 }
 
+// First run: the bridge has no key yet. Sign in with the eufy account once, right here; the bridge fetches the
+// key and the camera list, saves them, and restarts. The password goes to the bridge over the local network and
+// from there to eufy only; nothing is kept.
+async function setupIfNeeded() {
+  let s;
+  try { s = await api('setup', { timeout: 8000 }); } catch { return false; }
+  if (s.configured) return false;
+  document.querySelector('.tabs').hidden = true;
+  $('#tools').replaceChildren();
+  for (const view of document.querySelectorAll('.view')) view.hidden = view.id !== 'cameras';
+  renderSetup(s);
+  return true;
+}
+
+function renderSetup(s) {
+  const root = $('#cameras');
+  const field = (label, input) => h('label', { class: 'field' }, h('span', {}, label), input);
+  const busy = (text) => h('div', { class: 'center' }, h('div', { class: 'spinner' }), h('span', {}, text));
+  const post = async (path, json) => {
+    try { renderSetup(await api('setup/' + path, { json })); poll(); }
+    catch (err) { renderSetup({ ...s, state: 'failed', message: err.message }); }
+  };
+  let body;
+  if (s.state === 'working') body = busy(s.message || 'Working…');
+  else if (s.state === 'done') body = busy(s.message || 'Starting…');
+  else if (s.state === 'captcha') {
+    const answer = h('input', { type: 'text', autocomplete: 'off', autocapitalize: 'off', required: true });
+    body = h('form', { class: 'setup-form', onsubmit: (e) => { e.preventDefault(); post('captcha', { answer: answer.value }); } },
+      h('p', {}, s.message),
+      s.captcha ? h('img', { class: 'captcha', src: 'data:image/png;base64,' + s.captcha, alt: 'captcha' }) : null,
+      field('Characters shown', answer),
+      h('button', { class: 'btn primary', type: 'submit' }, 'Continue'));
+  } else if (s.state === 'code') {
+    const code = h('input', { type: 'text', inputmode: 'numeric', autocomplete: 'one-time-code', required: true });
+    body = h('form', { class: 'setup-form', onsubmit: (e) => { e.preventDefault(); post('code', { code: code.value }); } },
+      h('p', {}, s.message),
+      field('Verification code', code),
+      h('button', { class: 'btn primary', type: 'submit' }, 'Continue'));
+  } else {
+    const email = h('input', { type: 'email', autocomplete: 'username', required: true, value: store.get('setupEmail', '') });
+    const password = h('input', { type: 'password', autocomplete: 'current-password', required: true });
+    const ip = h('input', { type: 'text', inputmode: 'decimal', placeholder: '192.168.1.50', required: true, value: store.get('setupIP', '') });
+    const country = h('input', { type: 'text', value: 'US', maxlength: 2, style: 'width:4em', autocapitalize: 'characters' });
+    body = h('form', { class: 'setup-form', onsubmit: (e) => {
+        e.preventDefault(); store.set('setupEmail', email.value); store.set('setupIP', ip.value);
+        post('login', { email: email.value, password: password.value, homeBaseIP: ip.value, country: country.value });
+      } },
+      s.state === 'failed' ? h('p', { class: 'error' }, s.message) : null,
+      field('eufy account email', email),
+      field('Password', password),
+      field('HomeBase IP address', ip),
+      field('Country code', country),
+      h('button', { class: 'btn primary', type: 'submit' }, 'Sign in'),
+      h('p', { class: 'small' }, 'Sent to eufy once to fetch the key that unlocks your cameras\' video. Not stored. The HomeBase\'s address is in your router\'s device list (HomeBase or T8030).'));
+  }
+  root.replaceChildren(h('div', { class: 'setup' },
+    h('h1', {}, 'Set up Eufynized'),
+    h('p', { class: 'lead' }, 'Your cameras, straight from the HomeBase on your own network. One sign-in to get started.'),
+    body));
+  function poll() {
+    setTimeout(async () => {
+      let n; try { n = await api('setup', { timeout: 8000 }); } catch { n = null; }
+      if (n && n.configured) { location.reload(); return; }
+      if (!n) { setTimeout(() => location.reload(), 3000); return; }   // the bridge is restarting
+      if (n.state === 'working' || n.state === 'done') { renderSetup(n); poll(); }
+      else if (n.state !== s.state) renderSetup(n);
+    }, 1200);
+  }
+  if (s.state === 'working' || s.state === 'done') poll();
+}
+
 async function start() {
+  if (await setupIfNeeded()) return;
   if (!state.cameras.length) {
     $('#cameras').hidden = false;
     $('#cameras').replaceChildren(h('div', { class: 'center' }, h('div', { class: 'spinner' }), 'Connecting…'));

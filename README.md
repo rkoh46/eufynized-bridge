@@ -34,8 +34,9 @@ Tested with HomeBase 3, eufyCam S3 Pro, eufyCam 2C, SoloCam S340, Indoor Cam E30
 Cameras ──► HomeBase 3 ──(local P2P, your LAN)──► eufynized-bridge :18099 ──► Home Assistant
 ```
 
-The HomeBase encrypts video with a key that only Eufy's cloud hands out. You fetch it once with the tools in
-this repo; after that nothing talks to the cloud. The key is stored in `bridge.json` next to the bridge.
+The HomeBase encrypts video with a key that only eufy's cloud hands out. The bridge fetches it once, when you
+sign in on its page the first time; after that nothing talks to the cloud. The key lives in `bridge.json`
+next to the bridge.
 
 ## Install
 
@@ -45,52 +46,41 @@ this repo; after that nothing talks to the cloud. The key is stored in `bridge.j
 - **Home Assistant Core running in Docker Compose** on a Linux box (a Raspberry Pi 4 or 5 is fine), with the
   config in `/opt/ha/config` and `docker-compose.yml` in `/opt/ha`. SSH into it with passwordless `sudo`.
   Running Home Assistant OS instead? See [Home Assistant OS](#home-assistant-os) below.
-- A **Mac** with Xcode's Command Line Tools (`xcode-select --install`), only for the one-time key step and to
-  run the installer. The bridge itself is compiled on the Linux box.
+- Any computer with `ssh`, `rsync` and `git` to run the installer from (Mac or Linux). The bridge is
+  compiled on the box itself, inside Docker, so nothing else is needed.
 - Your **eufy account** email and password, and the 2FA code eufy sends.
 
-### 1. Get the camera key (once, on the Mac)
+### 1. Install the bridge and the integration
 
 ```bash
 git clone https://github.com/rkoh46/eufynized-bridge.git && cd eufynized-bridge
-swift run eufynized-login you@example.com
-```
-
-It asks for your eufy password (not stored) and the verification code, then lists your devices. Note the
-HomeBase serial (starts with `T8030`). Then:
-
-```bash
-swift run eufynized-cipher you@example.com T8030XXXXXXXXXXX 192.168.1.50
-```
-
-That fetches the HomeBase's key and stores it in `~/Library/Application Support/Eufynized/secrets.json`.
-**Back up that file.** It is the one thing you can't get back without signing in again.
-
-### 2. Put the key and camera list on the Home Assistant box
-
-```bash
-HOMEBASE_IP=192.168.1.50 STATION_SERIAL=T8030XXXXXXXXXXX EUFY_EMAIL=you@example.com \
-  scripts/export-ha-config.sh --install pi@192.168.1.60
-```
-
-This writes `/opt/ha/eufynized/data/eufynized/bridge.json` on the box (mode 600). Nothing else leaves the Mac.
-
-### 3. Install the bridge and the integration
-
-```bash
 scripts/install-ha.sh pi@192.168.1.60
 ```
 
-It compiles the bridge on the box inside Docker (10–20 minutes the first time on a Pi, a minute after that),
-adds an `eufynized` service to `/opt/ha/docker-compose.yml` (host network, data in `/opt/ha/eufynized/data`),
-copies the integration into `/opt/ha/config/custom_components/eufynized`, adds `eufynized:` to
-`configuration.yaml`, and restarts Home Assistant Core if the integration changed. It backs up both files
-first (`*.bak-<date>-eufynized`).
+It compiles the bridge on the box (10–20 minutes the first time on a Pi, a minute after that), adds an
+`eufynized` service to `/opt/ha/docker-compose.yml` (host network, data in `/opt/ha/eufynized/data`), copies
+the integration into `/opt/ha/config/custom_components/eufynized`, adds `eufynized:` to `configuration.yaml`,
+and restarts Home Assistant Core if the integration changed. It backs up both files first
+(`*.bak-<date>-eufynized`).
 
-### 4. Look
+### 2. Sign in once
 
-Open Home Assistant. **Security Camera** is in the sidebar; the cameras and sensors are under Settings →
-Devices & services → Entities (search `eufynized`). The bridge's own page is also at `http://<box>:18099`.
+Open `http://<box>:18099` (or **Security Camera** in Home Assistant's sidebar). The first time, the page asks
+for your eufy email and password, the HomeBase's IP address, and your country code. Captcha and the 2FA code
+follow if eufy asks for them.
+
+![First-run sign-in](docs/images/setup.png)
+
+The bridge signs in, reads the HomeBase's cipher id over your network, fetches the key that unlocks the video
+and the list of your cameras, saves them to `/opt/ha/eufynized/data/eufynized/bridge.json`, and restarts.
+The password and the cloud session are not kept; after this nothing talks to eufy's cloud.
+
+**Back up `bridge.json`.** It holds the key, the one thing you can't get back without signing in again.
+
+### 3. Look
+
+**Security Camera** is in the sidebar; the cameras and sensors are under Settings → Devices & services →
+Entities (search `eufynized`).
 
 ### Configuration (optional)
 
@@ -118,14 +108,27 @@ git pull
 scripts/install-ha.sh pi@192.168.1.60
 ```
 
+### Signing in again
+
+A new camera, or a different eufy account: `POST http://<box>:18099/api/setup/login` with the same fields the
+page uses, or delete `bridge.json` and restart the service to get the sign-in page back. (A button for this is
+coming.)
+
+### Without the page: the key from a Mac
+
+If you'd rather not type the password into the page, the same key step runs on a Mac with Xcode's Command Line
+Tools: `swift run eufynized-login you@example.com`, then
+`swift run eufynized-cipher you@example.com T8030XXXXXXXXXXX 192.168.1.50`, then
+`HOMEBASE_IP=… STATION_SERIAL=… EUFY_EMAIL=… scripts/export-ha-config.sh --install pi@<box>` writes the same
+`bridge.json`.
+
 ### Home Assistant OS
 
 `ha-addon/` is a Supervisor add-on (ingress panel, host network, options `homebase_ip` and
 `notify_service`). It needs the bridge binary, which `scripts/build-ha-addon.sh` builds in Docker; copy the
 `ha-addon/eufynized` folder to `/addons` on the HA OS host, install it from the add-on store's local section,
-put `bridge.json` (from step 2's `scripts/export-ha-config.sh bridge.json`) in the add-on's data folder, and
-copy `ha-integration/custom_components/eufynized` into `/config`. This path is not what the author runs, so
-expect to adjust; issues welcome.
+start it, and sign in on its page. Also copy `ha-integration/custom_components/eufynized` into `/config`.
+This path is not what the author runs, so expect to adjust; issues welcome.
 
 ## Files on the box
 
@@ -146,7 +149,9 @@ Back up `bridge.json` and `prefs.json`. Everything else comes from this repo.
 - **Video arrives in bursts:** the box is on Wi-Fi. Ethernet fixes it.
 - **Cameras start at 720p:** they all do, then ramp up on their own after a few seconds.
 - **A camera shows the HomeBase's "active" camera instead of itself:** the key or account id in
-  `bridge.json` is wrong. Redo steps 1 and 2.
+  `bridge.json` is wrong. Delete the file, restart the service, sign in again.
+- **The sign-in page says the HomeBase didn't answer:** wrong IP, or the box isn't on the same network as the
+  HomeBase (the bridge must run with host networking, which the installer sets).
 - **Bridge refuses the Mac app or another device:** `EUFYNIZED_ALLOW_FROM=192.168.1.` in the compose
   service lists the address prefixes allowed in. The bridge has no login of its own, so keep it on the LAN or
   behind a private tunnel.
