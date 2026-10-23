@@ -1,0 +1,219 @@
+# eufy update check — 2026-10-22
+
+Official app: `com.security.BatteryCam` **6.1.11** (build 260929151932).
+First baseline (nothing to diff against).
+
+- P2P command names in official app: 643 (eufy-sdk catalog 545, bropat 542, used by Eufynized 12)
+- official names with no known id in either library: 362
+- model codes in official app: 436; named in Eufynized sources: 20
+- device_type numbers in official app: 191; not in eufy-sdk DeviceType: 89 (6=T8024, 12=T8010, 13=T8020, 36=T8421, 70=T8791, 71=T7260, 72=T7200, 73=T7901, 74=T7203, 80=T8340, 81=T8350, 82=T8360, 83=T8351, 84=T8352, 85=T8353, 86=T8354, 92=T82B0, 97=T8215, 106=T6310, 107=T6311, 108=T6010, 120=T90S0, 121=T90F0, 122=T90G0, 124=T90K0 …)
+
+## Upstream check — 2026-10-22
+
+### mega-yfue/eufy-sdk
+
+- default branch `main` at `7d1f016` (2026-10-06T16:09:37Z); last pushed 2026-10-21T16:05:25Z
+- new releases since last check:
+  - **v0.4.0** (2026-10-06) https://github.com/mega-yfue/eufy-sdk/releases/tag/v0.4.0
+    - Live video holds up on a lossy link or a busy host, a HomeBase 2 hands over its event recordings, camera power is right on the HomeBase 3 and indoor cams, and Security push registr
+    - ## Live video
+    - - The SDK asks for a 4 MiB UDP receive buffer, so the kernel no longer drops a keyframe burst. On a small Linux host this took live view from 9–30 s with freezes to about 4 s and s
+    - - Late video datagrams are recovered and the stream resyncs after loss. The sequence counter no longer wraps at 255, and a frame header split across two datagrams is reassembled.
+    - - Liveness is measured on the peer path actually in use, and a cached live source is rebuilt when its session is replaced.
+    - - Closing the live view of a standalone camera stops its stream, so a floodlight's lamp turns off with it.
+    - ## Recordings
+    - - **New:** `camera().downloadRecording({ recording, cipherId })` fetches an event recording a HomeBase 2 holds, over the station's P2P session, without waking the camera. It return
+    - - Push registration completes on both the Mega and Security backends, so events raised by the app reach the SDK (#262).
+    - - A thumbnail stored only on the station is attached to the push, and one the media host hasn't published yet is retried.
+    - - **T8410 on a HomeBase 3:** power state and readback are correct.
+    - - **Indoor cams (incl. T8400 C120):** the power switch uses the polarity the camera reports.
+  - **v0.3.0** (2026-09-26) https://github.com/mega-yfue/eufy-sdk/releases/tag/v0.3.0
+    - A fixes release. P2P streams lose less on a lossy link, pushes carry their device serial, and two races that dropped a working session or MQTT connection are gone.
+    - ## P2P
+    - - Retransmitted datagrams are reassembled in sequence instead of discarded, which means fewer gaps in live video.
+    - - The session key exchange is single-flight, so concurrent calls no longer race each other into a re-login. The "another client" hint no longer fires on a plain expiry.
+    - - **T84A1 Wall Light Cam S100** is recognised and treated as mains-powered.
+    - - **T8423 floodlight:** the light switch works.
+    - - **HomeBase AI detection type (1299)** decodes as JSON.
+    - * fix(p2p): register several source ports so the device's punch can land by @sapireli in https://github.com/mega-yfue/eufy-sdk/pull/211
+    - * fix(light): map T8423 floodlight switch to the int+string wire by @ImSkully in https://github.com/mega-yfue/eufy-sdk/pull/252
+    - * fix(p2p): use the device's retransmissions instead of discarding them by @sapireli in https://github.com/mega-yfue/eufy-sdk/pull/212
+    - * fix(http): single-flight the session key exchange and soften the contention hint by @max246 in https://github.com/mega-yfue/eufy-sdk/pull/251
+    - * fix(camera): treat the T84A1 Wall Light Cam S100 as mains-powered by @max246 in https://github.com/mega-yfue/eufy-sdk/pull/250
+  - **v0.2.0** (2026-09-23) https://github.com/mega-yfue/eufy-sdk/releases/tag/v0.2.0
+    - The biggest release so far. **Anker Solix** support arrives, a HomeBase can now **stream several cameras at once**, and a station that can't be reached or addressed now fails with 
+    - The same eufy account also signs in to Anker's Solix cloud, and devices report live over the AWS-IoT plane. The SDK keeps that stream armed without the app being open.
+    - ## Several cameras per HomeBase
+    - A HomeBase serves one camera per session, not per station. A second camera asked for while the station's session is busy now gets a media session of its own instead of `StationBusy
+    - - `DeviceChannelUnresolvedError` covers a device whose channel on its HomeBase is missing, or shared with another attached device. It's refused instead of addressed on a guessed ch
+    - - Live traces state what a call was resolved to before anything is sent.
+    - - **Classification:** T8200 is typed as a doorbell, T9000 as a station. The HomeBase-as-chime switch now has a setter.
+    - - A v2 event thumbnail no longer costs ~45 MB of memory to reconstruct.
+    - **New `LiveTrace` phases: `lookup-channels` and `station-channel-unresolved`.** A host that types an exhaustive table over `LiveTrace` phases (for example a `Record` keyed by `Live
+    - | `StationBusyError` removed (#168) | Drop the catch. A second camera on a busy station now gets its own session and streams. |
+    - | `autoContrast` removed (#195) | The v2 thumbnail is no longer re-encoded, so there's nothing to call. Drop the import. |
+    - | `getP2pSessions()` also lists media sessions, keyed `<stationSn>#live:<channel>` (#168) | Don't assume every key is a station serial. |
+  - **v0.1.2** (2026-09-11) https://github.com/mega-yfue/eufy-sdk/releases/tag/v0.1.2
+  - **v0.1.1** (2026-09-11) https://github.com/mega-yfue/eufy-sdk/releases/tag/v0.1.1
+    - -await dev.panTilt()?.rotate(PtzDirection.left);   // Property 'panTilt' does not exist on Device
+    - +await dev.ptz?.()?.rotate(PtzDirection.left);
+  - **v0.1.0** (2026-09-11) https://github.com/mega-yfue/eufy-sdk/releases/tag/v0.1.0
+    - - **A live source announces its coded configuration** to each consumer — a consumer reads the picture
+    - geometry off the stream instead of assuming it (#98).
+    - - **Consumers pace a live stream**, and a live trace names the pull it belongs to as an opaque handle.
+    - - **The event pre-warm is opt-in**, and the caller picks which power tiers it covers (#94).
+    - - **Live media is refused on a camera that is switched off** — a typed reason, not a stall.
+    - - **`retain`/`release`** name the P2P session refcount (#115).
+    - - The poll diff is applied to the live device, and the read-through re-read announces what it lands.
+    - ## Live media and P2P
+    - - Retransmitted live keyframes are preserved, and numbering is resynchronized when a camera restarts
+    - - Live startup is traced as structured stages, and start failures are typed (#75).
+    - than wrapped; a recording declares its geometry from those sets instead of zero (#98).
+    - - The two quality settings told apart — live view and recording (#136) — with labelled recording
+- commits on `main`: 80, relevant to Eufynized: 29
+  - `f49b6b3` 2026-09-27 fix(p2p): judge path liveness from selected-peer traffic — _p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `503ff5a` 2026-09-27 docs(p2p): clarify who discards cached sources on session replacement — _p2p/pppp_
+    - files: src/transport/p2p/command-router.ts
+  - `b315e52` 2026-09-27 test(p2p): prove selected-peer traffic refreshes a stale path — _p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `8e71635` 2026-09-27 fix(model): keep accessor a stated string on every descriptor — _events/clips_
+    - files: examples/10-describe-device.ts, src/model/capabilities/manifest.ts
+  - `e8785f8` 2026-09-28 test(p2p): check the sub-header carry in p2p_level2.spec and count in the write — _level2-crypto, p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `66541e8` 2026-09-28 docs(doorbell): drop the old mega meaning, and remove a stray symlink — _live-stream_
+    - files: src/model/capabilities/doorbell.ts
+  - `68d49f4` 2026-09-28 fix(model): address review — keep accessor optional, cut the prose — _device-types, events/clips_
+    - files: examples/10-describe-device.ts, src/model/capabilities/manifest.ts, src/model/capabilities/person-detection.ts
+  - `3010a76` 2026-09-28 fix(p2p): assemble the table reply in the transport, and stop it answering wrong — _p2p/pppp_
+    - files: src/client/eufy-mega.ts, src/transport/p2p/p2p-session.ts
+  - `c47402d` 2026-09-29 fix(p2p): stop logging the device's 0xf143 address record as UNHANDLED — _device-types, p2p/pppp_
+    - files: src/transport/p2p/codec.ts, src/transport/p2p/p2p-session.ts
+  - `6aba93f` 2026-09-29 test(p2p): feed CAM_ADDR as a bare header, and keep the device measurement out of its JSDoc — _device-types, p2p/pppp_
+    - files: src/transport/p2p/codec.ts
+  - `785830d` 2026-09-29 fix(camera): retry a push thumbnail the media host has not published yet — _device-types, events/clips_
+    - files: src/transport/stored-image-cache.ts
+  - `96ba1c9` 2026-09-29 feat(p2p): download a recording stored on a HomeBase 2 — _device-types, events/clips, level2-crypto, live-stream, p2p/pppp, talkback_
+    - files: src/core/contracts.ts, src/model/capabilities/camera.ts, src/transport/p2p/adts.ts, src/transport/p2p/codec.ts, src/transport/p2p/command-router.ts, src/transport/p2p/p2p-session.ts, src/transport/p2p/recording-download.ts, src/transport/p2p/video.ts
+  - `907566e` 2026-09-29 fix(p2p): guard the read on queryDatabase, and cut the unused knobs — _p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `5da057b` 2026-09-30 fix(p2p): count only selected peer replies as path answers — _p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `13da29a` 2026-09-30 fix(p2p): name the input a connect's cloud lookup was missing — _live-stream, p2p/pppp_
+    - files: src/transport/p2p/live-trace.ts, src/transport/p2p/p2p-session.ts
+  - `ddfaf52` 2026-09-30 feat(push): log each received push and what it decoded to — _events/clips_
+    - files: src/client/eufy-mega.ts
+  - `69a6e46` 2026-10-01 docs(p2p): explain stale source disposal on path replacement — _p2p/pppp_
+    - files: src/transport/p2p/command-router.ts
+  - `cbbdb35` 2026-10-01 fix(camera): restore indoor HomeBase 3 power payload — _device-types_
+    - files: src/client/eufy-mega.ts, src/model/capabilities/camera.ts, src/model/capabilities/types.ts
+  - `91ebd9a` 2026-10-01 fix(camera): correct T8410 HomeBase power state and readback — _device-types_
+    - files: src/client/eufy-mega.ts, src/model/capabilities/camera.ts, src/model/capabilities/members.ts, src/model/capabilities/types.ts, src/model/device.ts, src/model/registry.ts
+  - `ba8d250` 2026-10-01 fix(p2p): take a recording's finish frame on channel 0 — _device-types, events/clips, p2p/pppp_
+    - files: src/transport/p2p/recording-download.ts
+  - `d862539` 2026-10-02 fix(p2p): keep a recording's audio as the ADTS frames the camera sends — _device-types, events/clips, live-stream, p2p/pppp, talkback_
+    - files: src/transport/p2p/adts.ts, src/transport/p2p/recording-download.ts
+  - `60cfd2b` 2026-10-02 fix(camera): mark HomeBase privacy power readback unreflected — _device-types_
+    - files: src/client/eufy-mega.ts, src/model/capabilities/camera.ts
+  - `999d72c` 2026-10-02 docs(p2p): restore concise stale-source lifecycle note — _p2p/pppp_
+    - files: src/transport/p2p/command-router.ts
+  - `25778d3` 2026-10-04 fix(p2p): stop an own-session camera's live stream with the direct 1004 — _device-types, level2-crypto, live-stream, p2p/pppp, talkback_
+    - files: src/transport/p2p/live-stream.ts, src/transport/p2p/p2p-session.ts
+  - `8c7ec81` 2026-10-04 fix(camera): apply T8410 HomeBase power review corrections — _device-types_
+    - files: .gitattributes, .prettierignore, scripts/ci/check-doc-snippets.mjs, src/client/eufy-mega.ts, src/model/capabilities/camera.ts, src/model/device.ts
+  - `6bd87c4` 2026-10-04 fix(p2p): recover late video and resync after loss — _live-stream, p2p/pppp_
+    - files: src/transport/p2p/live-stream.ts, src/transport/p2p/p2p-session.ts, src/transport/p2p/video.ts
+  - `6523aa5` 2026-10-04 fix(camera): use disable-bit power polarity for indoor cams that report 1035 — _device-types_
+    - files: src/model/capabilities/camera.ts
+  - `56c6b6d` 2026-10-05 fix(p2p): bound video reorder wait separately — _live-stream, p2p/pppp_
+    - files: src/transport/p2p/live-stream.ts, src/transport/p2p/p2p-session.ts, src/transport/p2p/video.ts
+  - `67598a2` 2026-10-05 fix(camera): restore direct power aliases and raw attachment claims — _device-types_
+    - files: src/client/eufy-mega.ts, src/model/capabilities/camera.ts
+- other branches new or moved since last check: `beta-0.5.0`, `experimental/v8-vault-password`, `feat/v8-image-decode`, `fix/classify-t851f-lock`, `fix/keyframe-flag-0x40`, `fix/lock-battery-property-collision`, `fix/ptz-t8171-model-hint`, `fix/push-heartbeat-liveness`, `fix/rtc-portal-shard`, `fix/shared-live-warm-opts`, `fix/warn-country-option`, `martijnpoppen/blissful-cannon-eptvzd`, `martijnpoppen/tuya-dp-publish-shape`, `martijnpoppen/tuya-eh-prefix`, `martijnpoppen/tuya-mower-e2e`
+- commits on `beta-0.5.0` (368 ahead of main): 80 (latest 80 of 250), relevant to Eufynized: 34
+  - `f48945f` 2026-10-16 feat(model): read-only mower capability from the E15's Tuya schema — _live-stream_
+    - files: src/model/capabilities/index.ts, src/model/capabilities/mower.ts, src/model/param-dictionary.ts, src/model/param-namespace.ts, src/model/types.ts
+  - `e3b06f2` 2026-10-16 fix(model): attach the mower capability to the T2880 only (review #366) — _live-stream_
+    - files: src/model/capabilities/mower.ts, src/model/param-namespace.ts
+  - `0aecb01` 2026-10-16 fix(transport): name the socket in a push or broker connection error — _events/clips_
+    - files: src/transport/mqtt/secure-mqtt.ts, src/transport/push/push-client.ts
+  - `8d743bb` 2026-10-16 feat(client): refresh Tuya robot state on the cloud poll — _live-stream_
+    - files: src/client/eufy-mega.ts
+  - `d1f5010` 2026-10-16 docs(p2p): wrap readable docs and trim the redundant age assertion — _p2p/pppp_
+    - files: src/core/contracts.ts
+  - `318cb64` 2026-10-17 fix(arming): send a T8410C its guard mode as the direct 1224 frame — _device-types, level2-crypto, p2p/pppp_
+    - files: src/model/capabilities/arming.ts
+  - `b3fed89` 2026-10-17 fix(model): classify the T90S0 smoke alarm as a sensor — _device-types, live-stream_
+    - files: src/model/registry.ts
+  - `4889edd` 2026-10-17 fix(rtsp): install no publish switch behind a HomeBase S1 Pro — _device-types, live-stream_
+    - files: src/model/capabilities/rtsp.ts
+  - `579442f` 2026-10-18 feat(model): give the T8530 video lock its camera — _device-types, level2-crypto, live-stream_
+    - files: src/model/registry.ts
+  - `be9b75e` 2026-10-18 fix(p2p): keep battery warm-ups off the forced-start session replacement — _live-stream, p2p/pppp_
+    - files: src/transport/p2p/shared-live-source.ts
+  - `cac67d7` 2026-10-18 feat(rtc): live video for standalone T8223/T8224 doorbells over the portal call — _device-types, live-stream, p2p/pppp_
+    - files: src/client/eufy-mega.ts, src/transport/rtc/call-live.ts, src/transport/rtc/command-router.ts
+  - `89d64b5` 2026-10-18 refactor(rtc): drive the T8223 through RtcSession on a media-track peer — _device-types, live-stream_
+    - files: src/client/eufy-mega.ts, src/model/device-family.ts, src/transport/rtc/call-live.ts, src/transport/rtc/command-router.ts, src/transport/rtc/peer.ts, src/transport/rtc/scall-sdp.ts, src/transport/rtc/session.ts
+  - `b3b8316` 2026-10-18 fix(rtc): pass live hints to the T8223 call source and trim the media-track path — _device-types, live-stream_
+    - files: src/transport/rtc/call-live.ts, src/transport/rtc/command-router.ts, src/transport/rtc/scall-sdp.ts, src/transport/rtc/session.ts
+  - `d5cd103` 2026-10-18 fix(transport): one scope constant in the broker connect, no JSDoc echo (review #451) — _events/clips_
+    - files: src/transport/mqtt/secure-mqtt.ts, src/transport/push/push-client.ts
+  - `b2c7cf1` 2026-10-18 docs(model): state the T90S0 row's fact, not its fall-through cause — _device-types_
+    - files: src/model/registry.ts
+  - `3b4fe66` 2026-10-18 fix(rtsp): state that the S1 Pro gate drops the published read too — _device-types_
+    - files: src/model/capabilities/rtsp.ts
+  - `0c19250` 2026-10-18 feat(siren): admit six more camera models behind a HomeBase S1 Pro — _device-types_
+    - files: src/model/capabilities/siren.ts
+  - `fccd8a8` 2026-10-18 feat(p2p): open a standalone SmartDrop's lid with a level-2 key negotiated over RSA — _device-types, level2-crypto, live-stream, p2p/pppp_
+    - files: scripts/ci/guard-lines.sh, src/core/contracts.ts, src/model/capabilities/index.ts, src/model/capabilities/smart-drop.ts, src/model/types.ts, src/transport/p2p/codec.ts, src/transport/p2p/command-router.ts, src/transport/p2p/live-trace.ts …
+  - `944907d` 2026-10-19 feat(p2p): trace a failed live start with its typed reason and stage — _level2-crypto, live-stream, p2p/pppp_
+    - files: src/transport/p2p/live-trace.ts, src/transport/p2p/shared-live-source.ts
+  - `5083683` 2026-10-19 fix(lock): apply remaining T8530 review cuts — _device-types, p2p/pppp_
+    - files: src/model/capabilities/lock.ts, src/transport/p2p/command-router.ts
+  - `4cc27f7` 2026-10-19 fix(rtc): end a session whose peer cannot be built, and fail its bring-up with that error — _device-types, live-stream, p2p/pppp_
+    - files: src/transport/rtc/command-router.ts, src/transport/rtc/session.ts
+  - `ebce6d4` 2026-10-20 review: drop the dead auth and turn-ordering changes, rewrap bringUp's JSDoc — _live-stream, p2p/pppp_
+    - files: src/transport/rtc/command-router.ts, src/transport/rtc/session.ts
+  - `8ca02f5` 2026-10-20 feat(rtc): serve NVR primary-camera media through shared portal calls — _device-types, live-stream, p2p/pppp, talkback_
+    - files: src/client/eufy-mega.ts, src/model/device-family.ts, src/transport/p2p/audio-frame.ts, src/transport/p2p/live-stream.ts, src/transport/rtc/command-router.ts, src/transport/rtc/live.ts
+  - `ed1a0f3` 2026-10-20 fix(camera): offer the T8530 live view and withhold every unverified camera write — _device-types, live-stream_
+    - files: src/model/capabilities/camera.ts, src/model/registry.ts
+  - `b217089` 2026-10-20 fix(p2p): wait for UDP send completion before closing — _live-stream, p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `8a239f5` 2026-10-20 refactor(camera): reuse the isCameraCodec gate from access.ts — _device-types, live-stream_
+    - files: src/model/capabilities/camera.ts
+  - `2f35070` 2026-10-20 feat(rtc): select independent optical views on NVR cameras — _device-types, live-stream_
+    - files: src/client/eufy-mega.ts, src/core/contracts.ts, src/model/capabilities/camera.ts, src/model/device-family.ts, src/transport/rtc/command-router.ts, src/transport/rtc/live.ts
+  - `43e249e` 2026-10-20 test(p2p): strengthen close-drain regression coverage — _p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `e6a92fd` 2026-10-20 fix(model): type a doorbell from the app's doorbell tables, not a row per model — _device-types, live-stream_
+    - files: src/model/capabilities/doorbell.ts, src/model/registry.ts
+  - `6386e25` 2026-10-20 refactor(model): keep the doorbell model and type tables side by side at the top — _device-types_
+    - files: src/model/capabilities/doorbell.ts
+  - `97d70a7` 2026-10-20 refactor(model): trim the doorbell detection to what the tables state — _device-types_
+    - files: src/model/capabilities/doorbell.ts, src/model/registry.ts
+  - `02aa131` 2026-10-20 fix(p2p): reuse send completion and trim close-drain scope — _live-stream, p2p/pppp_
+    - files: src/transport/p2p/p2p-session.ts
+  - `dd35b27` 2026-10-21 fix(rtc): keep optical view discovery on NVR routes — _device-types, live-stream, p2p/pppp_
+    - files: src/transport/rtc/command-router.ts, src/transport/rtc/live.ts
+  - `96e8b03` 2026-10-21 docs(rtc): preserve the existing UTF-8 control-path comments — _live-stream_
+    - files: src/transport/rtc/command-router.ts
+- `CommandType` (src/transport/p2p/commands.ts): 545 entries; +0 / -0 / changed 0
+- `DeviceType` (src/model/device-types.ts): 102 entries; +0 / -0 / changed 0
+
+### bropat/eufy-security-client
+
+- default branch `master` at `3bfef13` (2026-09-12T12:27:05Z); last pushed 2026-09-12T12:27:05Z
+- **Repository is archived.**
+- README notice: > # 🚨🚨🚨 LIBRARY DEPRECATION NOTICE 🚨🚨🚨
+- no new releases since 2026-08-23
+- commits on `master`: 3, relevant to Eufynized: 0
+- other branches new or moved since last check: `add-eslint`, `develop`, `martijnpoppen-patch-1`, `martijnpoppen-patch-2`, `node-22.x`, `node-24.x`, `release/4.1.0`, `revert-779-feat/e340-doorbell-support`
+- commits on `develop` (0 ahead of master): 0, relevant to Eufynized: 0
+- commits on `release/4.1.0` (0 ahead of master): 0, relevant to Eufynized: 0
+- `CommandType` (src/p2p/types.ts): 542 entries; +0 / -0 / changed 0
+- `DeviceType` (src/http/types.ts): 96 entries; +0 / -0 / changed 0
+
+
+Triage: docs/eufy-update-tracking.md explains what to look for.

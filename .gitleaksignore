@@ -1,0 +1,5 @@
+# gitleaks false alarms: type annotations, eufy's public bootstrap key (from the open-source SDK), a placeholder test vector
+Sources/EufyKit/P2P/EufyMediaCrypto.swift:generic-api-key:24
+Sources/EufyKit/EufyCrypto.swift:generic-api-key:21
+Sources/EufyKit/EufyCrypto.swift:generic-api-key:65
+Tests/EufyKitTests/EufyCryptoTests.swift:generic-api-key:8

@@ -1,0 +1,4073 @@
+[
+ {
+  "method": "sessionWith:sn:initStr:",
+  "commands": [
+   {
+    "id": 1000,
+    "name": "CMD_BIND_BROADCAST",
+    "in_library": true
+   },
+   {
+    "id": 1056,
+    "name": "APP_CMD_LIVEVIEW_LED_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 2700,
+    "name": "CMD_DOORBELL_DUAL_VIEW_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": "BCP2PSessionSerialQueue | BCRTCSessionSerialQueue"
+ },
+ {
+  "method": "handleTask:logparam:cmd:cb:",
+  "commands": [
+   {
+    "id": 1000,
+    "name": "CMD_BIND_BROADCAST",
+    "in_library": true
+   },
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1004,
+    "name": "APP_CMD_STOP_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1016,
+    "name": "APP_CMD_CLOSE_EAS",
+    "in_library": true
+   },
+   {
+    "id": 1024,
+    "name": "APP_CMD_DOWNLOAD_VIDEO",
+    "in_library": true
+   },
+   {
+    "id": 1025,
+    "name": "APP_CMD_RECORD_VIEW",
+    "in_library": true
+   },
+   {
+    "id": 1026,
+    "name": "APP_CMD_RECORD_PLAY_CTRL",
+    "in_library": true
+   },
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   },
+   {
+    "id": 1056,
+    "name": "APP_CMD_LIVEVIEW_LED_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1072,
+    "name": "CMD_SET_CROSS_TRACKING_CAMERA_LIST",
+    "in_library": true
+   },
+   {
+    "id": 1120,
+    "name": "APP_CMD_GET_GATEWAY_LOCK",
+    "in_library": true
+   },
+   {
+    "id": 1139,
+    "name": "CMD_PING",
+    "in_library": true
+   },
+   {
+    "id": 6001,
+    "name": "CMD_SMARTLOCK_QUERY_BATTERY_LEVEL",
+    "in_library": true
+   }
+  ],
+  "strings": "startRunP2PTask:channel:cmd:"
+ },
+ {
+  "method": "p2p_handleTask:logparam:cmd:cb:",
+  "commands": [
+   {
+    "id": 1032,
+    "name": "APP_CMD_WIFI_CONFIG",
+    "in_library": true
+   },
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   },
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   },
+   {
+    "id": 1248,
+    "name": "APP_CMD_SET_NOTFACE_PUSHMSG",
+    "in_library": true
+   },
+   {
+    "id": 1280,
+    "name": "CMD_SET_HUB_ALARM_AUTO_END",
+    "in_library": true
+   },
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "logTaskResult:isRtc:cmd:code:result:msg:connectTime:commandTime:connectSuc:initSuc:sessionId:logparam:",
+  "commands": [
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1504,
+    "name": "CMD_DOOR_SENSOR_LOW_POWER_REPORT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "rtc_handleTask:logparam:cmd:cb:",
+  "commands": [
+   {
+    "id": 1000,
+    "name": "CMD_BIND_BROADCAST",
+    "in_library": true
+   },
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1072,
+    "name": "CMD_SET_CROSS_TRACKING_CAMERA_LIST",
+    "in_library": true
+   },
+   {
+    "id": 1280,
+    "name": "CMD_SET_HUB_ALARM_AUTO_END",
+    "in_library": true
+   },
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1664,
+    "name": "CMD_KEYPAD_PSW_OPEN",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "RTCNeedReSendCmd:Result:Sn:",
+  "commands": [
+   {
+    "id": 1000,
+    "name": "CMD_BIND_BROADCAST",
+    "in_library": true
+   },
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1004,
+    "name": "APP_CMD_STOP_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1025,
+    "name": "APP_CMD_RECORD_VIEW",
+    "in_library": true
+   },
+   {
+    "id": 1026,
+    "name": "APP_CMD_RECORD_PLAY_CTRL",
+    "in_library": true
+   },
+   {
+    "id": 6001,
+    "name": "CMD_SMARTLOCK_QUERY_BATTERY_LEVEL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "eufylink_send_commandWithChl:cmd:v1:v2:v3:",
+  "commands": [
+   {
+    "id": 1104,
+    "name": "APP_CMD_GET_RECORD_TIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "waitForRTCDevice:timeout:",
+  "commands": [
+   {
+    "id": 1072,
+    "name": "CMD_SET_CROSS_TRACKING_CAMERA_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getDeviceInfo:",
+  "commands": [
+   {
+    "id": 1103,
+    "name": "APP_CMD_CAMERA_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getDeviceInfoType:",
+  "commands": [
+   {
+    "id": 1103,
+    "name": "APP_CMD_CAMERA_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "notifyHandlerMan",
+  "commands": [
+   {
+    "id": 1112,
+    "name": "APP_CMD_GET_MIRRORMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "p2p_sendCommandWithChl:cmd:param1:param2:param3:task:",
+  "commands": [
+   {
+    "id": 1120,
+    "name": "APP_CMD_GET_GATEWAY_LOCK",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "p2pSendRequestWithPayload:cmd:logParam:task:",
+  "commands": [
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1072,
+    "name": "CMD_SET_CROSS_TRACKING_CAMERA_LIST",
+    "in_library": true
+   },
+   {
+    "id": 1664,
+    "name": "CMD_KEYPAD_PSW_OPEN",
+    "in_library": true
+   }
+  ],
+  "strings": "collectP2PConnectLiveVideoPlayWith:"
+ },
+ {
+  "method": "p2pSendRequestWithPayloadExt:cmd:logParam:task:",
+  "commands": [
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1072,
+    "name": "CMD_SET_CROSS_TRACKING_CAMERA_LIST",
+    "in_library": true
+   },
+   {
+    "id": 1664,
+    "name": "CMD_KEYPAD_PSW_OPEN",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "StartRTVideoStream:",
+  "commands": [
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1400,
+    "name": "APP_CMD_SET_FLOODLIGHT_MANUAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "startRTVideoStream:modStr:",
+  "commands": [
+   {
+    "id": 1003,
+    "name": "APP_CMD_START_REALTIME_MEDIA",
+    "in_library": true
+   },
+   {
+    "id": 1032,
+    "name": "APP_CMD_WIFI_CONFIG",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "StartFileVideoStream:",
+  "commands": [
+   {
+    "id": 1025,
+    "name": "APP_CMD_RECORD_VIEW",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "StartFileVideoStreamResult:result:",
+  "commands": [
+   {
+    "id": 1025,
+    "name": "APP_CMD_RECORD_VIEW",
+    "in_library": true
+   },
+   {
+    "id": 1120,
+    "name": "APP_CMD_GET_GATEWAY_LOCK",
+    "in_library": true
+   }
+  ],
+  "strings": "collectP2PConnectLiveVideoPlayWith:"
+ },
+ {
+  "method": "startFileVideoStream:userid:chl:",
+  "commands": [
+   {
+    "id": 1025,
+    "name": "APP_CMD_RECORD_VIEW",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "startFileVideoStreamReulst:chnnel:userid:publicKey:",
+  "commands": [
+   {
+    "id": 1025,
+    "name": "APP_CMD_RECORD_VIEW",
+    "in_library": true
+   },
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendPayloadCommand:",
+  "commands": [
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   },
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendPayloadCommand:ivalue:chl:",
+  "commands": [
+   {
+    "id": 1016,
+    "name": "APP_CMD_CLOSE_EAS",
+    "in_library": true
+   },
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendDoorBellCommand:",
+  "commands": [
+   {
+    "id": 1000,
+    "name": "CMD_BIND_BROADCAST",
+    "in_library": true
+   },
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1072,
+    "name": "CMD_SET_CROSS_TRACKING_CAMERA_LIST",
+    "in_library": true
+   },
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   },
+   {
+    "id": 1608,
+    "name": "APP_CMD_MOTION_SENSOR_ALARM_ENABLE",
+    "in_library": false
+   },
+   {
+    "id": 1664,
+    "name": "CMD_KEYPAD_PSW_OPEN",
+    "in_library": true
+   },
+   {
+    "id": 1700,
+    "name": "CMD_DOORBELL_SET_PAYLOAD",
+    "in_library": true
+   },
+   {
+    "id": 6001,
+    "name": "CMD_SMARTLOCK_QUERY_BATTERY_LEVEL",
+    "in_library": true
+   }
+  ],
+  "strings": "collectP2PConnectLiveVideoPlayWith:"
+ },
+ {
+  "method": "sendDoorBellData:ivalue:chl:",
+  "commands": [
+   {
+    "id": 1016,
+    "name": "APP_CMD_CLOSE_EAS",
+    "in_library": true
+   },
+   {
+    "id": 1700,
+    "name": "CMD_DOORBELL_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "isValidJSONObject:",
+  "commands": [
+   {
+    "id": 1120,
+    "name": "APP_CMD_GET_GATEWAY_LOCK",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "StopVideoStream:",
+  "commands": [
+   {
+    "id": 1004,
+    "name": "APP_CMD_STOP_REALTIME_MEDIA",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "StopVideoStreamBy:",
+  "commands": [
+   {
+    "id": 1004,
+    "name": "APP_CMD_STOP_REALTIME_MEDIA",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "StopFileVideoStream:",
+  "commands": [
+   {
+    "id": 1026,
+    "name": "APP_CMD_RECORD_PLAY_CTRL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "eventVideoStop:randomNum:chl:",
+  "commands": [
+   {
+    "id": 1026,
+    "name": "APP_CMD_RECORD_PLAY_CTRL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "videoStreamSlidControl:",
+  "commands": [
+   {
+    "id": 1026,
+    "name": "APP_CMD_RECORD_PLAY_CTRL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "videoStreamSlidControl:frameNumber:chl:",
+  "commands": [
+   {
+    "id": 1026,
+    "name": "APP_CMD_RECORD_PLAY_CTRL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "localVideoStreamDownload:",
+  "commands": [
+   {
+    "id": 1024,
+    "name": "APP_CMD_DOWNLOAD_VIDEO",
+    "in_library": true
+   },
+   {
+    "id": 1120,
+    "name": "APP_CMD_GET_GATEWAY_LOCK",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "localVideoStream:userid:chl:",
+  "commands": [
+   {
+    "id": 1024,
+    "name": "APP_CMD_DOWNLOAD_VIDEO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "localVideoStreamDownloadResult:result:",
+  "commands": [
+   {
+    "id": 1024,
+    "name": "APP_CMD_DOWNLOAD_VIDEO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "localVideoStreamResult:userid:chl:publicKey:",
+  "commands": [
+   {
+    "id": 1024,
+    "name": "APP_CMD_DOWNLOAD_VIDEO",
+    "in_library": true
+   },
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendVoiceTalkStatus:task:",
+  "commands": [
+   {
+    "id": 1005,
+    "name": "APP_CMD_START_TALKBACK",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendVoiceTalkStatus:channel:isRTC:",
+  "commands": [
+   {
+    "id": 1005,
+    "name": "APP_CMD_START_TALKBACK",
+    "in_library": true
+   },
+   {
+    "id": 1006,
+    "name": "APP_CMD_STOP_TALKBACK",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "syncAccountInfo:",
+  "commands": [
+   {
+    "id": 1001,
+    "name": "APP_CMD_BIND_SYNC_ACCOUNT_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "synAccount:chl:",
+  "commands": [
+   {
+    "id": 1001,
+    "name": "APP_CMD_BIND_SYNC_ACCOUNT_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "synAccountEx:asDomain:name:timezone:task:",
+  "commands": [
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   },
+   {
+    "id": 1054,
+    "name": "APP_CMD_BIND_SYNC_ACCOUNT_INFO_EX",
+    "in_library": true
+   }
+  ],
+  "strings": "-[BCP2PSession(cmd) synAccountEx:asDomain:name:timezone:task:]_block_invoke"
+ },
+ {
+  "method": "synAccountExConnectType:asDomain:name:timezone:task:",
+  "commands": [
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   },
+   {
+    "id": 1054,
+    "name": "APP_CMD_BIND_SYNC_ACCOUNT_INFO_EX",
+    "in_library": true
+   },
+   {
+    "id": 1664,
+    "name": "CMD_KEYPAD_PSW_OPEN",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "synAccountEx:Chl:userid:asDomain:name:timezone:",
+  "commands": [
+   {
+    "id": 1054,
+    "name": "APP_CMD_BIND_SYNC_ACCOUNT_INFO_EX",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendBindCamWithSupportV2RequestWithPayload:task:",
+  "commands": [
+   {
+    "id": 1001,
+    "name": "APP_CMD_BIND_SYNC_ACCOUNT_INFO",
+    "in_library": true
+   },
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "unbindAccount:task:",
+  "commands": [
+   {
+    "id": 1002,
+    "name": "APP_CMD_UNBIND_ACCOUNT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "unbindAccount:userid:chl:",
+  "commands": [
+   {
+    "id": 1002,
+    "name": "APP_CMD_UNBIND_ACCOUNT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "homebaseUpdate:",
+  "commands": [
+   {
+    "id": 1238,
+    "name": "APP_CMD_SET_UPGRADE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "homebaseUpdateBy:chl:",
+  "commands": [
+   {
+    "id": 1238,
+    "name": "APP_CMD_SET_UPGRADE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "receiveCameraBroadcast:devType:dele:task:",
+  "commands": [
+   {
+    "id": 1038,
+    "name": "APP_CMD_DEVS_BIND_BROADCASE",
+    "in_library": true
+   },
+   {
+    "id": 1128,
+    "name": "APP_CMD_GET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "receiveCameraBroadcast:Chl:devType:userid:",
+  "commands": [
+   {
+    "id": 1038,
+    "name": "APP_CMD_DEVS_BIND_BROADCASE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraSwith:task:",
+  "commands": [
+   {
+    "id": 1011,
+    "name": "APP_CMD_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1011,
+    "name": "APP_CMD_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLEDSwith:task:",
+  "commands": [
+   {
+    "id": 1045,
+    "name": "APP_CMD_DEV_LED_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLEDSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1045,
+    "name": "APP_CMD_DEV_LED_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLiveViewLedSwitch:task:",
+  "commands": [
+   {
+    "id": 1056,
+    "name": "APP_CMD_LIVEVIEW_LED_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1256,
+    "name": "APP_CMD_SET_CUSTOM_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLiveViewLedSwitch:chl:userid:",
+  "commands": [
+   {
+    "id": 1056,
+    "name": "APP_CMD_LIVEVIEW_LED_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setNightVisionSwith:task:",
+  "commands": [
+   {
+    "id": 1013,
+    "name": "APP_CMD_IRCUT_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setNightVisionSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1013,
+    "name": "APP_CMD_IRCUT_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setIndoorCamNightVisionSwith:task:",
+  "commands": [
+   {
+    "id": 1013,
+    "name": "APP_CMD_IRCUT_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setIndoorNightVisionSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1013,
+    "name": "APP_CMD_IRCUT_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setWatermarkSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1214,
+    "name": "APP_CMD_SET_DEVS_OSD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setTimeZone:task:",
+  "commands": [
+   {
+    "id": 1215,
+    "name": "APP_CMD_SET_TIMEZONE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setTimeZone:Chl:userid:",
+  "commands": [
+   {
+    "id": 1215,
+    "name": "APP_CMD_SET_TIMEZONE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHubName:task:",
+  "commands": [
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHubName:Chl:userid:",
+  "commands": [
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDeviceName:task:",
+  "commands": [
+   {
+    "id": 1217,
+    "name": "APP_CMD_SET_DEVS_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDeviceName:chl:userid:",
+  "commands": [
+   {
+    "id": 1217,
+    "name": "APP_CMD_SET_DEVS_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "bindToSetDeviceName:task:",
+  "commands": [
+   {
+    "id": 1217,
+    "name": "APP_CMD_SET_DEVS_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "startRecordVideo:",
+  "commands": [
+   {
+    "id": 1009,
+    "name": "APP_CMD_START_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "startRecordVideo:userid:",
+  "commands": [
+   {
+    "id": 1009,
+    "name": "APP_CMD_START_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "endRecordVideo:",
+  "commands": [
+   {
+    "id": 1010,
+    "name": "APP_CMD_STOP_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "endRecordVideo:userid:",
+  "commands": [
+   {
+    "id": 1010,
+    "name": "APP_CMD_STOP_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPIR:task:",
+  "commands": [
+   {
+    "id": 1011,
+    "name": "APP_CMD_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPIR:chl:userid:",
+  "commands": [
+   {
+    "id": 1011,
+    "name": "APP_CMD_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDeviceSwitch:task:",
+  "commands": [
+   {
+    "id": 1035,
+    "name": "APP_CMD_DEVS_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDeviceSwitch:chl:userid:",
+  "commands": [
+   {
+    "id": 1035,
+    "name": "APP_CMD_DEVS_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAntiTheft:task:",
+  "commands": [
+   {
+    "id": 1015,
+    "name": "APP_CMD_EAS_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAntiTheft:chl:userid:",
+  "commands": [
+   {
+    "id": 1015,
+    "name": "APP_CMD_EAS_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAudioDetect:task:",
+  "commands": [
+   {
+    "id": 1017,
+    "name": "APP_CMD_AUDDEC_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAudioDetect:chl:userid:",
+  "commands": [
+   {
+    "id": 1017,
+    "name": "APP_CMD_AUDDEC_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLockState:task:",
+  "commands": [
+   {
+    "id": 1019,
+    "name": "APP_CMD_DEVS_LOCK_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLockState:chl:userid:",
+  "commands": [
+   {
+    "id": 1019,
+    "name": "APP_CMD_DEVS_LOCK_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "unbindDeviceBytask:",
+  "commands": [
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "unbindDeviceBychl:userid:",
+  "commands": [
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetDeviceBychl:chl:",
+  "commands": [
+   {
+    "id": 1037,
+    "name": "APP_CMD_DEVS_TO_FACTORY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetHubByUserid:chl:",
+  "commands": [
+   {
+    "id": 1036,
+    "name": "APP_CMD_HUB_TO_FACTORY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "restartHub:",
+  "commands": [
+   {
+    "id": 1034,
+    "name": "APP_CMD_HUB_REBOOT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "restartHubByUserid:chl:",
+  "commands": [
+   {
+    "id": 1034,
+    "name": "APP_CMD_HUB_REBOOT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGlobalRecordTime:task:",
+  "commands": [
+   {
+    "id": 1203,
+    "name": "APP_CMD_SET_RECORDTIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGlobalRecordTimeByUserid:chl:sec:",
+  "commands": [
+   {
+    "id": 1203,
+    "name": "APP_CMD_SET_RECORDTIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGlobalStorageType:task:",
+  "commands": [
+   {
+    "id": 1223,
+    "name": "APP_CMD_SET_STORGE_TYPE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGlobalStorageTypeByUserid:type:chl:",
+  "commands": [
+   {
+    "id": 1223,
+    "name": "APP_CMD_SET_STORGE_TYPE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGlobalPirStatus:task:",
+  "commands": [
+   {
+    "id": 1218,
+    "name": "APP_CMD_SET_HUB_PIR_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGlobalPirStatusByUserid:chl:oepn:",
+  "commands": [
+   {
+    "id": 1218,
+    "name": "APP_CMD_SET_HUB_PIR_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setResolution:task:",
+  "commands": [
+   {
+    "id": 1205,
+    "name": "APP_CMD_SET_RESOLUTION",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setResolutionByUserid:chl:type:",
+  "commands": [
+   {
+    "id": 1205,
+    "name": "APP_CMD_SET_RESOLUTION",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBitrate:task:",
+  "commands": [
+   {
+    "id": 1206,
+    "name": "APP_CMD_SET_BITRATE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBitrateByUserid:chl:type:",
+  "commands": [
+   {
+    "id": 1206,
+    "name": "APP_CMD_SET_BITRATE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMirrormode:task:",
+  "commands": [
+   {
+    "id": 1207,
+    "name": "APP_CMD_SET_MIRRORMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMirrormodeByUserid:chl:type:",
+  "commands": [
+   {
+    "id": 1207,
+    "name": "APP_CMD_SET_MIRRORMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setIDCMirrormode:task:",
+  "commands": [
+   {
+    "id": 1207,
+    "name": "APP_CMD_SET_MIRRORMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setIDCMirrormodeByUserid:chl:type:",
+  "commands": [
+   {
+    "id": 1207,
+    "name": "APP_CMD_SET_MIRRORMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPIRsensi:task:",
+  "commands": [
+   {
+    "id": 1210,
+    "name": "APP_CMD_SET_PIRSENSITIVITY",
+    "in_library": true
+   },
+   {
+    "id": 1236,
+    "name": "APP_CMD_SET_AI_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPIRsensiByUserid:chl:sens:",
+  "commands": [
+   {
+    "id": 1210,
+    "name": "APP_CMD_SET_PIRSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGSsensiBysens:task:",
+  "commands": [
+   {
+    "id": 1226,
+    "name": "APP_CMD_SET_GSSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setGSsensiBysens:userid:chl:",
+  "commands": [
+   {
+    "id": 1226,
+    "name": "APP_CMD_SET_GSSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAudiosensiBysens:task:",
+  "commands": [
+   {
+    "id": 1227,
+    "name": "APP_CMD_SET_AUDIOSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAudiosensiBysens:userid:chl:",
+  "commands": [
+   {
+    "id": 1227,
+    "name": "APP_CMD_SET_AUDIOSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setArmingSchedule:sereverConfig:task:",
+  "commands": [
+   {
+    "id": 1211,
+    "name": "APP_CMD_SET_ARMING_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setArmingSchedule:chl:sereverConfig:userid:chl:",
+  "commands": [
+   {
+    "id": 1211,
+    "name": "APP_CMD_SET_ARMING_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "deleteRecord:recordid:task:",
+  "commands": [
+   {
+    "id": 1027,
+    "name": "APP_CMD_DELLETE_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "deleteRecord:chl:recordid:userid:",
+  "commands": [
+   {
+    "id": 1027,
+    "name": "APP_CMD_DELLETE_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "batchDeleteRecord:recordids:task:",
+  "commands": [
+   {
+    "id": 1049,
+    "name": "APP_CMD_BATCH_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "batchDeleteRecord:chl:recordids:userid:",
+  "commands": [
+   {
+    "id": 1049,
+    "name": "APP_CMD_BATCH_RECORD",
+    "in_library": true
+   },
+   {
+    "id": 6600,
+    "name": "CMD_SMARTLOCK_AUTO_LOCK_TIMER",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "collect:path:recordid:task:",
+  "commands": [
+   {
+    "id": 1047,
+    "name": "APP_CMD_COLLECT_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "collect:chl:path:recordid:userid:",
+  "commands": [
+   {
+    "id": 1047,
+    "name": "APP_CMD_COLLECT_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCloudStorageDate:task:",
+  "commands": [
+   {
+    "id": 1228,
+    "name": "CMD_SET_DEV_STORAGE_TYPE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCloudStorageDate:chl:userid:",
+  "commands": [
+   {
+    "id": 1228,
+    "name": "CMD_SET_DEV_STORAGE_TYPE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAlarm:task:",
+  "commands": [
+   {
+    "id": 1202,
+    "name": "APP_CMD_SET_DEVS_TONE_FILE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAlarm:chl:userid:",
+  "commands": [
+   {
+    "id": 1202,
+    "name": "APP_CMD_SET_DEVS_TONE_FILE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getDeviceBatteryInfo:",
+  "commands": [
+   {
+    "id": 1101,
+    "name": "APP_CMD_GET_BATTERY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getDeviceBatteryInfoBy:",
+  "commands": [
+   {
+    "id": 1101,
+    "name": "APP_CMD_GET_BATTERY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardInfo:",
+  "commands": [
+   {
+    "id": 1102,
+    "name": "APP_CMD_SDINFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardInfoBy:chl:",
+  "commands": [
+   {
+    "id": 1102,
+    "name": "APP_CMD_SDINFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardInfoEX:",
+  "commands": [
+   {
+    "id": 1144,
+    "name": "CMD_SDINFO_EX",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardInfoEXBy:chl:",
+  "commands": [
+   {
+    "id": 1144,
+    "name": "CMD_SDINFO_EX",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardFormatStatus:",
+  "commands": [
+   {
+    "id": 1143,
+    "name": "CMD_GET_TFCARD_FORMAT_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardFormatStatusBy:chl:",
+  "commands": [
+   {
+    "id": 1143,
+    "name": "CMD_GET_TFCARD_FORMAT_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardRepairStatus:",
+  "commands": [
+   {
+    "id": 1153,
+    "name": "CMD_GET_TFCARD_REPAIR_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSDCardRepairStatusBy:chl:",
+  "commands": [
+   {
+    "id": 1153,
+    "name": "CMD_GET_TFCARD_REPAIR_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getCameraNSAURLSwitch:task:",
+  "commands": [
+   {
+    "id": 1145,
+    "name": "APP_CMD_NAS_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getCameraNSAURLSwitch:channel:userid:",
+  "commands": [
+   {
+    "id": 1145,
+    "name": "APP_CMD_NAS_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getCameraNSAOpenSwitch:task:",
+  "commands": [
+   {
+    "id": 1146,
+    "name": "APP_CMD_NAS_TEST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getCameraNSAOpenSwitch:channel:userid:",
+  "commands": [
+   {
+    "id": 1146,
+    "name": "APP_CMD_NAS_TEST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "formatSDCard:",
+  "commands": [
+   {
+    "id": 1029,
+    "name": "APP_CMD_FORMAT_SD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "formatSDCardBy:chl:",
+  "commands": [
+   {
+    "id": 1029,
+    "name": "APP_CMD_FORMAT_SD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "repairSDCard:",
+  "commands": [
+   {
+    "id": 1057,
+    "name": "APP_CMD_REPAIR_SD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "repairSDCardBy:Chl:",
+  "commands": [
+   {
+    "id": 1057,
+    "name": "APP_CMD_REPAIR_SD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCamArmMode:task:",
+  "commands": [
+   {
+    "id": 1233,
+    "name": "APP_CMD_SET_PIR_ACTION",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCamArmMode:chl:userid:",
+  "commands": [
+   {
+    "id": 1233,
+    "name": "APP_CMD_SET_PIR_ACTION",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMicrophoneGain:task:",
+  "commands": [
+   {
+    "id": 1229,
+    "name": "APP_CMD_SET_DEV_MIC_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMicrophoneGain:userid:chl:",
+  "commands": [
+   {
+    "id": 1229,
+    "name": "APP_CMD_SET_DEV_MIC_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMicrophoneOFF:task:",
+  "commands": [
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   },
+   {
+    "id": 1240,
+    "name": "APP_CMD_SET_DEV_MIC_MUTE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMicrophoneOFF:userid:chl:",
+  "commands": [
+   {
+    "id": 1240,
+    "name": "APP_CMD_SET_DEV_MIC_MUTE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSpeakerOFF:task:",
+  "commands": [
+   {
+    "id": 1241,
+    "name": "APP_CMD_SET_DEV_SPEAKER_MUTE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSpeakerOFF:userid:chl:",
+  "commands": [
+   {
+    "id": 1241,
+    "name": "APP_CMD_SET_DEV_SPEAKER_MUTE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setRecodeMute:task:",
+  "commands": [
+   {
+    "id": 1288,
+    "name": "CMD_SET_AUDIO_MUTE_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setRecodeMute:userid:chl:",
+  "commands": [
+   {
+    "id": 1288,
+    "name": "CMD_SET_AUDIO_MUTE_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setSpeakerVolume:task:",
+  "commands": [
+   {
+    "id": 2100,
+    "name": "CMD_SMART_DROP_OPEN_LID",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setSpeakerVolume:userid:chl:",
+  "commands": [
+   {
+    "id": 1230,
+    "name": "APP_CMD_SET_DEV_SPEAKER_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setRecordingWithoutAudioDic:userid:chl:",
+  "commands": [
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "dc_setTossMusicSettingWithDic:userid:chl:",
+  "commands": [
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "ec_setRecordingWithoutAudioDic:userid:chl:",
+  "commands": [
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "db_setChargeModeDic:task:",
+  "commands": [
+   {
+    "id": 1714,
+    "name": "CMD_BAT_DOORBELL_SET_AC_VALUE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "db_setChargeModeDic:userid:chl:",
+  "commands": [
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPIRPowerMode:task:",
+  "commands": [
+   {
+    "id": 1246,
+    "name": "APP_CMD_SET_PIR_POWERMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPIRPowerMode:chl:userid:",
+  "commands": [
+   {
+    "id": 1246,
+    "name": "APP_CMD_SET_PIR_POWERMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSmartNotificationMode:task:",
+  "commands": [
+   {
+    "id": 1252,
+    "name": "APP_CMD_DEV_PUSHMSG_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSmartNotificationMode:chl:userid:",
+  "commands": [
+   {
+    "id": 1252,
+    "name": "APP_CMD_DEV_PUSHMSG_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAIPhoto:faceuser:faceid:groupid:nickname:notify:facepoint:task:",
+  "commands": [
+   {
+    "id": 1231,
+    "name": "APP_CMD_SET_AI_PHOTO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAIPhoto:Chl:faceuser:faceid:groupid:nickname:notify:facepoint:userid:",
+  "commands": [
+   {
+    "id": 1231,
+    "name": "APP_CMD_SET_AI_PHOTO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAINicknamefaceuser:faceid:nickname:notify:task:",
+  "commands": [
+   {
+    "id": 1242,
+    "name": "APP_CMD_SET_AI_NICKNAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAINicknamefaceuser:Chl:faceid:nickname:notify:userid:",
+  "commands": [
+   {
+    "id": 1242,
+    "name": "APP_CMD_SET_AI_NICKNAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "delAiUserBy:task:",
+  "commands": [
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   },
+   {
+    "id": 1232,
+    "name": "APP_CMD_DEL_USER_PHOTO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "delAiUserBy:Chl:userid:",
+  "commands": [
+   {
+    "id": 1232,
+    "name": "APP_CMD_DEL_USER_PHOTO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSensorAlarm:task:",
+  "commands": [
+   {
+    "id": 1506,
+    "name": "CMD_DOOR_SENSOR_ALARM_ENABLE",
+    "in_library": true
+   },
+   {
+    "id": 2712,
+    "name": "CMD_DOORBELL_DUAL_PACKAGE_STRAND_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSensorAlarm:chl:userid:",
+  "commands": [
+   {
+    "id": 1506,
+    "name": "CMD_DOOR_SENSOR_ALARM_ENABLE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSensorAlarmChirp:task:",
+  "commands": [
+   {
+    "id": 1507,
+    "name": "CMD_SENSOR_SET_CHIRP_TONE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSensorAlarmChirp:chl:userid:",
+  "commands": [
+   {
+    "id": 1507,
+    "name": "CMD_SENSOR_SET_CHIRP_TONE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHubLog:type:task:",
+  "commands": [
+   {
+    "id": 1132,
+    "name": "APP_CMD_GET_HUB_LOG",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHubLog:chl:type:userid:",
+  "commands": [
+   {
+    "id": 1132,
+    "name": "APP_CMD_GET_HUB_LOG",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "cancelDownload:",
+  "commands": [
+   {
+    "id": 1051,
+    "name": "APP_CMD_DOWNLOAD_CANCEL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "cancelDownloadWithChl:",
+  "commands": [
+   {
+    "id": 1051,
+    "name": "APP_CMD_DOWNLOAD_CANCEL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHubAudioVolumn:task:",
+  "commands": [
+   {
+    "id": 1235,
+    "name": "APP_CMD_SET_HUB_SPK_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHubAudioVolumn:chl:vol:",
+  "commands": [
+   {
+    "id": 1235,
+    "name": "APP_CMD_SET_HUB_SPK_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAIDetectionSwith:task:",
+  "commands": [
+   {
+    "id": 1236,
+    "name": "APP_CMD_SET_AI_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAIDetectionSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1236,
+    "name": "APP_CMD_SET_AI_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setNOFacePushMSGSwith:task:",
+  "commands": [
+   {
+    "id": 1248,
+    "name": "APP_CMD_SET_NOTFACE_PUSHMSG",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setNotFacePushMSGSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1248,
+    "name": "APP_CMD_SET_NOTFACE_PUSHMSG",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraRecordAutoStop:task:",
+  "commands": [
+   {
+    "id": 1251,
+    "name": "APP_CMD_DEV_RECORD_AUTOSTOP",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraRecordAutoStop:chl:userid:",
+  "commands": [
+   {
+    "id": 1251,
+    "name": "APP_CMD_DEV_RECORD_AUTOSTOP",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraRecordTimeout:task:",
+  "commands": [
+   {
+    "id": 1249,
+    "name": "APP_CMD_DEV_RECORD_TIMEOUT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraRecordTimeout:chl:userid:",
+  "commands": [
+   {
+    "id": 1249,
+    "name": "APP_CMD_DEV_RECORD_TIMEOUT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraRecordInterval:task:",
+  "commands": [
+   {
+    "id": 1250,
+    "name": "APP_CMD_DEV_RECORD_INTERVAL",
+    "in_library": true
+   },
+   {
+    "id": 1260,
+    "name": "APP_CMD_GEO_UPDATE_USER_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraRecordInterval:chl:userid:",
+  "commands": [
+   {
+    "id": 1250,
+    "name": "APP_CMD_DEV_RECORD_INTERVAL",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraPushInterval:task:",
+  "commands": [
+   {
+    "id": 1552,
+    "name": "CMD_ENTRY_SENSOR_BAT_STATE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAsServer:task:",
+  "commands": [
+   {
+    "id": 1237,
+    "name": "APP_CMD_SET_AS_SERVER",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAsServer:chl:server:",
+  "commands": [
+   {
+    "id": 1237,
+    "name": "APP_CMD_SET_AS_SERVER",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBSArming:task:",
+  "commands": [
+   {
+    "id": 1224,
+    "name": "APP_CMD_SET_ALARM_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBSArming:userid:chl:",
+  "commands": [
+   {
+    "id": 1224,
+    "name": "APP_CMD_SET_ALARM_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "factoryHubBy:chl:",
+  "commands": [
+   {
+    "id": 1036,
+    "name": "APP_CMD_HUB_TO_FACTORY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "factoryDev:",
+  "commands": [
+   {
+    "id": 1037,
+    "name": "APP_CMD_DEVS_TO_FACTORY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "factoryDevBy:",
+  "commands": [
+   {
+    "id": 1037,
+    "name": "APP_CMD_DEVS_TO_FACTORY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "pirTestmode:task:",
+  "commands": [
+   {
+    "id": 1243,
+    "name": "APP_CMD_SET_PIR_TEST_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "pirTestmode:chl:userid:",
+  "commands": [
+   {
+    "id": 1243,
+    "name": "APP_CMD_SET_PIR_TEST_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "checkUpgradeResult:",
+  "commands": [
+   {
+    "id": 1043,
+    "name": "APP_CMD_GET_UPGRADE_RESULT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "checkUpgradeResultBy:chl:",
+  "commands": [
+   {
+    "id": 1043,
+    "name": "APP_CMD_GET_UPGRADE_RESULT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "telnetOn:task:",
+  "commands": [
+   {
+    "id": 1024,
+    "name": "APP_CMD_DOWNLOAD_VIDEO",
+    "in_library": true
+   },
+   {
+    "id": 1247,
+    "name": "APP_CMD_SET_TELNET",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "telnetOn:userid:chl:",
+  "commands": [
+   {
+    "id": 1247,
+    "name": "APP_CMD_SET_TELNET",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHubOSD24H:task:",
+  "commands": [
+   {
+    "id": 1056,
+    "name": "APP_CMD_LIVEVIEW_LED_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1253,
+    "name": "APP_CMD_SET_HUB_OSD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHubOSD24H:userid:chl:",
+  "commands": [
+   {
+    "id": 1253,
+    "name": "APP_CMD_SET_HUB_OSD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDevsOSDLogo:userid:chl:",
+  "commands": [
+   {
+    "id": 1214,
+    "name": "APP_CMD_SET_DEVS_OSD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDevsOSDStatus:userid:chl:",
+  "commands": [
+   {
+    "id": 1214,
+    "name": "APP_CMD_SET_DEVS_OSD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCustMode:task:",
+  "commands": [
+   {
+    "id": 1120,
+    "name": "APP_CMD_GET_GATEWAY_LOCK",
+    "in_library": true
+   },
+   {
+    "id": 1256,
+    "name": "APP_CMD_SET_CUSTOM_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCustMode:userid:chl:",
+  "commands": [
+   {
+    "id": 1256,
+    "name": "APP_CMD_SET_CUSTOM_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLanguageBySystem:",
+  "commands": [
+   {
+    "id": 1112,
+    "name": "APP_CMD_GET_MIRRORMODE",
+    "in_library": true
+   },
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   },
+   {
+    "id": 1200,
+    "name": "APP_CMD_SET_LANGUAGE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setLanguageBySystemBy:chl:",
+  "commands": [
+   {
+    "id": 1200,
+    "name": "APP_CMD_SET_LANGUAGE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setRepeatWifiConfig:task:",
+  "commands": [
+   {
+    "id": 1264,
+    "name": "APP_CMD_SET_REPEATER_PARAMS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setRepeatWifiConfig:userid:chl:",
+  "commands": [
+   {
+    "id": 1264,
+    "name": "APP_CMD_SET_REPEATER_PARAMS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraActivityZones:task:",
+  "commands": [
+   {
+    "id": 1204,
+    "name": "APP_CMD_SET_MDETECTPARAM",
+    "in_library": true
+   },
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraActivityZones:channel:userid:",
+  "commands": [
+   {
+    "id": 1204,
+    "name": "APP_CMD_SET_MDETECTPARAM",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setOutsiderDetectedVideoClips:task:",
+  "commands": [
+   {
+    "id": 1248,
+    "name": "APP_CMD_SET_NOTFACE_PUSHMSG",
+    "in_library": true
+   },
+   {
+    "id": 1273,
+    "name": "APP_CMD_SET_DEV_MD_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setOutsiderDetectedVideoClips:channel:userid:",
+  "commands": [
+   {
+    "id": 1273,
+    "name": "APP_CMD_SET_DEV_MD_RECORD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAllPIRAction:task:",
+  "commands": [
+   {
+    "id": 1255,
+    "name": "APP_CMD_SET_ALL_ACTION",
+    "in_library": true
+   },
+   {
+    "id": 1280,
+    "name": "CMD_SET_HUB_ALARM_AUTO_END",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setAllPIRAction:userid:chl:",
+  "commands": [
+   {
+    "id": 1255,
+    "name": "APP_CMD_SET_ALL_ACTION",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDefaultPIRMode:task:",
+  "commands": [
+   {
+    "id": 1257,
+    "name": "APP_CMD_SET_SCHEDULE_DEFAULT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDefaultPIRMode:userid:chl:",
+  "commands": [
+   {
+    "id": 1257,
+    "name": "APP_CMD_SET_SCHEDULE_DEFAULT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setJsonSchedule:task:",
+  "commands": [
+   {
+    "id": 1254,
+    "name": "APP_CMD_SET_JSON_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setJsonSchedule:userid:chl:",
+  "commands": [
+   {
+    "id": 1254,
+    "name": "APP_CMD_SET_JSON_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDoorbellDeviceVolume:userID:chl:",
+  "commands": [
+   {
+    "id": 1230,
+    "name": "APP_CMD_SET_DEV_SPEAKER_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSpotLight:task:",
+  "commands": [
+   {
+    "id": 1400,
+    "name": "APP_CMD_SET_FLOODLIGHT_MANUAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSpotLight:chl:userid:",
+  "commands": [
+   {
+    "id": 1400,
+    "name": "APP_CMD_SET_FLOODLIGHT_MANUAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateSpotLightBrightness:task:",
+  "commands": [
+   {
+    "id": 1401,
+    "name": "APP_CMD_SET_FLOODLIGHT_BRIGHT_VALUE",
+    "in_library": true
+   },
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateSpotLightBrightness:chl:userid:",
+  "commands": [
+   {
+    "id": 1401,
+    "name": "APP_CMD_SET_FLOODLIGHT_BRIGHT_VALUE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPirSpotLightSwitch:task:",
+  "commands": [
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setPirSpotLightSwitch:chl:userid:",
+  "commands": [
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "addGeofenceSetStatus:task:",
+  "commands": [
+   {
+    "id": 1258,
+    "name": "APP_CMD_GEO_SET_USER_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "addGeofenceSetStatus:userid:chl:",
+  "commands": [
+   {
+    "id": 1258,
+    "name": "APP_CMD_GEO_SET_USER_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "addGeofenceInfo:task:",
+  "commands": [
+   {
+    "id": 900,
+    "name": "APP_CMD_START_REC_BROADCASE",
+    "in_library": true
+   },
+   {
+    "id": 1259,
+    "name": "APP_CMD_GEO_ADD_USER_INFO",
+    "in_library": true
+   },
+   {
+    "id": 1504,
+    "name": "CMD_DOOR_SENSOR_LOW_POWER_REPORT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "addGeofenceInfo:userid:chl:",
+  "commands": [
+   {
+    "id": 1259,
+    "name": "APP_CMD_GEO_ADD_USER_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateGeofenceInfo:task:",
+  "commands": [
+   {
+    "id": 1252,
+    "name": "APP_CMD_DEV_PUSHMSG_MODE",
+    "in_library": true
+   },
+   {
+    "id": 1260,
+    "name": "APP_CMD_GEO_UPDATE_USER_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateGeofenceInfo:userid:chl:",
+  "commands": [
+   {
+    "id": 1260,
+    "name": "APP_CMD_GEO_UPDATE_USER_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "deleteGeofenceInfo:task:",
+  "commands": [
+   {
+    "id": 1261,
+    "name": "APP_CMD_GEO_DEL_USER_INFO",
+    "in_library": true
+   },
+   {
+    "id": 1604,
+    "name": "APP_CMD_MOTION_SENSOR_GET_INFO",
+    "in_library": false
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "deleteGeofenceInfo:userid:chl:",
+  "commands": [
+   {
+    "id": 1261,
+    "name": "APP_CMD_GEO_DEL_USER_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateGeofencoLocSetting:task:",
+  "commands": [
+   {
+    "id": 1262,
+    "name": "APP_CMD_GEO_UPDATE_LOC_SETTING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateGeofencoLocSetting:userid:chl:",
+  "commands": [
+   {
+    "id": 1262,
+    "name": "APP_CMD_GEO_UPDATE_LOC_SETTING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFLSearchLight:flMod:task:",
+  "commands": [
+   {
+    "id": 1400,
+    "name": "APP_CMD_SET_FLOODLIGHT_MANUAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFLSearchLight:userid:flMod:",
+  "commands": [
+   {
+    "id": 1400,
+    "name": "APP_CMD_SET_FLOODLIGHT_MANUAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFLStreetLampSwitch:task:",
+  "commands": [
+   {
+    "id": 1402,
+    "name": "APP_CMD_SET_FLOODLIGHT_STREET_LAMP",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFLStreetLampSwitch:userid:chl:",
+  "commands": [
+   {
+    "id": 1402,
+    "name": "APP_CMD_SET_FLOODLIGHT_STREET_LAMP",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateFLSearchLight:value:task:",
+  "commands": [
+   {
+    "id": 1401,
+    "name": "APP_CMD_SET_FLOODLIGHT_BRIGHT_VALUE",
+    "in_library": true
+   },
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateFLSearchLight:chl:userid:value:",
+  "commands": [
+   {
+    "id": 1401,
+    "name": "APP_CMD_SET_FLOODLIGHT_BRIGHT_VALUE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateFLMotionLightBrightness:task:",
+  "commands": [
+   {
+    "id": 1412,
+    "name": "APP_CMD_SET_LIGHT_CTRL_BRIGHT_PIR",
+    "in_library": true
+   },
+   {
+    "id": 1664,
+    "name": "CMD_KEYPAD_PSW_OPEN",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateFLMotionLightBrightness:userid:chl:",
+  "commands": [
+   {
+    "id": 1412,
+    "name": "APP_CMD_SET_LIGHT_CTRL_BRIGHT_PIR",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateFLScheduleLightBrightness:task:",
+  "commands": [
+   {
+    "id": 1413,
+    "name": "APP_CMD_SET_LIGHT_CTRL_BRIGHT_SCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "updateFLScheduleLightBrightness:userid:chl:",
+  "commands": [
+   {
+    "id": 1413,
+    "name": "APP_CMD_SET_LIGHT_CTRL_BRIGHT_SCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getFloodLightWiFiListTask:",
+  "commands": [
+   {
+    "id": 1405,
+    "name": "APP_CMD_GET_FLOODLIGHT_WIFI_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getFloodLightWiFiListWithUserid:chl:",
+  "commands": [
+   {
+    "id": 1405,
+    "name": "APP_CMD_GET_FLOODLIGHT_WIFI_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetFloodLightWifi:bssid:wifiPwd:userid:chl:",
+  "commands": [
+   {
+    "id": 1406,
+    "name": "APP_CMD_SET_FLOODLIGHT_WIFI_CONNECT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetFloodLightWifi:bssid:wifiPwd:authType:task:",
+  "commands": [
+   {
+    "id": 1406,
+    "name": "APP_CMD_SET_FLOODLIGHT_WIFI_CONNECT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetFloodLightWifi:bssid:wifiPwd:authType:security:task:",
+  "commands": [
+   {
+    "id": 1208,
+    "name": "APP_CMD_SET_IRMODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetFloodLightWifi:bssid:wifiPwd:userid:authType:chl:",
+  "commands": [
+   {
+    "id": 1406,
+    "name": "APP_CMD_SET_FLOODLIGHT_WIFI_CONNECT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "resetFloodLightWifi:bssid:wifiPwd:userid:authType:security:chl:",
+  "commands": [
+   {
+    "id": 1406,
+    "name": "APP_CMD_SET_FLOODLIGHT_WIFI_CONNECT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFloodlightLightSchedule:sereverConfig:task:",
+  "commands": [
+   {
+    "id": 1404,
+    "name": "APP_CMD_SET_FLOODLIGHT_LIGHT_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFloodlightLightSchedule:sereverConfig:userid:chl:",
+  "commands": [
+   {
+    "id": 1404,
+    "name": "APP_CMD_SET_FLOODLIGHT_LIGHT_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFloodlightLightScheduleJson:task:",
+  "commands": [
+   {
+    "id": 1404,
+    "name": "APP_CMD_SET_FLOODLIGHT_LIGHT_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFloodlightLightScheduleJson:userid:chl:",
+  "commands": [
+   {
+    "id": 1404,
+    "name": "APP_CMD_SET_FLOODLIGHT_LIGHT_SCHEDULE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFloodlightActivityZones:task:",
+  "commands": [
+   {
+    "id": 1204,
+    "name": "APP_CMD_SET_MDETECTPARAM",
+    "in_library": true
+   },
+   {
+    "id": 1216,
+    "name": "APP_CMD_SET_HUB_NAME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setFloodlightActivityZones:userid:chl:",
+  "commands": [
+   {
+    "id": 1204,
+    "name": "APP_CMD_SET_MDETECTPARAM",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_responseToGetDevicePingTask:",
+  "commands": [
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_responseToGetDevicePingUserid:chl:",
+  "commands": [
+   {
+    "id": 1152,
+    "name": "APP_CMD_GET_DEVICE_PING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setPirLightSwith:task:",
+  "commands": [
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setPirLightSwith:chl:userid:",
+  "commands": [
+   {
+    "id": 1408,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setTotalLightSwitch:task:",
+  "commands": [
+   {
+    "id": 1403,
+    "name": "APP_CMD_SET_FLOODLIGHT_TOTAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setTotalLightSwitch:chl:userid:",
+  "commands": [
+   {
+    "id": 1403,
+    "name": "APP_CMD_SET_FLOODLIGHT_TOTAL_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setPirLightTime:task:",
+  "commands": [
+   {
+    "id": 1409,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_TIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setPirLightTime:chl:userid:",
+  "commands": [
+   {
+    "id": 1409,
+    "name": "APP_CMD_SET_LIGHT_CTRL_PIR_TIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setLampLightValue:task:",
+  "commands": [
+   {
+    "id": 1410,
+    "name": "APP_CMD_SET_LIGHT_CTRL_LAMP_VALUE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setLampLightValue:chl:userid:",
+  "commands": [
+   {
+    "id": 1410,
+    "name": "APP_CMD_SET_LIGHT_CTRL_LAMP_VALUE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setDeviceAlarmVolumn:chl:userid:",
+  "commands": [
+   {
+    "id": 1230,
+    "name": "APP_CMD_SET_DEV_SPEAKER_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setMotionLevel:task:",
+  "commands": [
+   {
+    "id": 1272,
+    "name": "APP_CMD_SET_MDSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_setMotionLevel:chl:userid:",
+  "commands": [
+   {
+    "id": 1272,
+    "name": "APP_CMD_SET_MDSENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_sendLocateInfo:open:task:",
+  "commands": [
+   {
+    "id": 1200,
+    "name": "APP_CMD_SET_LANGUAGE",
+    "in_library": true
+   },
+   {
+    "id": 1414,
+    "name": "APP_CMD_SET_LIGHT_CTRL_SUNRISE_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "fl_sendLocateInfo:open:chl:userid:",
+  "commands": [
+   {
+    "id": 1016,
+    "name": "APP_CMD_CLOSE_EAS",
+    "in_library": true
+   },
+   {
+    "id": 1136,
+    "name": "CMD_GET_CHARGE_STATUS",
+    "in_library": true
+   },
+   {
+    "id": 1414,
+    "name": "APP_CMD_SET_LIGHT_CTRL_SUNRISE_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHomeBaseWiFiListTask:",
+  "commands": [
+   {
+    "id": 1263,
+    "name": "APP_CMD_GET_REPEATER_SITE_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHomeBaseWiFiListWithUserid:chl:",
+  "commands": [
+   {
+    "id": 1263,
+    "name": "APP_CMD_GET_REPEATER_SITE_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHomeBaseWanLinkStatusTask:",
+  "commands": [
+   {
+    "id": 1268,
+    "name": "APP_CMD_GET_WAN_LINK_STATUS",
+    "in_library": true
+   },
+   {
+    "id": 2100,
+    "name": "CMD_SMART_DROP_OPEN_LID",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHomeBaseWanLinkStatusWithUserid:chl:",
+  "commands": [
+   {
+    "id": 1268,
+    "name": "APP_CMD_GET_WAN_LINK_STATUS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHomeBaseDevRssiList:",
+  "commands": [
+   {
+    "id": 1274,
+    "name": "APP_CMD_GET_DEVS_RSSI_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getHomeBaseDevRssiListWithUserid:chl:",
+  "commands": [
+   {
+    "id": 1274,
+    "name": "APP_CMD_GET_DEVS_RSSI_LIST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHomeBaseRepeaterEnable:ssid:bssid:security:password:task:",
+  "commands": [
+   {
+    "id": 1264,
+    "name": "APP_CMD_SET_REPEATER_PARAMS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setHomeBaseRepeaterEnable:ssid:bssid:security:password:userid:chl:",
+  "commands": [
+   {
+    "id": 1016,
+    "name": "APP_CMD_CLOSE_EAS",
+    "in_library": true
+   },
+   {
+    "id": 1264,
+    "name": "APP_CMD_SET_REPEATER_PARAMS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "repeaterRssiTest:task:",
+  "commands": [
+   {
+    "id": 1269,
+    "name": "APP_CMD_REPEATER_RSSI_TEST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "repeaterRssiTest:userid:chl:",
+  "commands": [
+   {
+    "id": 1269,
+    "name": "APP_CMD_REPEATER_RSSI_TEST",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getRepeaterConnResult:",
+  "commands": [
+   {
+    "id": 1270,
+    "name": "CMD_GET_REPEATER_CONN_TEST_RESULT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getRepeaterConnResultBy:chl:",
+  "commands": [
+   {
+    "id": 1270,
+    "name": "CMD_GET_REPEATER_CONN_TEST_RESULT",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSnoozeMode:task:",
+  "commands": [
+   {
+    "id": 1271,
+    "name": "APP_CMD_SET_SNOOZE_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setSnoozeMode:chl:userid:",
+  "commands": [
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1271,
+    "name": "APP_CMD_SET_SNOOZE_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "hubClearEMMCVolume:",
+  "commands": [
+   {
+    "id": 1800,
+    "name": "CMD_HUB_CLEAR_EMMC_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "hubClearEMMCVolumeBy:chl:",
+  "commands": [
+   {
+    "id": 1800,
+    "name": "CMD_HUB_CLEAR_EMMC_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMotionSensorBysens:task:",
+  "commands": [
+   {
+    "id": 1609,
+    "name": "APP_CMD_MOTION_SENSOR_SET_PIR_SENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setMotionSensorPIRByUserid:chl:sens:",
+  "commands": [
+   {
+    "id": 1609,
+    "name": "APP_CMD_MOTION_SENSOR_SET_PIR_SENSITIVITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "motionSensorExitTestModeTask:",
+  "commands": [
+   {
+    "id": 1056,
+    "name": "APP_CMD_LIVEVIEW_LED_SWITCH",
+    "in_library": true
+   },
+   {
+    "id": 1610,
+    "name": "APP_CMD_MOTION_SENSOR_EXIT_USER_TEST_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "motionSensorExitTestModeByUserid:chl:",
+  "commands": [
+   {
+    "id": 1610,
+    "name": "APP_CMD_MOTION_SENSOR_EXIT_USER_TEST_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDCHIME_SWITCH:task:",
+  "commands": [
+   {
+    "id": 1702,
+    "name": "CMD_BAT_DOORBELL_CHIME_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDCHIME_SWITCH:chl:userid:",
+  "commands": [
+   {
+    "id": 1702,
+    "name": "CMD_BAT_DOORBELL_CHIME_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDMECHANICAL_CHIME_SWITCH:task:",
+  "commands": [
+   {
+    "id": 1703,
+    "name": "CMD_BAT_DOORBELL_MECHANICAL_CHIME_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDMECHANICAL_CHIME_SWITCH:chl:userid:",
+  "commands": [
+   {
+    "id": 1703,
+    "name": "CMD_BAT_DOORBELL_MECHANICAL_CHIME_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDWDR_SWITCH:task:",
+  "commands": [
+   {
+    "id": 1704,
+    "name": "CMD_BAT_DOORBELL_WDR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDWDR_SWITCH:chl:userid:",
+  "commands": [
+   {
+    "id": 1704,
+    "name": "CMD_BAT_DOORBELL_WDR_SWITCH",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDVIDEO_QUALITY:task:",
+  "commands": [
+   {
+    "id": 1705,
+    "name": "CMD_BAT_DOORBELL_VIDEO_QUALITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDVIDEO_QUALITY:chl:userid:",
+  "commands": [
+   {
+    "id": 1705,
+    "name": "CMD_BAT_DOORBELL_VIDEO_QUALITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDQUICK_RESPONSE:task:",
+  "commands": [
+   {
+    "id": 1706,
+    "name": "CMD_BAT_DOORBELL_QUICK_RESPONSE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDQUICK_RESPONSE:chl:userid:",
+  "commands": [
+   {
+    "id": 1706,
+    "name": "CMD_BAT_DOORBELL_QUICK_RESPONSE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDUPDATE_QUICK_RESPONSE:mediaUrl:task:",
+  "commands": [
+   {
+    "id": 1707,
+    "name": "CMD_BAT_DOORBELL_UPDATE_QUICK_RESPONSE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDUPDATE_QUICK_RESPONSE:mediaUrl:chl:userid:",
+  "commands": [
+   {
+    "id": 1707,
+    "name": "CMD_BAT_DOORBELL_UPDATE_QUICK_RESPONSE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDRINGTONE_VOLUME:task:",
+  "commands": [
+   {
+    "id": 1708,
+    "name": "CMD_BAT_DOORBELL_SET_RINGTONE_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDRINGTONE_VOLUME:chl:userid:",
+  "commands": [
+   {
+    "id": 1708,
+    "name": "CMD_BAT_DOORBELL_SET_RINGTONE_VOLUME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDELECTRONIC_RINGTONE_TIME:task:",
+  "commands": [
+   {
+    "id": 1709,
+    "name": "CMD_BAT_DOORBELL_SET_ELECTRONIC_RINGTONE_TIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDELECTRONIC_RINGTONE_TIME:chl:userid:",
+  "commands": [
+   {
+    "id": 1709,
+    "name": "CMD_BAT_DOORBELL_SET_ELECTRONIC_RINGTONE_TIME",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDNotificationOnOff:task:",
+  "commands": [
+   {
+    "id": 1710,
+    "name": "CMD_BAT_DOORBELL_SET_NOTIFICATION_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setBVDNotificationOnOff:chl:userid:",
+  "commands": [
+   {
+    "id": 1710,
+    "name": "CMD_BAT_DOORBELL_SET_NOTIFICATION_MODE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setDevsOSDMode:userid:chl:",
+  "commands": [
+   {
+    "id": 1214,
+    "name": "APP_CMD_SET_DEVS_OSD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraVideoQaulity:task:",
+  "commands": [
+   {
+    "id": 1705,
+    "name": "CMD_BAT_DOORBELL_VIDEO_QUALITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setCameraVideoQaulity:chl:userid:",
+  "commands": [
+   {
+    "id": 1705,
+    "name": "CMD_BAT_DOORBELL_VIDEO_QUALITY",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getDoorBellHomeBaseWifi:",
+  "commands": [
+   {
+    "id": 1192,
+    "name": "CMD_GET_DETECTED_EVENTS_HB3",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendDoorBellHomeBaseWifi:chl:",
+  "commands": [
+   {
+    "id": 1016,
+    "name": "APP_CMD_CLOSE_EAS",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendPingToDeviceTask:",
+  "commands": [
+   {
+    "id": 1139,
+    "name": "CMD_PING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendPingToDeviceChannel:userid:isRTC:",
+  "commands": [
+   {
+    "id": 1139,
+    "name": "CMD_PING",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "setParamCommondFunc:logParam:task:",
+  "commands": [
+   {
+    "id": 1912,
+    "name": "CMD_DOORLOCK_GET_STATE",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendHB3DiskinfoReqCommand:version:payload:cmd:",
+  "commands": [
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1307,
+    "name": "CMD_STORAGE_INFO_HB3",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendHB3DetectionType:type:channel:",
+  "commands": [
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1298,
+    "name": "CMD_SET_MOTION_DETECTION_TYPE_HB3",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendNewHB3Type:pub_key:",
+  "commands": [
+   {
+    "id": 1008,
+    "name": "APP_CMD_STOP_VOICECALL",
+    "in_library": true
+   },
+   {
+    "id": 1350,
+    "name": "CMD_SET_PAYLOAD",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "sendBindHub3RequestWithPayload:task:",
+  "commands": [
+   {
+    "id": 1000,
+    "name": "CMD_BIND_BROADCAST",
+    "in_library": true
+   },
+   {
+    "id": 1040,
+    "name": "APP_CMD_DEVS_UNBIND",
+    "in_library": true
+   },
+   {
+    "id": 1060,
+    "name": "APP_CMD_HB3_BIND_CODE",
+    "in_library": false
+   },
+   {
+    "id": 1176,
+    "name": "CMD_GET_HUB_LAN_IP",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "p2pSendBindHub3RequestWithPayload:userid:chl:",
+  "commands": [
+   {
+    "id": 1060,
+    "name": "APP_CMD_HB3_BIND_CODE",
+    "in_library": false
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSunriseLocationJson:",
+  "commands": [
+   {
+    "id": 1415,
+    "name": "APP_CMD_SET_LIGHT_CTRL_SUNRISE_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ },
+ {
+  "method": "getSunriseLocationJson:userid:",
+  "commands": [
+   {
+    "id": 1415,
+    "name": "APP_CMD_SET_LIGHT_CTRL_SUNRISE_INFO",
+    "in_library": true
+   }
+  ],
+  "strings": ""
+ }
+]

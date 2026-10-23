@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Security Camera</title>
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="bar">
+  <button class="btn icon ha-menu" id="ha-menu" aria-label="Home Assistant menu" hidden>
+    <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <div class="brand"><img src="icon.png" alt=""><span>Security Camera</span></div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="cameras">Cameras</button>
+    <button role="tab" data-tab="multiview">Multi-View</button>
+    <button role="tab" data-tab="events">Events</button>
+    <button role="tab" data-tab="alerts">Alerts</button>
+  </nav>
+  <div class="tools" id="tools"></div>
+</header>
+
+<main>
+  <section id="cameras" class="view" hidden></section>
+  <section id="multiview" class="view" hidden></section>
+  <section id="events" class="view" hidden></section>
+  <section id="alerts" class="view" hidden></section>
+</main>
+
+<div id="overlay" hidden></div>
+<div id="toasts" aria-live="polite"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

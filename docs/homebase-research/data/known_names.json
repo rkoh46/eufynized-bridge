@@ -1,0 +1,1683 @@
+{
+ "AUDDEC_SWITCH": {
+  "library": "CMD_AUDDEC_SWITCH",
+  "id": 1017,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "AUDIO_FRAME": {
+  "library": "CMD_AUDIO_FRAME",
+  "id": 1301,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BATCH_RECORD": {
+  "library": "CMD_BATCH_RECORD",
+  "id": 1049,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BAT_DOORBELL_CHIME_SWITCH": {
+  "library": "CMD_BAT_DOORBELL_CHIME_SWITCH",
+  "id": 1702,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "BAT_DOORBELL_MECHANICAL_CHIME_SWITCH": {
+  "library": "CMD_BAT_DOORBELL_MECHANICAL_CHIME_SWITCH",
+  "id": 1703,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "BAT_DOORBELL_QUICK_RESPONSE": {
+  "library": "CMD_BAT_DOORBELL_QUICK_RESPONSE",
+  "id": 1706,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BAT_DOORBELL_SET_ELECTRONIC_RINGTONE_TIME": {
+  "library": "CMD_BAT_DOORBELL_SET_ELECTRONIC_RINGTONE_TIME",
+  "id": 1709,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "BAT_DOORBELL_SET_RINGTONE_VOLUME": {
+  "library": "CMD_BAT_DOORBELL_SET_RINGTONE_VOLUME",
+  "id": 1708,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BAT_DOORBELL_UPDATE_QUICK_RESPONSE": {
+  "library": "CMD_BAT_DOORBELL_UPDATE_QUICK_RESPONSE",
+  "id": 1707,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BAT_DOORBELL_VIDEO_QUALITY": {
+  "library": "CMD_BAT_DOORBELL_VIDEO_QUALITY",
+  "id": 1705,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BAT_DOORBELL_WDR_SWITCH": {
+  "library": "CMD_BAT_DOORBELL_WDR_SWITCH",
+  "id": 1704,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "BIND_BROADCAST": {
+  "library": "CMD_BIND_BROADCAST",
+  "id": 1000,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BIND_SYNC_ACCOUNT_INFO": {
+  "library": "CMD_BIND_SYNC_ACCOUNT_INFO",
+  "id": 1001,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "BIND_SYNC_ACCOUNT_INFO_EX": {
+  "library": "CMD_BIND_SYNC_ACCOUNT_INFO_EX",
+  "id": 1054,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CAMERA_INFO": {
+  "library": "CMD_CAMERA_INFO",
+  "id": 1103,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CHANGE_PWD": {
+  "library": "CMD_CHANGE_PWD",
+  "id": 1030,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CHANGE_WIFI_PWD": {
+  "library": "CMD_CHANGE_WIFI_PWD",
+  "id": 1031,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CLOSE_AUDDEC": {
+  "library": "CMD_CLOSE_AUDDEC",
+  "id": 1018,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CLOSE_DEV_LED": {
+  "library": "CMD_CLOSE_DEV_LED",
+  "id": 1046,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CLOSE_EAS": {
+  "library": "CMD_CLOSE_EAS",
+  "id": 1016,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "CLOSE_IRCUT": {
+  "library": "CMD_CLOSE_IRCUT",
+  "id": 1014,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "CLOSE_PIR": {
+  "library": "CMD_CLOSE_PIR",
+  "id": 1012,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "COLLECT_RECORD": {
+  "library": "CMD_COLLECT_RECORD",
+  "id": 1047,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DECOLLECT_RECORD": {
+  "library": "CMD_DECOLLECT_RECORD",
+  "id": 1048,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DELLETE_RECORD": {
+  "library": "CMD_DELLETE_RECORD",
+  "id": 1027,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEL_FACE_PHOTO": {
+  "library": "CMD_DEL_FACE_PHOTO",
+  "id": 1234,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEL_USER_PHOTO": {
+  "library": "CMD_DEL_USER_PHOTO",
+  "id": 1232,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEVS_BIND_BROADCASE": {
+  "library": "CMD_DEVS_BIND_BROADCASE",
+  "id": 1038,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEVS_SWITCH": {
+  "library": "CMD_DEVS_SWITCH",
+  "id": 1035,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEVS_TO_FACTORY": {
+  "library": "CMD_DEVS_TO_FACTORY",
+  "id": 1037,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "DEVS_UNBIND": {
+  "library": "CMD_DEVS_UNBIND",
+  "id": 1040,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEVS_UNLOCK": {
+  "library": "CMD_DEVS_UNLOCK",
+  "id": 1020,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEV_LED_SWITCH": {
+  "library": "CMD_DEV_LED_SWITCH",
+  "id": 1045,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEV_PUSHMSG_MODE": {
+  "library": "CMD_DEV_PUSHMSG_MODE",
+  "id": 1252,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEV_RECORD_AUTOSTOP": {
+  "library": "CMD_DEV_RECORD_AUTOSTOP",
+  "id": 1251,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEV_RECORD_INTERVAL": {
+  "library": "CMD_DEV_RECORD_INTERVAL",
+  "id": 1250,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DEV_RECORD_TIMEOUT": {
+  "library": "CMD_DEV_RECORD_TIMEOUT",
+  "id": 1249,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOORBELL_NOTIFY_PAYLOAD": {
+  "library": "CMD_DOORBELL_NOTIFY_PAYLOAD",
+  "id": 1701,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOORBELL_SET_PAYLOAD": {
+  "library": "CMD_DOORBELL_SET_PAYLOAD",
+  "id": 1700,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOORLOCK_ACCOUNT_UNBIND": {
+  "library": "CMD_DOORLOCK_ACCOUNT_UNBIND",
+  "id": 1915,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOORLOCK_BIND": {
+  "library": "CMD_DOORLOCK_BIND",
+  "id": 1910,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOORLOCK_DATA_PASS_THROUGH": {
+  "library": "CMD_DOORLOCK_DATA_PASS_THROUGH",
+  "id": 1911,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "DOORLOCK_OTA": {
+  "library": "CMD_DOORLOCK_OTA",
+  "id": 1914,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOORLOCK_SET_PUSH_MODE": {
+  "library": "CMD_DOORLOCK_SET_PUSH_MODE",
+  "id": 1919,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOOR_SENSOR_ALARM_ENABLE": {
+  "library": "CMD_DOOR_SENSOR_ALARM_ENABLE",
+  "id": 1506,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOWNLOAD_CANCEL": {
+  "library": "CMD_DOWNLOAD_CANCEL",
+  "id": 1051,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "DOWNLOAD_FINISH": {
+  "library": "CMD_DOWNLOAD_FINISH",
+  "id": 1304,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "DOWNLOAD_VIDEO": {
+  "library": "CMD_DOWNLOAD_VIDEO",
+  "id": 1024,
+  "binaries": [
+   "BCPDTSecurity",
+   "BC_P2PClient",
+   "MegaBabyFramework",
+   "MegaMainFramework"
+  ]
+ },
+ "EAS_SWITCH": {
+  "library": "CMD_EAS_SWITCH",
+  "id": 1015,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "FORMAT_SD": {
+  "library": "CMD_FORMAT_SD",
+  "id": 1029,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "FORMAT_SD_PROGRESS": {
+  "library": "CMD_FORMAT_SD_PROGRESS",
+  "id": 1053,
+  "binaries": [
+   "BCPDTSecurity",
+   "MegaBabyFramework"
+  ]
+ },
+ "GEO_ADD_USER_INFO": {
+  "library": "CMD_GEO_ADD_USER_INFO",
+  "id": 1259,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GEO_DEL_USER_INFO": {
+  "library": "CMD_GEO_DEL_USER_INFO",
+  "id": 1261,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GEO_SET_USER_STATUS": {
+  "library": "CMD_GEO_SET_USER_STATUS",
+  "id": 1258,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GEO_UPDATE_LOC_SETTING": {
+  "library": "CMD_GEO_UPDATE_LOC_SETTING",
+  "id": 1262,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GEO_UPDATE_USER_INFO": {
+  "library": "CMD_GEO_UPDATE_USER_INFO",
+  "id": 1260,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GET_ADMIN_PWD": {
+  "library": "CMD_GET_ADMIN_PWD",
+  "id": 1122,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_ARMING_INFO": {
+  "library": "CMD_GET_ARMING_INFO",
+  "id": 1107,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_ARMING_STATUS": {
+  "library": "CMD_GET_ARMING_STATUS",
+  "id": 1108,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_AUDDEC_INFO": {
+  "library": "CMD_GET_AUDDEC_INFO",
+  "id": 1109,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_AUDDEC_SENSITIVITY": {
+  "library": "CMD_GET_AUDDEC_SENSITIVITY",
+  "id": 1110,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_AUDDE_CSTATUS": {
+  "library": "CMD_GET_AUDDE_CSTATUS",
+  "id": 1111,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_BATTERY": {
+  "library": "CMD_GET_BATTERY",
+  "id": 1101,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_CAMERA_LOCK": {
+  "library": "CMD_GET_CAMERA_LOCK",
+  "id": 1119,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_DELAY_ALARM": {
+  "library": "CMD_GET_DELAY_ALARM",
+  "id": 1164,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "GET_DEVICE_PING": {
+  "library": "CMD_GET_DEVICE_PING",
+  "id": 1152,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_DEVS_NAME": {
+  "library": "CMD_GET_DEVS_NAME",
+  "id": 1129,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_DEVS_RSSI_LIST": {
+  "library": "CMD_GET_DEVS_RSSI_LIST",
+  "id": 1274,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GET_DEV_STATUS": {
+  "library": "CMD_GET_DEV_STATUS",
+  "id": 1131,
+  "binaries": [
+   "BCPDTSecurity"
+  ]
+ },
+ "GET_DEV_TONE_INFO": {
+  "library": "CMD_GET_DEV_TONE_INFO",
+  "id": 1127,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_DEV_UPGRADE": {
+  "library": "CMD_GET_DEV_UPGRADE",
+  "id": 1134,
+  "binaries": [
+   "MegaMainFramework"
+  ]
+ },
+ "GET_EAS_STATUS": {
+  "library": "CMD_GET_EAS_STATUS",
+  "id": 1118,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_EXCEPTION_LOG": {
+  "library": "CMD_GET_EXCEPTION_LOG",
+  "id": 1124,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_FLOODLIGHT_WIFI_LIST": {
+  "library": "CMD_GET_FLOODLIGHT_WIFI_LIST",
+  "id": 1405,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit",
+   "MegaCommonFramework"
+  ]
+ },
+ "GET_GATEWAY_LOCK": {
+  "library": "CMD_GET_GATEWAY_LOCK",
+  "id": 1120,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_HUB_LOG": {
+  "library": "CMD_GET_HUB_LOG",
+  "id": 1132,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_HUB_NAME": {
+  "library": "CMD_GET_HUB_NAME",
+  "id": 1128,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_HUB_TONE_INFO": {
+  "library": "CMD_GET_HUB_TONE_INFO",
+  "id": 1126,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_HUB_UPGRADE": {
+  "library": "CMD_GET_HUB_UPGRADE",
+  "id": 1133,
+  "binaries": [
+   "BCPDTSecurity"
+  ]
+ },
+ "GET_IRCUTSENSITIVITY": {
+  "library": "CMD_GET_IRCUTSENSITIVITY",
+  "id": 1114,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_IRMODE": {
+  "library": "CMD_GET_IRMODE",
+  "id": 1113,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_MDETECT_PARAM": {
+  "library": "CMD_GET_MDETECT_PARAM",
+  "id": 1105,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_MIRRORMODE": {
+  "library": "CMD_GET_MIRRORMODE",
+  "id": 1112,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_NEWVESION": {
+  "library": "CMD_GET_NEWVESION",
+  "id": 1125,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_P2P_CONN_STATUS": {
+  "library": "CMD_GET_P2P_CONN_STATUS",
+  "id": 1130,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GET_PIRCTRL": {
+  "library": "CMD_GET_PIRCTRL",
+  "id": 1116,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_PIRINFO": {
+  "library": "CMD_GET_PIRINFO",
+  "id": 1115,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_PIRSENSITIVITY": {
+  "library": "CMD_GET_PIRSENSITIVITY",
+  "id": 1117,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_RECORD_TIME": {
+  "library": "CMD_GET_RECORD_TIME",
+  "id": 1104,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_REPEATER_CONN_TEST_RESULT": {
+  "library": "CMD_GET_REPEATER_CONN_TEST_RESULT",
+  "id": 1270,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GET_REPEATER_RSSI": {
+  "library": "CMD_GET_REPEATER_RSSI",
+  "id": 1266,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_REPEATER_SITE_LIST": {
+  "library": "CMD_GET_REPEATER_SITE_LIST",
+  "id": 1263,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_TFCARD_FORMAT_STATUS": {
+  "library": "CMD_GET_TFCARD_FORMAT_STATUS",
+  "id": 1143,
+  "binaries": [
+   "BCPDTSecurity",
+   "BC_P2PClient",
+   "MegaBabyFramework"
+  ]
+ },
+ "GET_TFCARD_REPAIR_STATUS": {
+  "library": "CMD_GET_TFCARD_REPAIR_STATUS",
+  "id": 1153,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "GET_TFCARD_STATUS": {
+  "library": "CMD_GET_TFCARD_STATUS",
+  "id": 1135,
+  "binaries": [
+   "BCPDTSecurity"
+  ]
+ },
+ "GET_UPDATE_STATUS": {
+  "library": "CMD_GET_UPDATE_STATUS",
+  "id": 1121,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_UPGRADE_RESULT": {
+  "library": "CMD_GET_UPGRADE_RESULT",
+  "id": 1043,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_WAN_LINK_STATUS": {
+  "library": "CMD_GET_WAN_LINK_STATUS",
+  "id": 1268,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_WAN_MODE": {
+  "library": "CMD_GET_WAN_MODE",
+  "id": 1265,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "GET_WIFI_PWD": {
+  "library": "CMD_GET_WIFI_PWD",
+  "id": 1123,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "HUB_CLEAR_EMMC_VOLUME": {
+  "library": "CMD_HUB_CLEAR_EMMC_VOLUME",
+  "id": 1800,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "HUB_REBOOT": {
+  "library": "CMD_HUB_REBOOT",
+  "id": 1034,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "HUB_TO_FACTORY": {
+  "library": "CMD_HUB_TO_FACTORY",
+  "id": 1036,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "IRCUT_SWITCH": {
+  "library": "CMD_IRCUT_SWITCH",
+  "id": 1013,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "KEYPAD_GET_PASSWORD": {
+  "library": "CMD_KEYPAD_GET_PASSWORD",
+  "id": 1657,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "KEYPAD_GET_PASSWORD_LIST": {
+  "library": "CMD_KEYPAD_GET_PASSWORD_LIST",
+  "id": 1662,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "KEYPAD_SET_CUSTOM_MAP": {
+  "library": "CMD_KEYPAD_SET_CUSTOM_MAP",
+  "id": 1660,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "KEYPAD_SET_PASSWORD": {
+  "library": "CMD_KEYPAD_SET_PASSWORD",
+  "id": 1650,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "LEAVING_DELAY_AWAY": {
+  "library": "CMD_LEAVING_DELAY_AWAY",
+  "id": 1172,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "LEAVING_DELAY_HOME": {
+  "library": "CMD_LEAVING_DELAY_HOME",
+  "id": 1171,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "LIVEVIEW_LED_SWITCH": {
+  "library": "CMD_LIVEVIEW_LED_SWITCH",
+  "id": 1056,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "MDETECTINFO": {
+  "library": "CMD_MDETECTINFO",
+  "id": 1106,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "MOTION_SENSOR_ENABLE_LED": {
+  "library": "CMD_MOTION_SENSOR_ENABLE_LED",
+  "id": 1607,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "MOTION_SENSOR_ENTER_USER_TEST_MODE": {
+  "library": "CMD_MOTION_SENSOR_ENTER_USER_TEST_MODE",
+  "id": 1613,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "MOTION_SENSOR_EXIT_USER_TEST_MODE": {
+  "library": "CMD_MOTION_SENSOR_EXIT_USER_TEST_MODE",
+  "id": 1610,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "MOTION_SENSOR_SET_PIR_SENSITIVITY": {
+  "library": "CMD_MOTION_SENSOR_SET_PIR_SENSITIVITY",
+  "id": 1609,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "NAS_SWITCH": {
+  "library": "CMD_NAS_SWITCH",
+  "id": 1145,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "NAS_TEST": {
+  "library": "CMD_NAS_TEST",
+  "id": 1146,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "P2P_DISCONNECT": {
+  "library": "CMD_P2P_DISCONNECT",
+  "id": 1044,
+  "binaries": [
+   "BCPDTSecurity",
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "PIR_SWITCH": {
+  "library": "CMD_PIR_SWITCH",
+  "id": 1011,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "RECORDDATE_SEARCH": {
+  "library": "CMD_RECORDDATE_SEARCH",
+  "id": 1041,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "RECORDLIST_SEARCH": {
+  "library": "CMD_RECORDLIST_SEARCH",
+  "id": 1042,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "RECORD_AUDIO_SWITCH": {
+  "library": "CMD_RECORD_AUDIO_SWITCH",
+  "id": 1366,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "RECORD_IMG": {
+  "library": "CMD_RECORD_IMG",
+  "id": 1021,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "RECORD_IMG_STOP": {
+  "library": "CMD_RECORD_IMG_STOP",
+  "id": 1022,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "RECORD_PLAY_CTRL": {
+  "library": "CMD_RECORD_PLAY_CTRL",
+  "id": 1026,
+  "binaries": [
+   "BCPDTSecurity",
+   "BC_P2PClient",
+   "ESIotMegaKit",
+   "MegaMainFramework",
+   "MegaRNModule"
+  ]
+ },
+ "RECORD_VIEW": {
+  "library": "CMD_RECORD_VIEW",
+  "id": 1025,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "REPAIR_SD": {
+  "library": "CMD_REPAIR_SD",
+  "id": 1057,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "REPEATER_RSSI_TEST": {
+  "library": "CMD_REPEATER_RSSI_TEST",
+  "id": 1269,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "RF433_DONGLE_STATUS_CHANGE": {
+  "library": "CMD_RF433_DONGLE_STATUS_CHANGE",
+  "id": 1900,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "RF433_GET_DONGLE_STATE": {
+  "library": "CMD_RF433_GET_DONGLE_STATE",
+  "id": 1901,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "RF433_TRIGER_RING": {
+  "library": "CMD_RF433_TRIGER_RING",
+  "id": 1902,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SDINFO": {
+  "library": "CMD_SDINFO",
+  "id": 1102,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SDINFO_EX": {
+  "library": "CMD_SDINFO_EX",
+  "id": 1144,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SENSOR_SET_CHIRP_TONE": {
+  "library": "CMD_SENSOR_SET_CHIRP_TONE",
+  "id": 1507,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_AI_NICKNAME": {
+  "library": "CMD_SET_AI_NICKNAME",
+  "id": 1242,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_AI_PHOTO": {
+  "library": "CMD_SET_AI_PHOTO",
+  "id": 1231,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_AI_SWITCH": {
+  "library": "CMD_SET_AI_SWITCH",
+  "id": 1236,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_ALL_ACTION": {
+  "library": "CMD_SET_ALL_ACTION",
+  "id": 1255,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_ARMING": {
+  "library": "CMD_SET_ARMING",
+  "id": 1224,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_ARMING_SCHEDULE": {
+  "library": "CMD_SET_ARMING_SCHEDULE",
+  "id": 1211,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_AS_SERVER": {
+  "library": "CMD_SET_AS_SERVER",
+  "id": 1237,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_AUDDEC_INFO": {
+  "library": "CMD_SET_AUDDEC_INFO",
+  "id": 1212,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_AUDDEC_SENSITIVITY": {
+  "library": "CMD_SET_AUDDEC_SENSITIVITY",
+  "id": 1213,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_AUDIOSENSITIVITY": {
+  "library": "CMD_SET_AUDIOSENSITIVITY",
+  "id": 1227,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_BITRATE": {
+  "library": "CMD_SET_BITRATE",
+  "id": 1206,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_CUSTOM_MODE": {
+  "library": "CMD_SET_CUSTOM_MODE",
+  "id": 1256,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_DEVS_NAME": {
+  "library": "CMD_SET_DEVS_NAME",
+  "id": 1217,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DEVS_OSD": {
+  "library": "CMD_SET_DEVS_OSD",
+  "id": 1214,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_DEVS_TONE_FILE": {
+  "library": "CMD_SET_DEVS_TONE_FILE",
+  "id": 1202,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DEV_MD_RECORD": {
+  "library": "CMD_SET_DEV_MD_RECORD",
+  "id": 1273,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_DEV_MIC_MUTE": {
+  "library": "CMD_SET_DEV_MIC_MUTE",
+  "id": 1240,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DEV_MIC_VOLUME": {
+  "library": "CMD_SET_DEV_MIC_VOLUME",
+  "id": 1229,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DEV_SPEAKER_MUTE": {
+  "library": "CMD_SET_DEV_SPEAKER_MUTE",
+  "id": 1241,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DEV_SPEAKER_VOLUME": {
+  "library": "CMD_SET_DEV_SPEAKER_VOLUME",
+  "id": 1230,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DEV_STORAGE_TYPE": {
+  "library": "CMD_SET_DEV_STORAGE_TYPE",
+  "id": 1228,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DOORSENSOR_ALWAYS_OPEN": {
+  "library": "CMD_SET_DOORSENSOR_ALWAYS_OPEN",
+  "id": 1290,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_DOORSENSOR_ALWAYS_OPEN_DELAY": {
+  "library": "CMD_SET_DOORSENSOR_ALWAYS_OPEN_DELAY",
+  "id": 1291,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLICKER_ADJUSTMENT": {
+  "library": "CMD_SET_FLICKER_ADJUSTMENT",
+  "id": 8000,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_BRIGHT_VALUE": {
+  "library": "CMD_SET_FLOODLIGHT_BRIGHT_VALUE",
+  "id": 1401,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_DETECTION_AREA": {
+  "library": "CMD_SET_FLOODLIGHT_DETECTION_AREA",
+  "id": 1407,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_LIGHT_SCHEDULE": {
+  "library": "CMD_SET_FLOODLIGHT_LIGHT_SCHEDULE",
+  "id": 1404,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_MANUAL_SWITCH": {
+  "library": "CMD_SET_FLOODLIGHT_MANUAL_SWITCH",
+  "id": 1400,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_STREET_LAMP": {
+  "library": "CMD_SET_FLOODLIGHT_STREET_LAMP",
+  "id": 1402,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_TOTAL_SWITCH": {
+  "library": "CMD_SET_FLOODLIGHT_TOTAL_SWITCH",
+  "id": 1403,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_FLOODLIGHT_WIFI_CONNECT": {
+  "library": "CMD_SET_FLOODLIGHT_WIFI_CONNECT",
+  "id": 1406,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_GSSENSITIVITY": {
+  "library": "CMD_SET_GSSENSITIVITY",
+  "id": 1226,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_ALARM_AUTO_END": {
+  "library": "CMD_SET_HUB_ALARM_AUTO_END",
+  "id": 1280,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_AUDEC_STATUS": {
+  "library": "CMD_SET_HUB_AUDEC_STATUS",
+  "id": 1222,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_GS_STATUS": {
+  "library": "CMD_SET_HUB_GS_STATUS",
+  "id": 1220,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_IRCUT_STATUS": {
+  "library": "CMD_SET_HUB_IRCUT_STATUS",
+  "id": 1219,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_MVDEC_STATUS": {
+  "library": "CMD_SET_HUB_MVDEC_STATUS",
+  "id": 1221,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_NAME": {
+  "library": "CMD_SET_HUB_NAME",
+  "id": 1216,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_OSD": {
+  "library": "CMD_SET_HUB_OSD",
+  "id": 1253,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_PIR_STATUS": {
+  "library": "CMD_SET_HUB_PIR_STATUS",
+  "id": 1218,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_HUB_SPK_VOLUME": {
+  "library": "CMD_SET_HUB_SPK_VOLUME",
+  "id": 1235,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_IRMODE": {
+  "library": "CMD_SET_IRMODE",
+  "id": 1208,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_JSON_SCHEDULE": {
+  "library": "CMD_SET_JSON_SCHEDULE",
+  "id": 1254,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_LANGUAGE": {
+  "library": "CMD_SET_LANGUAGE",
+  "id": 1200,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_LIGHT_CTRL_BRIGHT_PIR": {
+  "library": "CMD_SET_LIGHT_CTRL_BRIGHT_PIR",
+  "id": 1412,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_LIGHT_CTRL_BRIGHT_SCH": {
+  "library": "CMD_SET_LIGHT_CTRL_BRIGHT_SCH",
+  "id": 1413,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_LIGHT_CTRL_LAMP_VALUE": {
+  "library": "CMD_SET_LIGHT_CTRL_LAMP_VALUE",
+  "id": 1410,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_LIGHT_CTRL_PIR_SWITCH": {
+  "library": "CMD_SET_LIGHT_CTRL_PIR_SWITCH",
+  "id": 1408,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_LIGHT_CTRL_PIR_TIME": {
+  "library": "CMD_SET_LIGHT_CTRL_PIR_TIME",
+  "id": 1409,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_LIGHT_CTRL_SUNRISE_INFO": {
+  "library": "CMD_SET_LIGHT_CTRL_SUNRISE_INFO",
+  "id": 1415,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_LIGHT_CTRL_SUNRISE_SWITCH": {
+  "library": "CMD_SET_LIGHT_CTRL_SUNRISE_SWITCH",
+  "id": 1414,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_MDETECTPARAM": {
+  "library": "CMD_SET_MDETECTPARAM",
+  "id": 1204,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_MDSENSITIVITY": {
+  "library": "CMD_SET_MDSENSITIVITY",
+  "id": 1272,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_MIRRORMODE": {
+  "library": "CMD_SET_MIRRORMODE",
+  "id": 1207,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_NAS_PASSWD": {
+  "library": "CMD_SET_NAS_PASSWD",
+  "id": 1287,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_NOTFACE_PUSHMSG": {
+  "library": "CMD_SET_NOTFACE_PUSHMSG",
+  "id": 1248,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_PAYLOAD": {
+  "library": "CMD_SET_PAYLOAD",
+  "id": 1350,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_PIRSENSITIVITY": {
+  "library": "CMD_SET_PIRSENSITIVITY",
+  "id": 1210,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_PIR_INFO": {
+  "library": "CMD_SET_PIR_INFO",
+  "id": 1209,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_PIR_POWERMODE": {
+  "library": "CMD_SET_PIR_POWERMODE",
+  "id": 1246,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_PIR_SENSITIVITY": {
+  "library": "CMD_SET_PIR_SENSITIVITY",
+  "id": 6070,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_PIR_TEST_MODE": {
+  "library": "CMD_SET_PIR_TEST_MODE",
+  "id": 1243,
+  "binaries": [
+   "BC_P2PClient",
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_POWER_CHARGE": {
+  "library": "CMD_SET_POWER_CHARGE",
+  "id": 1293,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_PRIVACYPARAM": {
+  "library": "CMD_SET_PRIVACYPARAM",
+  "id": 1295,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "SET_PRI_ACTION": {
+  "library": "CMD_SET_PRI_ACTION",
+  "id": 1233,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_PROMPT_VOLUME": {
+  "library": "CMD_SET_PROMPT_VOLUME",
+  "id": 1292,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_RECORDTIME": {
+  "library": "CMD_SET_RECORDTIME",
+  "id": 1203,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_RECORD_QUALITY": {
+  "library": "CMD_SET_RECORD_QUALITY",
+  "id": 1286,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_REPEATER_PARAMS": {
+  "library": "CMD_SET_REPEATER_PARAMS",
+  "id": 1264,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_RESOLUTION": {
+  "library": "CMD_SET_RESOLUTION",
+  "id": 1205,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_SCHEDULE_DEFAULT": {
+  "library": "CMD_SET_SCHEDULE_DEFAULT",
+  "id": 1257,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_SNOOZE_MODE": {
+  "library": "CMD_SET_SNOOZE_MODE",
+  "id": 1271,
+  "binaries": [
+   "BC_P2PClient",
+   "MegaMainFramework"
+  ]
+ },
+ "SET_STORGE_TYPE": {
+  "library": "CMD_SET_STORGE_TYPE",
+  "id": 1223,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_TELNET": {
+  "library": "CMD_SET_TELNET",
+  "id": 1247,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_TIMEZONE": {
+  "library": "CMD_SET_TIMEZONE",
+  "id": 1215,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_TONE_FILE": {
+  "library": "CMD_SET_TONE_FILE",
+  "id": 1201,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SET_UPGRADE": {
+  "library": "CMD_SET_UPGRADE",
+  "id": 1238,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "SMARTLOCK_ALARM_STOP": {
+  "library": "CMD_SMARTLOCK_ALARM_STOP",
+  "id": 1971,
+  "binaries": [
+   "BCPDTSecurity"
+  ]
+ },
+ "SNAPSHOT": {
+  "library": "CMD_SNAPSHOT",
+  "id": 1028,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "START_REALTIME_MEDIA": {
+  "library": "CMD_START_REALTIME_MEDIA",
+  "id": 1003,
+  "binaries": [
+   "BC_P2PClient",
+   "MegaMainFramework"
+  ]
+ },
+ "START_RECORD": {
+  "library": "CMD_START_RECORD",
+  "id": 1009,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "START_REC_BROADCASE": {
+  "library": "CMD_START_REC_BROADCASE",
+  "id": 900,
+  "binaries": [
+   "BC_P2PClient",
+   "MegaMainFramework"
+  ]
+ },
+ "START_TALKBACK": {
+  "library": "CMD_START_TALKBACK",
+  "id": 1005,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "START_VOICECALL": {
+  "library": "CMD_START_VOICECALL",
+  "id": 1007,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STOP_REALTIME_MEDIA": {
+  "library": "CMD_STOP_REALTIME_MEDIA",
+  "id": 1004,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STOP_RECORD": {
+  "library": "CMD_STOP_RECORD",
+  "id": 1010,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STOP_REC_BROADCASE": {
+  "library": "CMD_STOP_REC_BROADCASE",
+  "id": 901,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STOP_SHARE": {
+  "library": "CMD_STOP_SHARE",
+  "id": 1023,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STOP_TALKBACK": {
+  "library": "CMD_STOP_TALKBACK",
+  "id": 1006,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STOP_VOICECALL": {
+  "library": "CMD_STOP_VOICECALL",
+  "id": 1008,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "STRESS_TEST_OPER": {
+  "library": "CMD_STRESS_TEST_OPER",
+  "id": 1050,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "TIME_SYCN": {
+  "library": "CMD_TIME_SYCN",
+  "id": 1033,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "TRANSFER_PAYLOAD": {
+  "library": "CMD_TRANSFER_PAYLOAD",
+  "id": 1940,
+  "binaries": [
+   "ESIotMegaKit"
+  ]
+ },
+ "UNBIND_ACCOUNT": {
+  "library": "CMD_UNBIND_ACCOUNT",
+  "id": 1002,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "VIDEO_FRAME": {
+  "library": "CMD_VIDEO_FRAME",
+  "id": 1300,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ },
+ "WIFILOCK_KEYPAD_ENTER_OTA": {
+  "library": "CMD_WIFILOCK_KEYPAD_ENTER_OTA",
+  "id": 1933,
+  "binaries": [
+   "BCPDTSecurity"
+  ]
+ },
+ "WIFI_CONFIG": {
+  "library": "CMD_WIFI_CONFIG",
+  "id": 1032,
+  "binaries": [
+   "BC_P2PClient"
+  ]
+ }
+}

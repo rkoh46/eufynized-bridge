@@ -1,0 +1,11 @@
+bundle_id	com.security.BatteryCam
+display_name	Anker eufy
+version	6.1.11
+build	260929151932
+minimum_os	18.0
+main_executable_fairplay_encrypted	True
+NSAppTransportSecurity	{}
+CFBundleURLTypes	[{"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["fb2223727714322051"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["com.googleusercontent.apps.99696759089-kv9vq5unapnci3g6aqb5ftic6jt99ikr"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["com.zx.eufysecurity"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["eufysecurity"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["com.googleusercontent.apps.645598531590-r3q4jslei414s6f75602vr60a6e9tmcg"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["tingyun.110034"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["mega"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["sac1f7e99d"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["saf068620f"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["eufymega"]}, {"CFBundleTypeRole": "Editor", "CFBundleURLSchemes": ["eufyrouter"]}]
+NSBonjourServices	["_what._tcp"]
+UIBackgroundModes	["audio", "bluetooth-central", "fetch", "location", "remote-notification", "voip"]
+NSLocalNetworkUsageDescription	"eufy would like to access your Local network to discover and connect to devices on your Wi-Fi networks, and allow Flutter tools to connect and debug your application."

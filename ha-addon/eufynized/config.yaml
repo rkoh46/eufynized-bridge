@@ -1,0 +1,24 @@
+name: Eufynized
+version: "1.0.0"
+slug: eufynized
+description: Your eufy cameras, straight from the HomeBase — live view, Multi-View, events and settings. No eufy cloud.
+url: https://github.com/rkoh46/eufynized-bridge
+arch:
+  - aarch64
+init: false
+startup: application
+boot: auto
+# The HomeBase's P2P protocol needs the host's network (its UDP replies don't come back through Docker's NAT).
+host_network: true
+ingress: true
+ingress_port: 18099
+ingress_stream: true
+panel_icon: mdi:cctv
+panel_title: Security Camera
+homeassistant_api: true
+options:
+  homebase_ip: ""
+  notify_service: ""
+schema:
+  homebase_ip: str?
+  notify_service: str?

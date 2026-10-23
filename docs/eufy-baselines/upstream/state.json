@@ -1,0 +1,44 @@
+{
+  "bropat/eufy-security-client": {
+    "branches": {
+      "0353e8ab5dc5": "9e56a6a163ae2d0687edf9fa787391ddc925bc00",
+      "2252a1acf344": "786d5de0c209d6b231bba63b43d9aee6c6edfc4c",
+      "454592f9f2c1": "6ffea921eac2c26716e19ea5d413245c4ccbc3b3",
+      "50528d3cacbe": "7f621e64b551dc4ce724a3ad48b58230e2067e3d",
+      "947726dd6318": "5df391f43b44c1823d46a565764cf9d9c918c065",
+      "a091d96975a0": "00971c460b70710363a7884ba509bb482acbe4c3",
+      "a146fda2000c": "c61c4a1dae15fa729a04df2cf9027265c949c7db",
+      "a56d25f2932f": "786d5de0c209d6b231bba63b43d9aee6c6edfc4c",
+      "fc613b4dfd67": "3bfef130bdcbff8f2f68286a5f63ec7e48177202"
+    },
+    "checked_at": "2026-10-22T00:26:16+00:00",
+    "sha": "3bfef130bdcbff8f2f68286a5f63ec7e48177202"
+  },
+  "mega-yfue/eufy-sdk": {
+    "branches": {
+      "0d6e4079e367": "7d1f016362465b0747405c5dc83124c86b2c630b",
+      "1a0a882104cf": "7dca0bab6265ce9124ec3640e0ecafb417901449",
+      "25a7d3de6af0": "d48bd55ee8b0b79335ebaf40866c3f3c65ca30a7",
+      "38ec98068cb2": "88a5edb7b017c1a5199c11f01a0a1f797749f5e4",
+      "3ad44b67e4fe": "ac6a56897f6028cdc56eccc5042253687d2443ec",
+      "52c3cb780061": "8e5c4cd09bc0803782c58a4b00e7ea1759e9eaf5",
+      "59f9bdaaaabe": "cc4806dfbe10b322d89d10292dafa5535fc61bfd",
+      "5a7b1a03a201": "f2f6e6efa2a3c180d928d991f0a1c53cced379ed",
+      "6dbb608be75c": "3784ab01c2e371f19f740576ae389a0cd32f0bb8",
+      "72b44da925d0": "3b050496a850d5b9786804d2ef733759841ae314",
+      "7573ed362414": "0980a8e7f27c771eed06d8c727bd84e8e06cfba9",
+      "76adb8578c4b": "c400a1eed6818705d711313a75f7404a0dc2dcdd",
+      "9b54ac4563d8": "385b4f5d12ed94e8ce43a9ff69371906f7ce03fa",
+      "9d597056e193": "3c200ff81eafea1b9eb23ac5ae5e33b5f2721a4d",
+      "a11edccbd0ab": "546438ab0aa2312ec8837f3c42ef402b27470129",
+      "a17f924f4db2": "d0e3ac4738d49da4ada2559668ec4434b7ed9e33",
+      "ab787f4e985e": "53d2823d5358a925e24576891c9d2e23c6c288a8",
+      "b194ba0671b1": "99ee1fe673905dbca8adcb6404599dc8aa2b52d1",
+      "e2a809a56978": "0e8cba089369192110e4946afacdb81b8d53c950",
+      "effe22233ad3": "3bdbc2ed49281af7aaa01ad4338836a9bec639bd",
+      "fc212b8a8bc3": "d2898dd648ada1b2667fb46e5b25a1352373ab4a"
+    },
+    "checked_at": "2026-10-22T00:26:16+00:00",
+    "sha": "7d1f016362465b0747405c5dc83124c86b2c630b"
+  }
+}

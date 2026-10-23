@@ -1,0 +1,7 @@
+.DS_Store
+.build/
+.swiftpm/
+build/
+__pycache__/
+*.env
+ha-addon/eufynized/eufynized-bridge
