@@ -3,9 +3,11 @@
 Eufy cameras in Home Assistant straight from the HomeBase 3 over your own network: live video, recordings,
 settings, detection sensors, alarm panel. No Eufy cloud in the video path, no RTSP, no go2rtc.
 
-This is the free, open part of [Eufynized](https://github.com/rkoh46/Eufynized): a bridge that runs on a
-Raspberry Pi (or any Linux box with Docker), a Home Assistant integration, the Swift library that speaks the
-HomeBase's local P2P protocol, and the research behind it. The Mac and iPhone apps are separate.
+This is the free, open part of Eufynized: a bridge that runs on a Raspberry Pi (or any Linux box with
+Docker), a Home Assistant integration, the Swift library that speaks the HomeBase's local P2P protocol, and the
+research behind it. The Mac app is separate: see [rkoh46/eufynized-app](https://github.com/rkoh46/eufynized-app)
+for what it does and to report bugs or request features for it. Issues with the bridge or the integration go
+in this repo's [Issues](../../issues).
 
 ## What you get
 
