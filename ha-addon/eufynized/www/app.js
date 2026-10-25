@@ -127,7 +127,10 @@ class EufyLive extends HTMLElement {
     v.playsInline = true; v.muted = true; v.autoplay = true; v.disableRemotePlayback = true;
     v.setAttribute('playsinline', '');
     v.style.cssText = 'display:block;width:100%;height:100%;object-fit:contain;background:#000';
-    v.addEventListener('playing', () => this.emit('state', 'playing'));
+    v.addEventListener('playing', () => {
+      if (!this.hls) store.set('hlsFallback', false);   // the browser decodes our stream after all
+      this.emit('state', 'playing');
+    });
     v.addEventListener('waiting', () => this.emit('state', 'waiting'));
     v.addEventListener('volumechange', () => this.emit('mutechange'));
     this.onScreen = true;
@@ -161,15 +164,51 @@ class EufyLive extends HTMLElement {
 
   start() {
     if (this.session || !this.src) return;
+    if (EufyLive.useHLS()) return this.startHLS();
     const s = this.session = { abort: new AbortController(), queue: [], sb: null, mime: null, lastData: Date.now(), appended: false };
+    // Data arrives but nothing ever plays: the browser claims it decodes H.265 and doesn't (LG webOS). The
+    // TV's own player usually does, through an HLS playlist from go2rtc, so switch to that.
+    s.watchdog = setTimeout(() => {
+      if (this.session === s && s.appended && !this.video.videoWidth && EufyLive.canHLS()) {
+        console.warn('[eufy-live]', this.dataset.ch, 'no frames from Media Source; switching to HLS');
+        store.set('hlsFallback', true);
+        this.stop(); this.startHLS();
+      }
+    }, 15000);
     this.run(s).catch((err) => this.fail(s, err));
+  }
+
+  /** Plain `<video src=playlist>`: the device's native player, H.265 included on TVs that have it. */
+  startHLS() {
+    const ch = this.dataset.ch;
+    this.hls = true;
+    this.session = { hls: true, abort: new AbortController() };
+    this.video.src = `go2rtc/api/stream.m3u8?src=ch${ch}&mp4`;
+    this.emit('state', 'waiting');
+    this.video.play().catch(() => {});
+    this.hlsWatch = setTimeout(() => {
+      if (this.session?.hls && !this.video.videoWidth) this.emit('state', 'error:No video from this camera (HLS)');
+    }, 25000);
+  }
+
+  /** The device doesn't decode our fMP4 stream (seen before), or `?hls=1` asks for the native player. */
+  static useHLS() {
+    if (params.get('hls') === '1') return true;
+    return store.get('hlsFallback', false) === true && EufyLive.canHLS();
+  }
+  static canHLS() {
+    const v = document.createElement('video');
+    return !!v.canPlayType('application/vnd.apple.mpegurl') || !!v.canPlayType('application/x-mpegURL');
   }
 
   stop() {
     const s = this.session;
     if (!s) return;
     this.session = null;
+    this.hls = false;
+    clearTimeout(s.watchdog); clearTimeout(this.hlsWatch);
     s.abort.abort();
+    if (s.hls) { this.video.removeAttribute('src'); this.video.load(); return; }
     clearInterval(s.timer);
     try { if (s.ms?.readyState === 'open') s.ms.endOfStream(); } catch {}
     this.video.removeAttribute('src');
@@ -265,7 +304,11 @@ class EufyLive extends HTMLElement {
       if (!s.queue.length) return;
       const { mime } = s.queue.shift();
       const MS = window.ManagedMediaSource || window.MediaSource;
-      if (!MS.isTypeSupported(mime)) { this.emit('state', `error:This device can't play ${mime.includes('hvc1') ? 'H.265' : 'this'} video`); this.stop(); return; }
+      if (!MS.isTypeSupported(mime)) {
+        this.stop();
+        if (EufyLive.canHLS()) { store.set('hlsFallback', true); this.startHLS(); return; }
+        this.emit('state', `error:This device can't play ${mime.includes('hvc1') ? 'H.265' : 'this'} video`); return;
+      }
       this.mime = mime;
       s.sb = s.ms.addSourceBuffer(mime);
       s.mime = mime;
