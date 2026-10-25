@@ -36,6 +36,11 @@ final class Routes {
                            "version": Bridge.version])
         case (_, "setup", _):
             setup.handle(request, Array(parts.dropFirst()), c)
+        case ("POST", "log", 1):
+            // The page reporting a playback problem (TV browsers have no console to read): one line in the log.
+            let text = String(decoding: request.body.prefix(600), as: UTF8.self).replacingOccurrences(of: "\n", with: " ")
+            log("client [\(request.headers["user-agent"]?.prefix(90) ?? "")]: \(text)")
+            c.respondJSON(["ok": true])
         case ("GET", "cameras", 1):
             c.respondJSON(bridge.config.cameras.sorted { $0.channel < $1.channel }.map(cameraJSON))
         case ("GET", "stream", 2):

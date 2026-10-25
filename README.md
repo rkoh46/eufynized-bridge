@@ -146,6 +146,9 @@ Back up `bridge.json` and `prefs.json`. Everything else comes from this repo.
 
 - **"No video from this camera" on every tile:** the HomeBase has run out of sessions (it serves only a
   few at once). Close other viewers, or pick a smaller Multi-View layout.
+- **On a TV's browser (LG webOS and the like):** one stream plays, a wall of them doesn't; the TV has one
+  hardware decoder and little memory. Switch Multi-View to **Pictures (low power)** in its toolbar (or open
+  the page with `?lite=1`): snapshots refresh every few seconds and a tap opens the camera live.
 - **Video arrives in bursts:** the box is on Wi-Fi. Ethernet fixes it.
 - **Cameras start at 720p:** they all do, then ramp up on their own after a few seconds.
 - **A camera shows the HomeBase's "active" camera instead of itself:** the key or account id in
