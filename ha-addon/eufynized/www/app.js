@@ -551,18 +551,8 @@ function cameraTile(cam) {
 }
 
 function updateTile(channel) {
-  const cam = state.cameras.find(c => c.channel === channel);
-  // The Multi-View wall in Pictures mode shows the same snapshot.
-  const still = document.querySelector(`#multiview .tile.still[data-ch="${channel}"]`);
-  if (still && cam) {
-    const img = still.querySelector('img.snap');
-    const url = state.snapshots.get(channel) || (cam.snapshotAt ? `api/cameras/${channel}/snapshot.jpg?maxAge=1e12&v=${cam.snapshotAt}` : '');
-    if (url && img.getAttribute('src') !== url) img.src = url;
-    img.hidden = !url;
-    still.querySelector('.when').textContent = cam.snapshotAt ? fmtAgo(cam.snapshotAt) : '';
-    still.querySelector('.state').replaceChildren(!url && cam.availability && cam.availability !== 'online' ? cam.availability : '');
-  }
   const tile = document.querySelector(`#cameras .tile[data-ch="${channel}"]`);
+  const cam = state.cameras.find(c => c.channel === channel);
   if (!tile || !cam) return;
   const img = tile.querySelector('img.snap');
   const url = state.snapshots.get(channel) || (cam.snapshotAt ? `api/cameras/${channel}/snapshot.jpg?maxAge=1e12&v=${cam.snapshotAt}` : '');
@@ -669,12 +659,7 @@ function renderMultiView() {
   const view = $('#multiview');
   const select = h('select', { class: 'btn', 'aria-label': 'Layout', onchange: (e) => { savePrefs({ layout: e.target.value }); layoutWall(); } },
     LAYOUTS.map(([id, title]) => h('option', { value: id, selected: (state.prefs.layout || 'auto') === id }, title)));
-  // Live on every tile, or pictures that refresh every few seconds with live only when you open a camera: for
-  // TVs and other screens that can't decode several streams at once. Remembered per device (`?lite=1` sets it).
-  const mode = h('select', { class: 'btn', 'aria-label': 'Wall mode', onchange: (e) => { store.set('wallMode', e.target.value); leaveMultiView(); renderMultiView(); } },
-    h('option', { value: 'live', selected: wallMode() === 'live' }, 'Live'),
-    h('option', { value: 'pictures', selected: wallMode() === 'pictures' }, 'Pictures (low power)'));
-  tool(mode, select,
+  tool(select,
     isTouch ? h('button', { class: 'btn icon', title: 'Arrange', 'aria-pressed': wall.arranging,
       onclick: (e) => { wall.arranging = !wall.arranging; e.currentTarget.setAttribute('aria-pressed', wall.arranging); wall.el.classList.toggle('arranging', wall.arranging); } }, icon(ICONS.arrange)) : null,
     h('button', { class: 'btn icon', title: 'Full screen', onclick: () => (document.fullscreenElement ? document.exitFullscreen() : view.requestFullscreen?.()) }, icon(ICONS.expand)),
@@ -685,33 +670,9 @@ function renderMultiView() {
   wall.observer = new ResizeObserver(() => layoutWall());
   wall.observer.observe(wall.el);
   if (!state.liveOpen) layoutWall();
-  clearInterval(wall.pictureTimer);
-  if (wallMode() === 'pictures') {
-    wall.pictureTimer = setInterval(() => {
-      if (document.hidden || state.tab !== 'multiview' || state.liveOpen) return;
-      for (const cam of ordered()) queueSnapshot(cam.channel, true);
-    }, 12000);
-  }
-}
-
-function wallMode() {
-  if (params.get('lite') === '1') return 'pictures';
-  return store.get('wallMode', 'live') === 'pictures' ? 'pictures' : 'live';
-}
-
-/** A picture tile: the latest snapshot, refreshed through the same queue the Cameras tab uses. */
-function pictureTile(cam) {
-  const img = h('img', { class: 'snap', alt: '', hidden: true });
-  const when = h('span', { class: 'when' });
-  const tile = h('div', { class: 'tile still', 'data-ch': cam.channel }, img, h('div', { class: 'state' }),
-    h('div', { class: 'label' }, h('span', {}, cam.name), when));
-  tile.addEventListener('click', () => { if (!wall.arranging) openLive(cam); });
-  queueSnapshot(cam.channel, !cam.snapshotAt || Date.now() - cam.snapshotAt > 15000);
-  return tile;
 }
 
 function wallTile(cam) {
-  if (wallMode() === 'pictures') return pictureTile(cam);
   const status = h('div', { class: 'state' }, h('div', { class: 'spinner' }));
   const video = makeVideo(cam.channel);
   video.addEventListener('state', (e) => {
@@ -765,7 +726,6 @@ function layoutWall() {
 
 /** Leaving Multi-View (or opening one camera) closes every tile's stream. */
 function leaveMultiView() {
-  clearInterval(wall.pictureTimer); wall.pictureTimer = null;
   wall.observer?.disconnect();
   for (const tile of wall.tiles.values()) tile.remove();
   wall.tiles.clear();

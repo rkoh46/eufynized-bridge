@@ -418,7 +418,3 @@ input[type="time"] { background: var(--card, #222); color: inherit; border: 1px 
 .setup-form .error { color: #ff6b6b; margin: 0; }
 .setup-form .captcha { justify-self: start; height: 56px; border-radius: 6px; background: #fff; }
 .setup-form .small { color: var(--muted); font-size: 12px; margin: 0; }
-
-/* Multi-View in Pictures mode */
-.wall .tile.still img.snap { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
-.wall .tile.still .label .when { margin-left: 8px; opacity: .7; font-weight: 400; }
