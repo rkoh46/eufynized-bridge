@@ -590,6 +590,7 @@ const wall = { el: null, tiles: new Map(), observer: null, arranging: false };
 
 function renderMultiView() {
   leaveMultiView();   // a re-render (tapping the tab again) must not leave tiles on the old wall
+  $('#tools').replaceChildren();   // the refresh button re-renders: the toolbar must not get a second set of controls
   const view = $('#multiview');
   const select = h('select', { class: 'btn', 'aria-label': 'Layout', onchange: (e) => { savePrefs({ layout: e.target.value }); layoutWall(); } },
     LAYOUTS.map(([id, title]) => h('option', { value: id, selected: (state.prefs.layout || 'auto') === id }, title)));
