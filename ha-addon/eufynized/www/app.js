@@ -885,12 +885,19 @@ function quickRepliesButton(cam) {
   const base = `cameras/${cam.channel}/replies`;
   const btn = h('button', { class: 'btn icon', 'aria-label': 'Quick replies', title: 'Play a stored message through the camera' }, icon(ICONS.chat || ICONS.mic));
   btn.onclick = async () => {
-    const { replies } = await api(base).catch(() => ({ replies: [] }));
+    const state0 = await api(base).catch(() => ({ replies: [], all: [], enabled: true }));
+    const replies = state0.all || state0.replies || [];
+    // Shown on this camera? Outdoor cameras by default; an indoor camera in a bedroom has no use for "Leave the
+    // package by the door". The Mac and iPhone apps follow the same switch.
+    const onBox = h('input', { type: 'checkbox', checked: state0.enabled !== false });
+    onBox.onchange = () => api(`${base}/enabled`, { json: { enabled: onBox.checked } })
+      .then(() => toastText(onBox.checked ? `Quick replies on for ${cam.name}` : `Quick replies off for ${cam.name}`))
+      .catch(err => { toastText(err.message); onBox.checked = !onBox.checked; });
     const list = h('div', { class: 'card' });
     const draw = (names) => list.replaceChildren(...(names.length ? names.map(n => h('div', { class: 'setting' }, h('div', { class: 'name' }, n),
       h('div', { style: 'display:flex;gap:6px' },
         h('button', { class: 'btn small primary', onclick: () => api(`${base}/play`, { json: { name: n } }).then(() => toastText(`Playing “${n}”`)).catch(err => toastText(err.message)) }, 'Play'),
-        h('button', { class: 'btn small', onclick: () => api(base + `?name=${encodeURIComponent(n)}`, { method: 'DELETE' }).then(r => draw(r.replies)) }, 'Delete')))) :
+        h('button', { class: 'btn small', onclick: () => api(base + `?name=${encodeURIComponent(n)}`, { method: 'DELETE' }).then(r => draw(r.all || r.replies)) }, 'Delete')))) :
       [h('div', { class: 'center muted' }, 'No replies yet. Record one below.')]));
     draw(replies);
     const name = h('input', { type: 'text', placeholder: 'Name, e.g. Leave the package', class: 'btn', style: 'flex:1' });
@@ -911,12 +918,14 @@ function quickRepliesButton(cam) {
           proc.disconnect(); src.disconnect(); media.getTracks().forEach(t => t.stop()); await ctx.close(); rec = null; recBtn.textContent = 'Record';
           const total = chunks.reduce((n, c) => n + c.length, 0), pcm = new Int16Array(total); let o = 0; for (const c of chunks) { pcm.set(c, o); o += c.length; }
           const r = await fetch(`api/${base}/upload?name=${encodeURIComponent(name.value.trim())}&format=pcm`, { method: 'POST', body: pcm.buffer }).then(r => r.json());
-          if (r.replies) { draw(r.replies); toastText('Saved'); } else toastText(r.error || 'Could not save');
+          if (r.replies || r.all) { draw(r.all || r.replies); toastText('Saved'); } else toastText(r.error || 'Could not save');
         } };
       } catch (err) { toastText('Microphone unavailable: ' + err.message); }
     };
-    openOverlay(sheet('Quick replies', h('div', {}, list, h('div', { style: 'display:flex;gap:8px;margin-top:12px' }, name, recBtn),
-      h('p', { class: 'small muted' }, 'Replies play through the camera’s speaker while its live view is open.'))));
+    openOverlay(sheet('Quick replies', h('div', {},
+      h('label', { class: 'setting', style: 'display:flex;justify-content:space-between;align-items:center;margin-bottom:10px' }, h('span', { class: 'name' }, `Show on ${cam.name}`), onBox),
+      list, h('div', { style: 'display:flex;gap:8px;margin-top:12px' }, name, recBtn),
+      h('p', { class: 'small muted' }, 'Replies are shared by every camera; this switch is per camera (indoor cameras start off). They play through the camera’s speaker while its live view is open.'))));
   };
   return btn;
 }

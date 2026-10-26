@@ -311,7 +311,14 @@ final class Routes {
             c.respondJSON(["ok": took, "polygons": (after?.polygons ?? []).map { $0.map { ["x": $0.x, "y": $0.y] } },
                            "message": took ? NSNull() : "The camera didn't take the zones (it reports something else)."])
         case ("GET", "replies"):
-            c.respondJSON(["replies": QuickReplies.list(bridge)])
+            // `replies` is what this camera offers (nothing when quick replies are off for it); `all` is the stored
+            // set, for the page's manager, with `enabled` for its switch.
+            let on = QuickReplies.enabled(bridge, channel: channel)
+            c.respondJSON(["replies": on ? QuickReplies.list(bridge) : [], "all": QuickReplies.list(bridge), "enabled": on])
+        case ("POST", "replies") where rest.count == 2 && rest[1] == "enabled":
+            guard let on = request.json()?["enabled"] as? Bool else { return c.respondError(400, "enabled") }
+            QuickReplies.setEnabled(bridge, channel: channel, on)
+            c.respondJSON(["replies": on ? QuickReplies.list(bridge) : [], "all": QuickReplies.list(bridge), "enabled": on])
         case ("POST", "replies") where rest.count == 2 && rest[1] == "play":
             guard let name = request.json()?["name"] as? String else { return c.respondError(400, "name") }
             guard let feed = bridge.hub.feed(channel) else { return c.respondError(409, "Open the camera's live view first") }
@@ -807,6 +814,21 @@ enum QuickReplies {
 
     static func safe(_ name: String) -> String {
         String(name.prefix(60)).replacingOccurrences(of: "/", with: "-").replacingOccurrences(of: "..", with: "-").trimmingCharacters(in: .whitespaces)
+    }
+
+    /// Quick replies are for the cameras at the door and in the yard: on by default for outdoor models, off for
+    /// indoor ones (an Indoor Cam in a bedroom shouldn't offer "Leave the package by the door"). Per camera in prefs.
+    static func enabled(_ bridge: Bridge, channel: UInt8) -> Bool {
+        if let set = (bridge.prefs.all["quickReplies"] as? [String: Bool])?[String(channel)] { return set }
+        guard let camera = bridge.camera(channel) else { return true }
+        let indoor = camera.serial.uppercased().hasPrefix("T8417") || camera.model.localizedCaseInsensitiveContains("indoor")
+        return !indoor
+    }
+
+    static func setEnabled(_ bridge: Bridge, channel: UInt8, _ on: Bool) {
+        var map = bridge.prefs.all["quickReplies"] as? [String: Bool] ?? [:]
+        map[String(channel)] = on
+        bridge.prefs.merge(["quickReplies": map])
     }
 
     static func list(_ bridge: Bridge) -> [String] {

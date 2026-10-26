@@ -42,6 +42,43 @@ public final class MicrophoneCapture: @unchecked Sendable {
         try? engine.start()
     }
 
+    /// Starts capture handing out raw 16 kHz mono 16-bit PCM instead of AAC (the bridge encodes that itself).
+    public func startPCM(_ handler: @escaping @Sendable (Data) -> Void) {
+        guard let pcm16 = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: 16_000, channels: 1, interleaved: true) else { return }
+        self.handler = handler
+        let input = engine.inputNode
+        let inputFormat = input.outputFormat(forBus: 0)
+        converter = AVAudioConverter(from: inputFormat, to: pcm16)
+        input.installTap(onBus: 0, bufferSize: 2048, format: inputFormat) { [weak self] buffer, _ in
+            self?.resample(buffer, to: pcm16)
+        }
+        engine.prepare()
+        try? engine.start()
+    }
+
+    private func resample(_ pcm: AVAudioPCMBuffer, to format: AVAudioFormat) {
+        guard let converter else { return }
+        let gain = self.gain
+        if gain != 1, let ch = pcm.floatChannelData {
+            for c in 0..<Int(pcm.format.channelCount) {
+                let p = ch[c]
+                for i in 0..<Int(pcm.frameLength) { p[i] = max(-1, min(1, p[i] * gain)) }
+            }
+        }
+        let ratio = format.sampleRate / pcm.format.sampleRate
+        guard let out = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(Double(pcm.frameLength) * ratio) + 64) else { return }
+        var fed = false
+        var error: NSError?
+        let status = converter.convert(to: out, error: &error) { _, outStatus in
+            if fed { outStatus.pointee = .noDataNow; return nil }
+            fed = true
+            outStatus.pointee = .haveData
+            return pcm
+        }
+        guard status != .error, out.frameLength > 0, let base = out.int16ChannelData?[0] else { return }
+        handler?(Data(bytes: UnsafeRawPointer(base), count: Int(out.frameLength) * 2))
+    }
+
     public func stop() {
         engine.inputNode.removeTap(onBus: 0)
         engine.stop()

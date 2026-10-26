@@ -46,6 +46,20 @@ public struct BridgeClient: Sendable {
         return CGImageSourceCreateImageAtIndex(source, 0, nil)
     }
 
+    /// Two-way talk through the bridge's own session to the camera: start, raw 16 kHz mono 16-bit PCM chunks, stop.
+    public func talkback(channel: UInt8, _ action: String) async -> Bool {
+        guard let (_, status) = await request("api/cameras/\(channel)/talkback/\(action)", json: [:], timeout: 10) else { return false }
+        return status == 200
+    }
+
+    public func talkbackAudio(channel: UInt8, pcm: Data) async {
+        var request = URLRequest(url: base.appendingPathComponent("api/cameras/\(channel)/talkback/audio"))
+        request.httpMethod = "POST"
+        request.httpBody = pcm
+        request.timeoutInterval = 5
+        _ = try? await URLSession.shared.data(for: request)
+    }
+
     public func rotate(channel: UInt8, _ direction: PTZDirection) async {
         let name = ["left", "right", "up", "down"][direction.rawValue - 1]
         _ = await request("api/cameras/\(channel)/ptz", json: ["direction": name])
@@ -194,8 +208,6 @@ public final class BridgeLiveStream: LiveSource, @unchecked Sendable {
     private var frames = 0
     private var bytes = 0
     /// Makes the direct control-only session talkback uses.
-    public var talkSession: (@MainActor () -> EufyLiveStream?)?
-    private var talk: EufyLiveStream?
 
     public init(client: BridgeClient, channel: UInt8, audio: Bool,
          onSample: @escaping @Sendable (CMSampleBuffer) -> Void,
@@ -287,7 +299,7 @@ public final class BridgeLiveStream: LiveSource, @unchecked Sendable {
     public func setMuted(_ muted: Bool) { audio?.setMuted(muted) }
     public func setAudioDelay(_ seconds: Double) { audio?.setDelay(seconds) }
     public func setVolume(_ gain: Float) { audio?.gain = gain }
-    public func setMicrophoneGain(_ gain: Float) { micGain = gain; talk?.setMicrophoneGain(gain) }
+    public func setMicrophoneGain(_ gain: Float) { micGain = gain; microphone?.gain = gain }
     private var micGain: Float = 1
     public var videoSize: (width: Int, height: Int)? { builder.dimensions.map { (Int($0.width), Int($0.height)) } }
     public var bytesReceived: Int { lock.withLock { bytes } }
@@ -310,22 +322,28 @@ public final class BridgeLiveStream: LiveSource, @unchecked Sendable {
         "frames=\(lock.withLock { frames }) size=\(videoSize.map { "\($0.width)x\($0.height)" } ?? "-") formatChanges=\(builder.formatChanges) droppedUntilKeyframe=\(builder.droppedWaitingForKeyframe)"
     }
 
+    /// Talks through the bridge's existing session to the camera (the same way the web page does), so the mic is
+    /// live as soon as the bridge answers, with no second HomeBase session to open and settle first.
     public func startTalkback() {
-        guard talk == nil, let make = talkSession else { return }
+        guard microphone == nil else { return }
+        let mic = MicrophoneCapture()
+        mic.gain = micGain
+        microphone = mic
+        let client = client, channel = channel
         Task { @MainActor in
-            guard let session = make() else { return }
-            session.setMicrophoneGain(micGain)
-            talk = session
-            session.start()
-            try? await Task.sleep(for: .seconds(4))   // keys, then the camera's stream, first
-            guard talk === session else { return }
-            session.startTalkback()
+            guard self.microphone === mic else { return }
+            guard await client.talkback(channel: channel, "start") else { self.microphone = nil; return }
+            guard self.microphone === mic else { return }
+            mic.startPCM { pcm in Task { await client.talkbackAudio(channel: channel, pcm: pcm) } }
         }
     }
 
     public func stopTalkback() {
-        let session = talk
-        talk = nil
-        Task { @MainActor in session?.stopTalkback(); session?.stop() }
+        guard let mic = microphone else { return }
+        microphone = nil
+        mic.stop()
+        let client = client, channel = channel
+        Task { _ = await client.talkback(channel: channel, "stop") }
     }
+    private var microphone: MicrophoneCapture?
 }
