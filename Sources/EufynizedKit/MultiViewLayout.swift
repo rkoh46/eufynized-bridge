@@ -62,13 +62,14 @@ public enum MultiViewLayout: String, CaseIterable, Identifiable, Sendable {
         }
     }
 
-    /// Frames for each slot: cells keep a 16:9 shape, the grid is as large as fits, centred in `size`.
-    public func frames(count: Int, in size: CGSize, spacing: CGFloat) -> [CGRect] {
+    /// Frames for each slot: cells keep a 16:9 shape, the grid is as large as fits, centred in `size`. With
+    /// `fill`, the cells share the whole area instead (the video in them is cropped to cover).
+    public func frames(count: Int, in size: CGSize, spacing: CGFloat, fill: Bool = false) -> [CGRect] {
         let (columns, rows, slots) = grid(count: count, in: size)
         let c = CGFloat(columns), r = CGFloat(rows)
-        let cellWidth = max(0, min((size.width - spacing * (c - 1)) / c,
-                                   (size.height - spacing * (r - 1)) / r * 16 / 9))
-        let cellHeight = cellWidth * 9 / 16
+        let cellWidth = fill ? max(0, (size.width - spacing * (c - 1)) / c)
+            : max(0, min((size.width - spacing * (c - 1)) / c, (size.height - spacing * (r - 1)) / r * 16 / 9))
+        let cellHeight = fill ? max(0, (size.height - spacing * (r - 1)) / r) : cellWidth * 9 / 16
         let gridWidth = cellWidth * c + spacing * (c - 1)
         let gridHeight = cellHeight * r + spacing * (r - 1)
         let origin = CGPoint(x: (size.width - gridWidth) / 2, y: (size.height - gridHeight) / 2)
