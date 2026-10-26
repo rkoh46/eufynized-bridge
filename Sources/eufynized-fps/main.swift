@@ -40,15 +40,18 @@ if args.first == "--decode-adts", args.count >= 2, let data = try? Data(contents
 if args.first == "--bridge", args.count >= 3, let base = URL(string: args[1]), let ch = UInt8(args[2]) {
     let counter = Counter()
     let total = Int(ProcessInfo.processInfo.environment["PROBE_SECONDS"] ?? "") ?? 25
-    let stream = BridgeLiveStream(client: BridgeClient(base: base), channel: ch, audio: false,
+    // AUDIO=1: also run the app's audio player (muted) and report its counters, to see whether frames get dropped.
+    let withAudio = ProcessInfo.processInfo.environment["AUDIO"] == "1"
+    let stream = BridgeLiveStream(client: BridgeClient(base: base), channel: ch, audio: withAudio,
                                   onSample: { counter.decode($0) },
                                   onState: { state in print("  state: \(state)") })
     print("Measuring bridge \(base) ch\(ch) for \(total)s…")
+    if withAudio { stream.setAudioDelay(2.5) }
     stream.start()
     for s in 1...total {
         try await Task.sleep(for: .seconds(1))
         let (n, gap) = counter.takeSecond()
-        print("  \(s)s: \(n) fps, longest gap \(Int(gap * 1000))ms, decode ok=\(counter.decoded) err=\(counter.errors) | \(stream.diagnostics)")
+        print("  \(s)s: \(n) fps, longest gap \(Int(gap * 1000))ms, decode ok=\(counter.decoded) err=\(counter.errors) | \(stream.diagnostics)\(withAudio ? " | audio " + stream.audioDiagnostics : "")")
     }
     stream.stop()
     exit(0)

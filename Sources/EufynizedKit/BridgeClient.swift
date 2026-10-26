@@ -303,6 +303,8 @@ public final class BridgeLiveStream: LiveSource, @unchecked Sendable {
     public func readZones() async -> ActivityZones? { await client.zones(channel: channel) }
     public func writeZones(_ zones: ActivityZones) async -> Bool { await client.writeZones(channel: channel, zones) }
 
+    public var audioDiagnostics: String { audio?.diagnostics ?? "off" }
+
     /// Diagnostics: frames received and the decoded size.
     public var diagnostics: String {
         "frames=\(lock.withLock { frames }) size=\(videoSize.map { "\($0.width)x\($0.height)" } ?? "-") formatChanges=\(builder.formatChanges) droppedUntilKeyframe=\(builder.droppedWaitingForKeyframe)"

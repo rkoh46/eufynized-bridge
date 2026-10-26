@@ -85,10 +85,10 @@ public final class EufyAudioPlayer: @unchecked Sendable {
                 }
             }
         }
-        if renderer.isReadyForMoreMediaData {
-            renderer.enqueue(sample)
-            enqueued += 1
-        }
+        // Always enqueue: the renderer queues what it's given (isReadyForMoreMediaData is a hint for pull-style
+        // feeding). Skipping frames when it said "not ready" dropped two thirds of the audio and sounded choppy.
+        renderer.enqueue(sample)
+        enqueued += 1
     }
 
     public func stop() {
