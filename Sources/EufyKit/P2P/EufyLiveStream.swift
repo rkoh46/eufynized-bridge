@@ -373,6 +373,22 @@ public final class EufyLiveStream: @unchecked Sendable {
         #endif
     }
 
+    /// Playback gain for the camera's sound (1 = as recorded; more for a quiet camera).
+    public func setVolume(_ gain: Float) {
+        #if canImport(CoreMedia)
+        audio?.gain = gain
+        #endif
+    }
+
+    /// Microphone gain for talkback (1 = as captured). Applies to the current and later talkback sessions.
+    public func setMicrophoneGain(_ gain: Float) {
+        lock.withLock { microphoneGain = gain }
+        #if canImport(CoreMedia)
+        microphone?.gain = gain
+        #endif
+    }
+    private var microphoneGain: Float = 1
+
     /// Decrypts a control frame's body with this session's keys: signCode 1 is level-1 AES-ECB, 2 and 8 are
     /// level-2 AES-GCM, 0 is plaintext. nil when the needed key isn't known yet or the frame doesn't open.
     public func decryptControlFrame(_ body: Data, signCode: UInt8) -> Data? {
@@ -522,6 +538,7 @@ public final class EufyLiveStream: @unchecked Sendable {
         connection.startTalkback(channel: config.channel, level2Key: key)
         #if canImport(CoreMedia)
         let mic = MicrophoneCapture()
+        mic.gain = lock.withLock { microphoneGain }
         microphone = mic
         mic.start { [weak self] adtsFrame in
             guard let self else { return }

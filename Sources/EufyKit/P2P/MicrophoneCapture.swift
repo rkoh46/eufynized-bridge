@@ -11,6 +11,14 @@ public final class MicrophoneCapture: @unchecked Sendable {
     private var converter: AVAudioConverter?
     private var handler: (@Sendable (Data) -> Void)?
     private let aacFormat: AVAudioFormat?
+    /// Microphone gain, 1 = as captured: the Mac's mic comes through loud at the camera's speaker, so this
+    /// is usually set below 1. Samples are scaled before encoding; above 1 they're clipped at full scale.
+    public var gain: Float {
+        get { lock.withLock { _gain } }
+        set { lock.withLock { _gain = max(0, min(4, newValue)) } }
+    }
+    private var _gain: Float = 1
+    private let lock = NSLock()
 
     public init() {
         var asbd = AudioStreamBasicDescription(
@@ -42,6 +50,13 @@ public final class MicrophoneCapture: @unchecked Sendable {
 
     private func encode(_ pcm: AVAudioPCMBuffer) {
         guard let converter, let aacFormat else { return }
+        let gain = self.gain
+        if gain != 1, let ch = pcm.floatChannelData {
+            for c in 0..<Int(pcm.format.channelCount) {
+                let p = ch[c]
+                for i in 0..<Int(pcm.frameLength) { p[i] = max(-1, min(1, p[i] * gain)) }
+            }
+        }
         let out = AVAudioCompressedBuffer(format: aacFormat, packetCapacity: 8, maximumPacketSize: converter.maximumOutputPacketSize)
         var fed = false
         var error: NSError?

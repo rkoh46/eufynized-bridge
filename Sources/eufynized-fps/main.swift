@@ -16,6 +16,27 @@ import VideoToolbox
 //   PROBE_CONTROL=1                      print non-media frames (the station's replies)
 
 let args = Array(CommandLine.arguments.dropFirst())
+// --decode-adts <file>: runs a captured ADTS AAC stream through the app's audio decoder and reports what came
+// out (frames, samples, peak level), to check the decoder without a camera.
+if args.first == "--decode-adts", args.count >= 2, let data = try? Data(contentsOf: URL(fileURLWithPath: args[1])) {
+    var offset = 0, frames = 0, decoded = 0, samples = 0
+    var peak: Float = 0, sum: Double = 0
+    var decoder: EufyAudioPlayer.Decoder?
+    while offset + 7 <= data.count {
+        guard let (raw, info) = EufyAudioPlayer.parseADTS(data[offset...]) else { offset += 1; continue }
+        frames += 1
+        let b = [UInt8](data[offset..<offset+6])
+        let frameLen = (Int(b[3] & 0x03) << 11) | (Int(b[4]) << 3) | (Int(b[5] & 0xE0) >> 5)
+        offset += max(frameLen, 7)
+        if decoder == nil { decoder = EufyAudioPlayer.Decoder(sampleRate: info.sampleRate, channels: info.channels); print("format: \(info.sampleRate) Hz, \(info.channels) ch, decoder \(decoder == nil ? "FAILED" : "ok")") }
+        guard let pcm = decoder?.decode(raw), let p = pcm.floatChannelData?[0] else { continue }
+        decoded += 1; samples += Int(pcm.frameLength)
+        for i in 0..<Int(pcm.frameLength) { peak = max(peak, abs(p[i])); sum += Double(p[i] * p[i]) }
+    }
+    let rms = samples > 0 ? sqrt(sum / Double(samples)) : 0
+    print("ADTS frames \(frames), decoded \(decoded), samples \(samples) (\(String(format: "%.1f", Double(samples) / 16000)) s), peak \(String(format: "%.1f", 20 * log10(max(peak, 1e-6)))) dBFS, rms \(String(format: "%.1f", 20 * log10(max(Float(rms), 1e-6)))) dBFS")
+    exit(0)
+}
 if args.first == "--bridge", args.count >= 3, let base = URL(string: args[1]), let ch = UInt8(args[2]) {
     let counter = Counter()
     let total = Int(ProcessInfo.processInfo.environment["PROBE_SECONDS"] ?? "") ?? 25

@@ -138,6 +138,10 @@ public struct BridgeClient: Sendable {
     func stop()
     func setMuted(_ muted: Bool)
     func setAudioDelay(_ seconds: Double)
+    /// Playback gain for the camera's sound, 1 = as recorded.
+    func setVolume(_ gain: Float)
+    /// Microphone gain for talkback, 1 = as captured.
+    func setMicrophoneGain(_ gain: Float)
     var videoSize: (width: Int, height: Int)? { get }
     /// Bytes received so far, for a network-rate display.
     var bytesReceived: Int { get }
@@ -282,6 +286,9 @@ public final class BridgeLiveStream: LiveSource, @unchecked Sendable {
 
     public func setMuted(_ muted: Bool) { audio?.setMuted(muted) }
     public func setAudioDelay(_ seconds: Double) { audio?.setDelay(seconds) }
+    public func setVolume(_ gain: Float) { audio?.gain = gain }
+    public func setMicrophoneGain(_ gain: Float) { micGain = gain; talk?.setMicrophoneGain(gain) }
+    private var micGain: Float = 1
     public var videoSize: (width: Int, height: Int)? { builder.dimensions.map { (Int($0.width), Int($0.height)) } }
     public var bytesReceived: Int { lock.withLock { bytes } }
     public var sourceChannel: UInt8 { channel }
@@ -305,6 +312,7 @@ public final class BridgeLiveStream: LiveSource, @unchecked Sendable {
         guard talk == nil, let make = talkSession else { return }
         Task { @MainActor in
             guard let session = make() else { return }
+            session.setMicrophoneGain(micGain)
             talk = session
             session.start()
             try? await Task.sleep(for: .seconds(4))   // keys, then the camera's stream, first
