@@ -6,6 +6,7 @@ integration, which share EufyKit.
 
 | Page | What's in it |
 |---|---|
+| [HANDOFF.md](HANDOFF.md) | Start here to continue the work: goal, ground rules, the target binary, the tooling on this Mac, the protocol in one page, what's verified vs candidate, open questions |
 | [live-resolution.md](live-resolution.md) | Why live view starts at 720p, and what does and doesn't change it (measured) |
 | [station-messages.md](station-messages.md) | What the HomeBase can send to the app: 25 message numbers from the app's dispatcher, with its log text |
 | [opportunities.md](opportunities.md) | Features worth building next, ranked, with what's already known and how to verify safely |
