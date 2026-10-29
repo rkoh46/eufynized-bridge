@@ -90,7 +90,7 @@ let hasSession = EufySessionStore().hasStoredSession(email: email)
 // The HomeBase needs the station key and the account id. The id comes from the cloud session when there is one,
 // else from what the app remembered (it keeps the id apart from the session since 0.7.5, because eufy signs a
 // session out whenever it's used from a second device). No session only means the cloud check is skipped.
-let rememberedID = UserDefaults.standard.string(forKey: "accountUserId:\(email.lowercased())")
+let rememberedID = defaults?.string(forKey: "accountUserId:\(email.lowercased())")
 let accountIDFound = EufySessionStore().load(email: email)?.accountUserId ?? rememberedID
 report.stage("secrets", ok: hasKey && accountIDFound != nil,
              hasKey && accountIDFound != nil
