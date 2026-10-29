@@ -87,12 +87,16 @@ report.station["serial"] = stationSerial
 report.station["model"] = String(stationSerial.prefix(5))
 let hasKey = CipherKeyCache().hasStoredKey(stationSerial: stationSerial)
 let hasSession = EufySessionStore().hasStoredSession(email: email)
-report.stage("secrets", ok: hasKey && hasSession,
-             hasKey && hasSession ? "station key and session present" :
-             "missing \(hasKey ? "" : "station key ")\(hasSession ? "" : "session") in secrets file — open Eufynized and sign in")
-guard hasKey, hasSession,
-      let ecc = CipherKeyCache().eccPrivateKey(stationSerial: stationSerial),
-      let accountID = EufySessionStore().load(email: email)?.accountUserId else { finish() }
+// The HomeBase needs the station key and the account id. The id comes from the cloud session when there is one,
+// else from what the app remembered (it keeps the id apart from the session since 0.7.5, because eufy signs a
+// session out whenever it's used from a second device). No session only means the cloud check is skipped.
+let rememberedID = UserDefaults.standard.string(forKey: "accountUserId:\(email.lowercased())")
+let accountIDFound = EufySessionStore().load(email: email)?.accountUserId ?? rememberedID
+report.stage("secrets", ok: hasKey && accountIDFound != nil,
+             hasKey && accountIDFound != nil
+                ? (hasSession ? "station key and session present" : "station key and account id present (no cloud session; cloud check skipped)")
+                : "missing \(hasKey ? "" : "station key ")\(accountIDFound == nil ? "account id" : "") in secrets file — open Eufynized and sign in")
+guard hasKey, let ecc = CipherKeyCache().eccPrivateKey(stationSerial: stationSerial), let accountID = accountIDFound else { finish() }
 
 var catalog = CameraCatalogCache().load(email: email) ?? []
 /// Wi-Fi signal per device from the cloud list (param 1142, dBm; -100 when the camera is off the network).
@@ -100,7 +104,7 @@ var wifiSignal: [String: Int] = [:]
 
 // MARK: Cloud (optional): firmware versions and the catalog as the account sees it
 
-if useCloud {
+if useCloud && hasSession {
     let start = Date()
     do {
         let client = EufyCloudClient(configuration: .init(email: email, countryCode: "US"))
