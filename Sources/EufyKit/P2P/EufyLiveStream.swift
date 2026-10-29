@@ -288,25 +288,58 @@ public final class EufyLiveStream: @unchecked Sendable {
     #endif
 
     /// A camera can stop sending video on a live session — an S3 Pro sometimes does right after its streaming
-    /// quality changes — and only a new stream start brings it back (reopening the camera did that by hand).
-    /// Once video has flowed, 4 s of silence re-sends the level-2 media start on the same session, backing off
-    /// if the camera stays quiet (an offline camera never sends video, so it's never restarted).
+    /// quality changes, and a camera sends to one session at a time, so another viewer opening its own session
+    /// takes the picture away — and a new stream start brings it back. Once video has flowed, 4 s of silence
+    /// re-sends the level-2 media start on the same session, backing off if the camera stays quiet (an offline
+    /// camera never sends video, so it's never restarted). When that brings nothing back twice, or the HomeBase
+    /// has stopped answering altogether (not even keepalive replies), the session itself is dead: it's closed and
+    /// a new one opened, which is what reopening the camera by hand did.
     private func watchForStalls() {
         stallWatchdog?.cancel()
         stallWatchdog = Task { [weak self] in
-            var lastCount = 0, quietSince = Date(), backoff: TimeInterval = 4
+            var lastCount = 0, quietSince = Date(), backoff: TimeInterval = 4, quietRestarts = 0
+            var lastDatagrams = self?.connection?.transportStats().datagrams ?? 0
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(1))
                 guard let self else { return }
                 let count = self.lock.withLock { self.videoFrames }
-                if count != lastCount { lastCount = count; quietSince = Date(); backoff = 4; continue }
+                if count != lastCount {
+                    lastCount = count; quietSince = Date(); backoff = 4; quietRestarts = 0
+                    lastDatagrams = self.connection?.transportStats().datagrams ?? lastDatagrams
+                    continue
+                }
                 guard count > 0, Date().timeIntervalSince(quietSince) >= backoff else { continue }
+                let datagrams = self.connection?.transportStats().datagrams ?? 0
+                let silent = datagrams == lastDatagrams   // nothing at all from the HomeBase since the last check
+                lastDatagrams = datagrams
+                if silent || quietRestarts >= 2 {
+                    self.reconnect()   // starts a new watchdog; this one is cancelled
+                    return
+                }
                 self.restartMedia()
                 self.stallRestarts += 1
+                quietRestarts += 1
                 quietSince = Date()
                 backoff = min(backoff * 2, 30)
             }
         }
+    }
+
+    /// How many times a dead session had to be replaced (diagnostics).
+    public private(set) var reconnects = 0
+
+    /// Closes the session and opens a new one, keeping the handlers and the video pipeline (which resumes at the
+    /// next keyframe).
+    private func reconnect() {
+        keepAlive?.cancel(); keepAlive = nil
+        availabilityCheck?.cancel(); availabilityCheck = nil
+        connection?.close(); connection = nil
+        lock.withLock { rawGateway = nil; level1Key = nil; level2Key = nil; frameOutputWaitsForKeyframe = true }
+        #if canImport(CoreMedia)
+        builder.resyncOnNextKeyframe()
+        #endif
+        reconnects += 1
+        start()
     }
 
     /// Restores a packed param (1298 detection types, 6027 notification types) to an exact raw value, e.g.
@@ -527,7 +560,7 @@ public final class EufyLiveStream: @unchecked Sendable {
         #endif
         let gateway = lock.withLock { rawGateway != nil }
         let rsa = level2Decoder.map { "rsa=\($0.rsaUnwraps)/hits=\($0.rsaCacheHits) " } ?? ""
-        return "\(rsa)restarts=\(stallRestarts) gateway=\(gateway) level2=\(lock.withLock { level2Key != nil }) videoFrames=\(frames) decryptFail=\(failures) " +
+        return "\(rsa)restarts=\(stallRestarts) reconnects=\(reconnects) gateway=\(gateway) level2=\(lock.withLock { level2Key != nil }) videoFrames=\(frames) decryptFail=\(failures) " +
             "\(builderStats) \(transport)"
     }
 

@@ -148,7 +148,17 @@ final class LiveFeed {
         stream.stop()
     }
 
-    var viewerCount: Int { lock.withLock { subscribers.count } }
+    /// Viewers still reading. A closed one (its connection went away) no longer counts: it mustn't keep the
+    /// camera's session open or make a quiet stream look watched.
+    var viewerCount: Int { lock.withLock { subscribers.values.filter { !$0.closed }.count } }
+
+    /// Drops viewers that have closed; returns how many are left.
+    func prune() -> Int {
+        lock.withLock {
+            subscribers = subscribers.filter { !$0.value.closed }
+            return subscribers.count
+        }
+    }
 
     /// Adds a viewer. It starts with the frames since the last keyframe (so it shows a picture at once) unless
     /// `freshOnly` (snapshots for alerts), or the buffered frames are stale: a stream that stopped sending must
@@ -165,16 +175,16 @@ final class LiveFeed {
     /// last frame, counted from the start if none ever came.
     var secondsWithoutVideo: TimeInterval { Date().timeIntervalSince(lock.withLock { lastVideoAt } ?? startedAt) }
 
-    /// The viewers, for moving them to a fresh feed.
+    /// The viewers still reading, for moving them to a fresh feed (closed ones are dropped here).
     func takeSubscribers() -> [StreamSubscriber] {
-        lock.withLock { defer { subscribers.removeAll() }; return Array(subscribers.values) }
+        lock.withLock { defer { subscribers.removeAll() }; return subscribers.values.filter { !$0.closed } }
     }
 
-    /// Removes a viewer; returns how many remain.
+    /// Removes a viewer; returns how many are still reading.
     func remove(_ subscriber: StreamSubscriber) -> Int {
         lock.withLock {
             subscribers[subscriber.id] = nil
-            return subscribers.count
+            return subscribers.values.filter { !$0.closed }.count
         }
     }
 
@@ -212,8 +222,28 @@ final class LiveHub {
 
     init(bridge: Bridge) { self.bridge = bridge }
 
-    /// A stream with no video for this long is stuck: its camera session gets replaced.
-    static let stuckAfter: TimeInterval = 45
+    /// A stream with no video for this long is stuck: its camera session gets replaced. A camera sends to one
+    /// session at a time, so another viewer opening its own session (the Mac app's Multi-View talks to the
+    /// HomeBase directly) takes the picture away from this one; a restart takes it back within a couple of
+    /// seconds. Each restart soon after the last waits twice as long (up to `stuckAfterMax`), so two viewers
+    /// can't spend all day stealing the camera from each other every few seconds.
+    static let stuckAfter: TimeInterval = 10
+    static let stuckAfterMax: TimeInterval = 80
+    /// A restart this long after the previous one starts the wait over at `stuckAfter`.
+    static let restartMemory: TimeInterval = 120
+    /// Per camera: how many restarts in a row came within `restartMemory` of each other, and when the last was.
+    private var restarts: [UInt8: (count: Int, at: Date)] = [:]
+
+    /// How long a camera's stream may stay quiet before it's restarted (call with the lock held).
+    private func stuckThreshold(_ channel: UInt8) -> TimeInterval {
+        guard let last = restarts[channel], Date().timeIntervalSince(last.at) < Self.restartMemory else { return Self.stuckAfter }
+        return min(Self.stuckAfter * pow(2, Double(last.count)), Self.stuckAfterMax)
+    }
+
+    private func noteRestart(_ channel: UInt8) {
+        let count = restarts[channel].map { Date().timeIntervalSince($0.at) < Self.restartMemory ? $0.count + 1 : 1 } ?? 1
+        restarts[channel] = (count, Date())
+    }
 
     func subscribe(_ channel: UInt8, format: LiveFormat = .ts, freshOnly: Bool = false) -> (LiveFeed, StreamSubscriber) {
         let subscriber = StreamSubscriber(format: format)
@@ -221,17 +251,18 @@ final class LiveHub {
         let feed: LiveFeed = lock.withLock {
             if let existing = feeds[channel] {
                 existing.stopWork?.cancel(); existing.stopWork = nil
-                guard existing.secondsWithoutVideo > Self.stuckAfter else { return existing }
+                guard existing.secondsWithoutVideo > stuckThreshold(channel) else { return existing }
                 // No video for a while although the session is up: start over with a new camera session.
                 stuck = existing
                 feeds[channel] = nil
+                noteRestart(channel)
             }
             var config = bridge.streamConfig(channel: channel, video: true)
             config.quality = bridge.prefs.quality(channel)
             let feed = LiveFeed(channel: channel, config: config)
             feed.onAvailability = { [weak bridge] state in bridge?.noteAvailability(channel, state) }
             feeds[channel] = feed
-            log("live ch\(channel): starting" + (stuck == nil ? "" : " again (no video for \(Int(stuck!.secondsWithoutVideo)) s)"))
+            log("live ch\(channel): starting" + (stuck.map { " again (no video for \(Int($0.secondsWithoutVideo)) s, \($0.viewerCount) watching)" } ?? ""))
             feed.start()
             return feed
         }
@@ -245,22 +276,43 @@ final class LiveHub {
     }
 
     /// Restarts streams that have viewers but no video (checked periodically, so a viewer that just keeps
-    /// waiting, like Home Assistant's stream, doesn't hold a stuck session forever).
+    /// waiting, like Home Assistant's stream, doesn't hold a stuck session forever). Also drops viewers whose
+    /// connections have gone, and stops a stream nobody is reading any more.
     func restartStuckFeeds() {
-        let stuck = lock.withLock { feeds.filter { $0.value.viewerCount > 0 && $0.value.secondsWithoutVideo > Self.stuckAfter }.map(\.key) }
+        let (stuck, unwatched): ([UInt8], [LiveFeed]) = lock.withLock {
+            var stuck: [UInt8] = [], unwatched: [LiveFeed] = []
+            for (channel, feed) in feeds {
+                let viewers = feed.prune()
+                if viewers == 0 { if feed.stopWork == nil { unwatched.append(feed) } }
+                else if feed.secondsWithoutVideo > stuckThreshold(channel) { stuck.append(channel) }
+            }
+            return (stuck, unwatched)
+        }
+        for feed in unwatched { scheduleStop(feed) }
         for channel in stuck {
             let (feed, probe) = subscribe(channel)   // replaces the stuck feed
             unsubscribe(feed, probe)
         }
     }
 
+    /// `feed` is the one the viewer joined; after a restart its viewers live on the camera's current feed, so the
+    /// viewer leaves that one too (leaving only the old feed kept the new one "watched" by nobody forever, and its
+    /// camera session open for good).
     func unsubscribe(_ feed: LiveFeed, _ subscriber: StreamSubscriber) {
         subscriber.close()
-        guard feed.remove(subscriber) == 0 else { return }
+        let current = lock.withLock { feeds[feed.channel] }
+        var remaining = feed.remove(subscriber)
+        if let current, current !== feed { remaining = current.remove(subscriber) }
+        guard remaining == 0, let target = current else { return }
+        scheduleStop(target)
+    }
+
+    /// Stops the camera's stream once `linger` has passed with nobody reading it.
+    private func scheduleStop(_ feed: LiveFeed) {
         let work = DispatchWorkItem { [weak self] in
             guard let self else { return }
             let stop: Bool = self.lock.withLock {
-                guard feed.viewerCount == 0, self.feeds[feed.channel] === feed else { return false }
+                guard feed.prune() == 0, self.feeds[feed.channel] === feed else { return false }
                 self.feeds[feed.channel] = nil
                 return true
             }

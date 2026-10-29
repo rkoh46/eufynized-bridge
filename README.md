@@ -148,6 +148,10 @@ Back up `bridge.json` and `prefs.json`. Everything else comes from this repo.
   few at once). Close other viewers, or pick a smaller Multi-View layout.
 - **On a TV's browser (LG webOS and the like):** one camera plays, a wall of them doesn't; the TV has one
   hardware decoder and little memory. Use the Cameras tab there and open one camera at a time.
+- **A camera's picture stops for a few seconds at a time:** a camera sends to one session at a time, so
+  anything else that opens its own session to the HomeBase (the Mac app's Multi-View, the eufy app) takes the
+  picture away. The bridge asks for it back after 10 s, waiting longer each time it happens again, so the two
+  don't fight all day. Watch through the bridge from everywhere and it never happens.
 - **Video arrives in bursts:** the box is on Wi-Fi. Ethernet fixes it.
 - **Cameras start at 720p:** they all do, then ramp up on their own after a few seconds.
 - **A camera shows the HomeBase's "active" camera instead of itself:** the key or account id in

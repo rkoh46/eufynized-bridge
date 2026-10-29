@@ -11,7 +11,7 @@ import EufyKit
 // EUFYNIZED_ALLOW_FROM=192.168.1. (comma-separated address prefixes) for the Mac app on the home network.
 
 extension Bridge {
-    static let version = "1.7.0"
+    static let version = "1.7.1"
 }
 
 setvbuf(stdout, nil, _IOLBF, 0)
