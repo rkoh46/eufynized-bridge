@@ -152,6 +152,9 @@ Back up `bridge.json` and `prefs.json`. Everything else comes from this repo.
   anything else that opens its own session to the HomeBase (the Mac app's Multi-View, the eufy app) takes the
   picture away. The bridge asks for it back after 10 s, waiting longer each time it happens again, so the two
   don't fight all day. Watch through the bridge from everywhere and it never happens.
+- **A picture froze and stayed frozen:** the session to the HomeBase died and the HomeBase didn't answer a new
+  one straight away. Since 1.7.2 a stream keeps trying (3 s, 6 s, … 30 s between tries) until it plays
+  again, and a closed session tells the HomeBase so, so the slot is free at once.
 - **Video arrives in bursts:** the box is on Wi-Fi. Ethernet fixes it.
 - **Cameras start at 720p:** they all do, then ramp up on their own after a few seconds.
 - **A camera shows the HomeBase's "active" camera instead of itself:** the key or account id in

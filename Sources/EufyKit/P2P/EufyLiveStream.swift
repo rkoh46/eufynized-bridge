@@ -107,6 +107,14 @@ public final class EufyLiveStream: @unchecked Sendable {
     private var stallWatchdog: Task<Void, Never>?
     /// How many times the watchdog has had to restart the stream (diagnostics).
     public private(set) var stallRestarts = 0
+    /// Set by `stop()`; a start or retry that lands afterwards does nothing.
+    private var stopped = false
+    /// Tries the session again after a failed start (the HomeBase not answering for 15 s), waiting longer
+    /// each time it fails in a row: 3 s, 6 s, … 30 s. Reset once a session plays.
+    private var retry: Task<Void, Never>?
+    private var retryDelay: TimeInterval = 3
+    /// How many times a failed start was tried again (diagnostics).
+    public private(set) var retries = 0
     private let onState: @Sendable (State) -> Void
 
     #if canImport(CoreMedia)
@@ -129,6 +137,8 @@ public final class EufyLiveStream: @unchecked Sendable {
     #endif
 
     public func start() {
+        stopped = false
+        retry?.cancel(); retry = nil
         onState(.connecting)
         Task { [weak self] in
             guard let self else { return }
@@ -198,7 +208,9 @@ public final class EufyLiveStream: @unchecked Sendable {
                     #endif
                 }
                 _ = try await connection.connect()
+                if self.stopped { connection.close(); return }   // stopped while the handshake ran
                 try await startVideo(on: connection)
+                self.retryDelay = 3
                 self.onState(.playing)
                 if self.config.video { self.watchForStalls() }
                 // No video yet? Ask the HomeBase why (camera info, 1103) — twice, in case a reply is lost.
@@ -225,7 +237,20 @@ public final class EufyLiveStream: @unchecked Sendable {
                     }
                 }
             } catch {
-                self.onState(.failed(error.localizedDescription))
+                // A start that fails is tried again, not given up on: a HomeBase that didn't answer for 15 s
+                // (busy, or still holding a session that died) usually answers a little later, and a wall of
+                // tiles that froze must come back on its own. Close the half-open socket first.
+                self.connection?.close(); self.connection = nil
+                guard !self.stopped else { return }
+                let delay = self.retryDelay
+                self.retryDelay = min(delay * 2, 30)
+                self.onState(.failed("\(error.localizedDescription) Trying again in \(Int(delay)) s."))
+                self.retry = Task { [weak self] in
+                    try? await Task.sleep(for: .seconds(delay))
+                    guard let self, !Task.isCancelled, !self.stopped else { return }
+                    self.retries += 1
+                    self.start()
+                }
             }
         }
     }
@@ -383,6 +408,9 @@ public final class EufyLiveStream: @unchecked Sendable {
     }
 
     public func stop() {
+        stopped = true
+        retry?.cancel()
+        retry = nil
         stallWatchdog?.cancel()
         stallWatchdog = nil
         keepAlive?.cancel()
@@ -560,7 +588,7 @@ public final class EufyLiveStream: @unchecked Sendable {
         #endif
         let gateway = lock.withLock { rawGateway != nil }
         let rsa = level2Decoder.map { "rsa=\($0.rsaUnwraps)/hits=\($0.rsaCacheHits) " } ?? ""
-        return "\(rsa)restarts=\(stallRestarts) reconnects=\(reconnects) gateway=\(gateway) level2=\(lock.withLock { level2Key != nil }) videoFrames=\(frames) decryptFail=\(failures) " +
+        return "\(rsa)restarts=\(stallRestarts) reconnects=\(reconnects) retries=\(retries) gateway=\(gateway) level2=\(lock.withLock { level2Key != nil }) videoFrames=\(frames) decryptFail=\(failures) " +
             "\(builderStats) \(transport)"
     }
 

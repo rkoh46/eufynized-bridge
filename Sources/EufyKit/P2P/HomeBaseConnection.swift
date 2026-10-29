@@ -177,12 +177,15 @@ public final class HomeBaseConnection: @unchecked Sendable {
     }
 
     public func close() {
-        let heartbeat: Task<Void, Never>? = lock.withLock {
+        let (heartbeat, peer): (Task<Void, Never>?, UDPSocket.Endpoint?) = lock.withLock {
             closed = true
             defer { self.heartbeat = nil }
-            return self.heartbeat
+            return (self.heartbeat, self.peer)
         }
         heartbeat?.cancel()
+        // Tell the HomeBase the session is over, so it frees the slot now rather than after its own timeout:
+        // it serves only a few sessions, and one left to expire can keep the next one from being answered.
+        if let peer { socket.send(PPPPMessage.frame(PPPPMessage.Request.end), to: peer) }
         socket.close()
     }
 
